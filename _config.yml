@@ -13,20 +13,31 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@domain.com
+title: Bergercookie's thoughtstream
+email: nickkouk@gmail.com
+
+
+# TODO - Post link to md file that describes your open-source uploaded codes
+# Post a link to your CV - Copy your CV here when and when that happens git
+# commit again here.
+
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+    This is just the space I'll be using to post interesting
+    technological stuff code snippets as well as totally random and
+    nonsense thoughts.
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: bergercookie12
+github_username:  bergercookie
+
+# TODO - how do I include stackoverflow
+stackoverflow_username: bergercookie
 
 # Build settings
 markdown: kramdown
 theme: minima
+
 gems:
   - jekyll-feed
 exclude:
