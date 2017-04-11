@@ -4,10 +4,13 @@ title: About
 permalink: /about/
 ---
 
+<img style="float: right;" src="https://avatars0.githubusercontent.com/u/5816719?v=3&s=200">
+
+[Curriculum Vitae](/res/cv.pdf)
+
 I am a mechanical engineering student from National Technical University of
 Athens (NTUA). My fields of interest include graphSLAM, multi-robot SLAM,
 Control Theory and Computer Simulations.
-
 - In 2012 I participated in a summer course where we developed the source code
     for controlling a DRK8080 robot using the C# language.
 - In 2013 I developed a cross-platform GUI for controlling a
