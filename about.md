@@ -19,7 +19,7 @@ Control Theory and Computer Simulations.
     Royal Instutute of Technology of Sweden (KTH), where I concentrated in
     Control theory and Aeronautics-related subjects
 - Since the summer of 2015 I undertook my master thesis in the field of
-    multi-robot robotics under Proffessor 
+    multi-robot SLAM  under Professor 
     [Kostas J.  Kyriakopoulos](http://www.controlsystemslab.gr/kkyria/).
     Subject of the thesis was the "Investigation, design and implementation of
     single and multi-robot SLAM algorithms"
