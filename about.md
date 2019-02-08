@@ -8,22 +8,15 @@ permalink: /about/
 
 [Curriculum Vitae](/res/cv.pdf)
 
-I am a mechanical engineering student from National Technical University of
-Athens (NTUA). My fields of interest include graphSLAM, multi-robot SLAM,
-Control Theory and Computer Simulations.
-- In 2012 I participated in a summer course where we developed the source code
-    for controlling a DRK8080 robot using the C# language.
-- In 2013 I developed a cross-platform GUI for controlling a
-    Cavro XP3000 digital pump using Qt.
-- For the 1st semester of 2015 I studied as an Erasmus student in the
-    Royal Instutute of Technology of Sweden (KTH), where I concentrated in
-    Control theory and Aeronautics-related subjects
-- Since the summer of 2015 I undertook my master thesis in the field of
-    multi-robot SLAM  under Professor 
-    [Kostas J.  Kyriakopoulos](http://www.controlsystemslab.gr/kkyria/).
-    Subject of the thesis was the "Investigation, design and implementation of
-    single and multi-robot SLAM algorithms"
+I am a Robotics/SLAM engineer enthusiastic about new technologies, computers and
+programming. I love . In my free time I'm tinkering with electronics, learn
+new programming concepts or contribute to the open-source
+[MRPT](https://mrpt.org) framework.
 
-    + The single-robot algorithms along with a novel
-        loop-closing scheme were implemented as part of my Google Summer of Code (GSoC)
-        internship of 2017 for the *Mobile Robot Programming Toolkit* [MRPT](http://www.mrpt.org).
+I hold a Master's Degree from the national [Technical University of Athens
+(NTUA)](http://www.mech.ntua.gr/en/). My master thesis was in the field of
+multi-robot SLAM (Simultaneous Localisation and Mapping) under the super vision
+of Professor [Kostas J.
+Kyriakopoulos](http://www.controlsystemslab.gr/kkyria/). Subject of the thesis
+was the "Investigation, design and implementation of single and multi-robot SLAM
+algorithms"
