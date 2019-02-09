@@ -8,10 +8,11 @@ permalink: /about/
 
 [Curriculum Vitae](/res/cv.pdf)
 
-I am a Robotics/SLAM engineer enthusiastic about new technologies, computers and
-programming. I love . In my free time I'm tinkering with electronics, learn
-new programming concepts or contribute to the open-source
-[MRPT](https://mrpt.org) framework.
+I am a Robotics/SLAM engineer, enthusiastic about new technologies, computers
+and programming. I love coding, travelling, bouldering and lately discovering
+new funky cafes and restaurants in London. In my free time I'm tinkering with
+electronics, learning new programming concepts or contribute to the open-source
+[MRPT](https://mrpt.org) robotics framework.
 
 I hold a Master's Degree from the national [Technical University of Athens
 (NTUA)](http://www.mech.ntua.gr/en/). My master thesis was in the field of

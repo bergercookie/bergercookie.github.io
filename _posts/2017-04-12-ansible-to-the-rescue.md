@@ -3,6 +3,7 @@ layout: post
 title:  "On the use of deployment tools in multi-robot experiments"
 date:   2017-04-12
 categories: robots
+author: bergercookie
 published: false
 ---
 
