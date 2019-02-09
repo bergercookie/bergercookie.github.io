@@ -8,6 +8,8 @@ published: true
 permalink: /articles/dailly-workflow
 ---
 
+# WIP
+
 As this is my first actual post I thought I'd write about something I'm a big
 fun of, tooling. More specifically I want to describe my workflow when working
 or in general when using my machine. Here's a bullet list of the software I'm
