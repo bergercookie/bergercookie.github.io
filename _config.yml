@@ -5,7 +5,6 @@
 # Name of your site (displayed in the header)
 name: Bergercookie's thoughtstream
 
-
 description: > # this means to ignore newlines until "baseurl:"
     Code code, robots, code, robots, robots, code... you get the point.. :-)
 
@@ -24,7 +23,7 @@ footer-links:
   flickr:
   github: bergercookie
   instagram:
-  linkedin:
+  linkedin: nikos-koukis
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter:  bergercookie12
@@ -65,15 +64,17 @@ kramdown:
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
     css_class: 'highlight'
+  fenced_code_blocks: true
 
-# Set the Sass partials directory, as we're using @imports
-sass:
-  style: :expanded # You might prefer to minify using :compressed
+markdown: kramdown
+theme: minima
 
 # Use the following plug-ins
 plugins:
+  - jemoji
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jekyll-seo-tag
 
 # Exclude these files from your production _site
 exclude:
