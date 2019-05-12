@@ -23,9 +23,7 @@ footer-links:
   facebook:
   flickr:
   github: bergercookie
-  i# Short bio or description (displayed in the header)
-description: 
-nstagram:
+  instagram:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon
@@ -73,7 +71,7 @@ sass:
   style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
 
