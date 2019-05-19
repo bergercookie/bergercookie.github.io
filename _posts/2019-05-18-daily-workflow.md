@@ -139,7 +139,7 @@ Here's my terminal configuration at the time of writing this:
 i3 is a tiling window manager, meaning that it's designed for placing windows as
 individual tiles in your screen(s). Since `Tmux` does most of the heavy-lifting in
 the terminal (splitting to panes, multiple sessions, multiple named windows
-etc.) `i3` gives you (almost) the configurability of a window manager such as
+etc.). `i3` gives you (almost) the configurability of a window manager such as
 [awesome](https://awesomewm.org/) but with much less hassle for configuring it
 to reach a version that works.
 
@@ -207,9 +207,10 @@ still worth mentioning:
     More on this in another post.
 
 - **Linux application Launcher:** [Albert](https://albertlauncher.github.io/)
-- **Fuzzy searching - autocompletion:** directory navigation: [fzf](https://github.com/junegunn/fzf)
+- **Fuzzy searching, autocompletion, directory navigation:** [fzf](https://github.com/junegunn/fzf)
 - **Rust-alternatives to classic UNIX tools:**
     [ripgrep](https://github.com/BurntSushi/ripgrep), [fd](https://github.com/sharkdp/fd)
+- **Messeging apps bundler:** [Franz](https://meetfranz.com)
 
 ## More on the menu - feedback
 
