@@ -22,8 +22,7 @@ attitude has helped me considerably so far.
 I'm also a big believer in open-source. I'm striving to publish all my coding
 projects on Github (see my [pinned repos](https://github.com/bergercookie) for
 some of the works I'm proud of) and I've also been mentoring for the past two
-years for the [Google Summer of Code
-Project](https://summerofcode.withgoogle.com/) with the [MRPT robotics
+years for the [Google Summer of Code Project](https://summerofcode.withgoogle.com/) with the [MRPT robotics
 organisation](https://mrpt.org). Thus, I'm trying as much as possible to use
 open-source alternatives for all my tasks. That being said, if there is a
 paid-for tool that does something great I'm happy to pay for it (e.g., see the
@@ -57,13 +56,13 @@ greatest gcc-8 compiler. Ubuntu and Debian give you that and also provide ways
 of installing more recent versions ([linuxbrew](http://linuxbrew.sh/), [Ubuntu
 PPAs](https://launchpad.net/ubuntu/+ppas)) and hey, you can always compile stuff
 from source if the previous don't work for you :wink:
- 
+
 [^ros-ps]: Don't know what ROS is? Google it or wait for me to write an article on its latest version `ROS2`.
 
 ## Vim/Neovim
 
-There is a gazillion of articles on how to ... properly use vim or what to put
-in your `vimrc` so I'm going to keep it short here.
+There is a gazillion of articles on how to use vim or what to put in your
+`vimrc` so I'm going to keep it short here.
 
 Here are some of the plugins that I use on a daily basis and I'm confident have
 boosted my editing efficiency significantly. Refer to the corresponding
@@ -78,7 +77,6 @@ boosted my editing efficiency significantly. Refer to the corresponding
 * UNIX helper functions: [eunuch](https://github.com/tpope/vim-fugitive)
 * Asynchronous fuzzy searching: [fzf](https://github.com/junegunn/fzf.vim)
 * Personal knowledge base /Task management: [vimwiki](https://github.com/vimwiki/vimwiki), [taskwiki](https://github.com/tbabej/taskwiki)
-
 
 The important thing to note here is that you have to find a combination that
 works for you.
@@ -118,8 +116,8 @@ difference compared to its predecessor is the good list of plugins and
 customisation options it gives to its user. It comes with its own plugin manager
 [tpm](https://github.com/tmux-plugins/tpm) along with plugins such as
 [tmux-yank](https://github.com/tmux-plugins/tmux-yank),
-[tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)
-, and [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) which
+[tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) , and
+[tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) which
 significantly enhance the Tmux user experience.
 
 Finally, I'm using `Bash` for general navigation, system-interaction tasks. Bash
