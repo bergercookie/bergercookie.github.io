@@ -21,3 +21,10 @@ of Professor [Kostas J.
 Kyriakopoulos](http://www.controlsystemslab.gr/kkyria/). Subject of the thesis
 was the "Investigation, design and implementation of single and multi-robot SLAM
 algorithms"
+
+## Contact Info - Public GPG key
+
+You can always find me on my email - `nickkouk@gmail.com`.
+In case there's something very sensitive or you don't like Google
+spying on your conversations :fearful:, here's also my [public GPG
+key](/res/pub_gpg.key)
