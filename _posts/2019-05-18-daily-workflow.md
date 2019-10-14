@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "My daily workflow and tools"
+title: My daily workflow and tools
 date:   2019-05-18 15:28:00 +0000
-categories: programming
+categories: [programming, linux, tooling]
 author: bergercookie
 published: true
 permalink: /articles/dailly-workflow

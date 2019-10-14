@@ -16,7 +16,7 @@ solved.
 
 <div class="scratchpad_posts">
   <ul class="post-list">
-    {% assign posts = site.categories["scratchpad"] %}
+    {% assign posts = site.tags["scratchpad"] %}
     {% for post in posts %}
     <li>
       <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
