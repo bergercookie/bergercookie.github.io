@@ -41,13 +41,14 @@ plugin does:
 
 - [Jira](https://www.atlassian.com/software/jira): Mark tickets as in-progress/under-code-review/done, do fuzzy search on
   their title, navigate to the corresponding ticket page
-- Taskwarrior: Interact with taskwarrior - fuzzy search on title, change status
+- [Taskwarrior](https://taskwarrior.org/): Interact with taskwarrior - fuzzy search on title, change status
   of task
-- Zoopla - Search Property to Buy, Rent, House Prices
+- [Zoopla](https://www.zoopla.co.uk/) - Search Property to Buy, Rent, House Prices
 - [Xkcd](https://xkcd.com/) - Fetch xkcd comics  - do fuzzy search on title
 - [Google Maps](https://maps.google.com) - Fetch instructions from/to a specific place, optionally via
   specific transportation means
-- Suggestions-enabled search for various websites. For example:
+- Suggestions-enabled search for various websites using
+    [googler](https://github.com/jarun/googler). For example:
 
     Google
     Amazon
@@ -60,12 +61,26 @@ plugin does:
 
 Here are some demo pictures of these plugins:
 
-| ![](/images/albert-demos/albert-suggestions-demo.gif) | ![](/images/albert-demos/albert-suggestions-demo2.gif) |
+| ![](/images/albert-demos/albert-suggestions-demo2.gif) | ![](/images/albert-demos/albert-suggestions-demo.gif) |
 |:---:|:---:|
-| ![](/images/albert-demos/albert-suggestions-demo3.gif) | ![](/images/albert-demos/demo-fuzzy-search-title.png) |
-| ![](/images/albert-demos/demo-options.png) | ![](/images/albert-demos/demo.gif) |
-| ![](/images/albert-demos/search_plugins.png) | ![](/images/albert-demos/taskwarrior-demo.gif) |
-| ![](/images/albert-demos/xkcd-demo.gif) | ![](/images/albert-demos/zoopla-demo.gif) |
+| ![](/images/albert-demos/albert-suggestions-demo3.gif) | ![](/images/albert-demos/taskwarrior-demo.gif) |
+| ![](/images/albert-demos/xkcd-demo.gif) | ![](/images/albert-demos/youtube-demo.gif) |
+
+<br/>
+
+<center>
+<img src="/images/albert-demos/demo-fuzzy-search-title.png">
+<br/>
+Do a fuzzy search of your assigned JIRA tickets
+</center>
+
+<br/>
+
+<center>
+<img src="/images/albert-demos/search_plugins.png">
+<br/>
+View of many suggestions-enabled saerch plugins
+</center>
 
 Since I spent a good deal of time writing these plugins, I figured I could share
 some of my conclusions, shortcuts into writing a new plugin for your own
@@ -254,3 +269,6 @@ usecases:
   language package manager
   (i.e., `pip`) and also copies the plugin directory to the local albert modules
   installation, i.e.: `~/.local/share/albert/org.albert.extension.python/`.
+
+That's all for now. Let me know if this has been helpful or has given you any
+inspiration for making your own extensions.
