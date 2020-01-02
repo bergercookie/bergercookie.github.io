@@ -35,7 +35,7 @@ In my case, I followed the latter approach and in the last ~3 months I implement
 series of plugins to automate parts of my daily routine. All the plugins as well
 as the overall content of this article can be found in the
 [awesome-albert-plugins
-repo](https://github.com/bergercookie/awesome-albert-plugins.) Following is a
+repo](https://github.com/bergercookie/awesome-albert-plugins). Following is a
 list of the plugins I implemented, along with a short description of what each
 plugin does:
 
