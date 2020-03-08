@@ -6,7 +6,7 @@ permalink: /about/
 
 <img style="float: right;" src="https://avatars0.githubusercontent.com/u/5816719?v=3&s=200">
 
-[Curriculum Vitae](/res/cv.pdf)
+[Curriculum Vitae](/resume)
 
 I am a Robotics/SLAM engineer, enthusiastic about new technologies, computers
 and programming. I love coding, travelling, bouldering and lately discovering
