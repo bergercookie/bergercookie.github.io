@@ -1,6 +1,6 @@
 ---
 layout: scratchpad
-title: Scratchpad - UNIX Tools
+title: Scratchpad - Linux Tooling
 date: 2020-03-08 20:00:00 +0000
 categories: [programming, linux]
 tags: scratchpad
@@ -10,7 +10,10 @@ permalink: /scratchpad/unix
 comments: true
 ---
 
-## HOWTO
+A scratchpad of techniques, tools, and routines that I tend to use on my Linux
+machines. Most probably not all of these bullets are going to be useful in your
+case, but I hope that at there will be at least a 10% of them which you won't
+have come across before or that you'll find useful and add to your arsenal.
 
 ### Set the time / timezone
 
@@ -29,15 +32,16 @@ chattr -i <filename> # "i"-immutable file attribute
 
 ### Monitor the progress of dd
 
-* Use [Xfennect/progress](https://github.com/Xfennec/progress)
+There are multiple alternatives to solve this. Newer versions of dd support
+`status=progress`. If you're on an older version, use one of the following:
 
-* Use pv - put in in between `if=...` and `of=...`
+* pv - put in in between `if=...` and after `of=...`
 
 {% highlight bash %}
 dd if=image_rpi_20180712.img bs=1M | pv | sudo dd of=/dev/mmcblk0
 {% endhighlight %}
 
-* Newer versions of dd support `status=progress`
+* Use [Xfennect/progress](https://github.com/Xfennec/progress)
 
 ### Redirect-dmesg-to-console
 
@@ -64,7 +68,7 @@ To do that I have the following rule in the crontab of `root`:
 {% endhighlight %}
 
 This will write dmesg output to a file, prefixed with the current date
-`YYYYMMDD_`, under my home directory every 1 hour
+e.g., `20200229_dmesg_output.dmesg`, under my home directory every 1 hour
 
 In the previous line I'm using the `-T` and `-x` flags of `dmesg`:
 
