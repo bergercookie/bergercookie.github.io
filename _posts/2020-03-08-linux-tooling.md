@@ -6,7 +6,7 @@ categories: [programming, linux]
 tags: scratchpad
 author: bergercookie
 published: false
-permalink: /scratchpad/unix
+permalink: /scratchpad/linux-tooling
 comments: true
 ---
 
@@ -14,6 +14,13 @@ A scratchpad of techniques, tools, and routines that I tend to use on my Linux
 machines. Most probably not all of these bullets are going to be useful in your
 case, but I hope that at there will be at least a 10% of them which you won't
 have come across before or that you'll find useful and add to your arsenal.
+
+P.S. Parts wrapped in `[[  ]]` are links to articles not added yet.
+
+### HTOP - Do not show individual user threads / group them all under the process
+
+Just press `H`. This is handy for monitoring the memory/CPU usage of the whole
+process instead of just its threads.
 
 ### Set the time / timezone
 
@@ -45,7 +52,7 @@ dd if=image_rpi_20180712.img bs=1M | pv | sudo dd of=/dev/mmcblk0
 
 ### Redirect-dmesg-to-console
 
-Imagine cases that the whole UI has frozen or when, for some unknown reason, the
+Imagine cases that the whole UI has frozen or , for some unknown reason, the
 OS has lost connection to the storage and you cannot read/write to disk. In such
 cases you cannot `cat /var/log/syslog` since that would require reading from
 disk. Having kernel logs automatically redirected to a virtual console offers a
@@ -80,20 +87,59 @@ Source: <https://superuser.com/a/30133/369517>
 ## Articles to read
 
 * The Art of the Command Line: <https://github.com/jlevy/the-art-of-command-line>
+* Linux security tools and practices:
+    * <https://blog.quarkslab.com/clang-hardening-cheat-sheet.html>
+    * <https://wiki.debian.org/Hardening>
+    * <https://github.com/yellowbyte/reverse-engineering-reference-manual/blob/master/contents/anti-analysis/Anti-Debugging.md>
+* Electornics design: http://www.kicad-pcb.org/
 
-## Tools
+## Useful Tools
+
+### UNIX Classics
 
 * tee: Redirect both stderr and stdout to file: `./a.out |& tee output`
+* [ufw](https://help.ubuntu.com/community/UFW): The Uncomplicated Firewall - Frontend to `iptables`
+    * [Introduction](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
+    * [Cheatsheet](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+
+#### [Moreutils](http://joeyh.name/code/moreutils/)
+
+`chronic`: runs a command quietly unless it fails
+`combine`: combine the lines in two files using boolean operations
+`errno`: look up errno names and descriptions
+`ifdata`: get network interface info without parsing ifconfig output
+`ifne`: run a program if the standard input is not empty
+`isutf8`: check if a file or standard input is utf-8
+`lckdo`: execute a program with a lock held -> Use `flock` instead!
+`mispipe`: pipe two commands, returning the exit status of the first
+`parallel`: run multiple jobs at once
+`pee`: tee standard input to pipes
+`sponge`: soak up standard input and write to a file
+`ts`: timestamp standard input
+
+{% highlight bash%}
+ls | ts "%.S" # subsecond accuracy
+{% endhighlight bash%}
+
+`vidir`: edit a directory in your text editor
+`vipe`: insert a text editor into a pipe
+`zrun`: automatically uncompress arguments to command
+
+
+### Miscellaneous tools
+
+* safe-rm - Ubuntu package
+* [GrapheneX hardening tool](https://pypi.org/project/graphenexr)
+
+### Hidden Gems
 
 * Google Search from command line: <https://github.com/jarun/googler>
-* GrapheneX hardening tool: <https://pypi.org/project/graphenexr>
-* [[Debugging tools]]
-* moreutils
-* [[fzf]] - fuzzy finding CTRL_T, CTRL_R, ALT_C
-* safe-rm - Ubuntu package
-* easy2boot - [[e2b]]
+* fzf - fuzzy finding CTRL_T, CTRL_R, ALT_C
 * pee from moreutils - "tee standard input to pipes"
-* remove color codes from command outptu - `./somescript | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
+* Remove color codes from command outptu
+
+  * `./somescript | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
+
 * rtv - Terminal client for reddit
 * units - GNU currency/units conversion script
 * pv - Pipe Viewer
@@ -106,15 +152,19 @@ Source: <https://superuser.com/a/30133/369517>
     * Compress contents of a directory
         * `tar -cf - . | pv -s $(du -sb . | awk '{print $1}') | gzip > out.tgz # WITH TIME`
         * `tar -czf - . | pv > out.tgz WO END TIME`
-* Effective git-aware tar:
-    * `tar cvfz <git-repo>.tgz --exclude-vcs --exclude-vcs-ignores slamcore_ros/.gitignore --exclude='<git-repo>/.gitmodules'  <git-repo>`
-    * `tar cvfz slamcore_ros.tgz --exclude-vcs --exclude-vcs-ignores ~/slamcore_ros_ws/src/slamcore_ros/.gitignore --exclude='~/slamcore_ros_ws/src/slamcore_ros/.gitmodules' -C ~/slamcore_ros_ws/src/  slamcore_ros/`
-* `tac -rs` - Concatenate and print files in reverse
+* Options for effective, git-aware `tar`ring:
+
+{% highlight bash %}
+tar cvfz <git-repo>.tgz --exclude-vcs --exclude-vcs-ignores <...>/.gitignore --exclude='<git-repo>/.gitmodules'  <git-repo>
+tar cvfz <name>.tgz --exclude-vcs --exclude-vcs-ignores ~/<name>/.gitignore --exclude='~/<name>/.gitmodules' -C ~/<name>/src/
+tac -rs # Concatenate and print files in reverse
+{% endhighlight %}
+
 * Rg
-    * search in specific filetypes -> h, hpp, cpp
-        * `rg boa slamcore  --type-add "source:*.{h,hpp,cpp}" -tsource`
     * Standard search in directory
-    * `rg find_package /usr/share/`
+      * `rg find_package /usr/share/`
+    * search in specific filetypes -> h, hpp, cpp
+        * `rg <string-to-search> <path> --type-add "source:*.{h,hpp,cpp}" -tsource`
 * [[sed]]
 * [[awk]]
 * [[sftp]]
@@ -136,20 +186,21 @@ Source: <https://superuser.com/a/30133/369517>
     * `rename 'y/t,x,t/a,b,c/' *`
     * https://www.maketecheasier.com/rename-files-in-linux/
 * `nproc` - Get number of processing units (cores) available
-* `sshguard`: https://www.sshguard.net/
-* [[dm-thin|dm-thin]]
+* [sshguard](https://www.sshguard.net/)
+* dm-thin: A *Stackable* Linux device that reports more room/capacity that it
+  actually has.  Then if the actual limit is reached, depend on the user for JIT
+  addition of extra capacity
 * Know if you are running wayland or x11:
 
-{% highlight bash %}
-loginctl show-session `loginctl|grep $(YOUR_USER_NAME)|awk '{print $1}'` -p Type
-{% endhighlight %}
+  {% highlight bash %}
+  loginctl show-session `loginctl|grep $(YOUR_USER_NAME)|awk '{print $1}'` -p Type
+  {% endhighlight %}
 
 * [[Reverse SSH tunnelling]]
 * `cpupower`: Manage processor power related configuration, enable/disable cpu
   frequency scaling, frequency governors
+
   * <https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt>
-  * [[nginx]]
-* Electornics design: http://www.kicad-pcb.org/
 * top/htop alterantives:
     * `glances` - <https://github.com/nicolargo/glances>
 * sar/sadf: Monitor your system over time, find bottlenecks
@@ -159,7 +210,6 @@ loginctl show-session `loginctl|grep $(YOUR_USER_NAME)|awk '{print $1}'` -p Type
 * TLDR client:
     * <https://github.com/dbrgn/tealdeer>
     * <https://github.com/raylee/tldr>
-* [[lsd]] - ls alternative
 * procs - ps alternative
 * More secure, simpler VPN solution: AlgoVPN: <https://github.com/trailofbits/algo>
 * diskus: More friendly and faster version of `du -sh`
@@ -167,30 +217,4 @@ loginctl show-session `loginctl|grep $(YOUR_USER_NAME)|awk '{print $1}'` -p Type
 * hdparm: Show hard-disk/SSD related information
     * `hdparm -I /dev/sda`
 * [[Power-related utilities]]
-* Linux security tools and practices:
-    * <https://blog.quarkslab.com/clang-hardening-cheat-sheet.html>
-    * <https://wiki.debian.org/Hardening>
-    * <https://github.com/yellowbyte/reverse-engineering-reference-manual/blob/master/contents/anti-analysis/Anti-Debugging.md>
-* [ufw](https://help.ubuntu.com/community/UFW): The Uncomplicated Firewall - Frontend to `iptables`
-    * [Introduction](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
-    * [Cheatsheet](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
-* Straightforward image editor: `showfoto`
-
-## Tools to Try
-
-* [Moreutils](http://joeyh.name/code/moreutils/)
-    * `chronic`: runs a command quietly unless it fails
-    * `combine`: combine the lines in two files using boolean operations
-    * `errno`: look up errno names and descriptions
-    * `ifdata`: get network interface info without parsing ifconfig output
-    * `ifne`: run a program if the standard input is not empty
-    * `isutf8`: check if a file or standard input is utf-8
-    * `lckdo`: execute a program with a lock held -> Use `flock` instead!
-    * `mispipe`: pipe two commands, returning the exit status of the first
-    * `parallel`: run multiple jobs at once
-    * `pee`: tee standard input to pipes
-    * `sponge`: soak up standard input and write to a file
-    * `ts`: timestamp standard input
-    * `vidir`: edit a directory in your text editor
-    * `vipe`: insert a text editor into a pipe
-    * `zrun`: automatically uncompress arguments to command
+* Easy to use / not bloated image editor: [showfoto](https://kde.org/applications/graphics/org.kde.showfoto)
