@@ -84,6 +84,21 @@ In the previous line I'm using the `-T` and `-x` flags of `dmesg`:
 
 Source: <https://superuser.com/a/30133/369517>
 
+### Sort letters in a case-sensitive way
+
+It seems that the default `sort` utility shipped with ubuntu sorts by default in
+a case insensitive way. This leads to 'a' coming ahead of 'C' even though the
+latter has a lower value in the [ASCII table](http://www.asciitable.com/).
+
+To correct this you have to override the `*_COLLATE` environment variable:
+
+
+{% highlight bash %}
+echo -e "c\nb\nB\na" | LC_COLLATE=C sort
+# or with UTF-8 encoding
+echo -e "c\nb\nB\na" | LC_COLLATE=C.UTF-8 sort
+{% endhighlight %}
+
 ## Articles to read
 
 * The Art of the Command Line: <https://github.com/jlevy/the-art-of-command-line>
@@ -91,13 +106,13 @@ Source: <https://superuser.com/a/30133/369517>
     * <https://blog.quarkslab.com/clang-hardening-cheat-sheet.html>
     * <https://wiki.debian.org/Hardening>
     * <https://github.com/yellowbyte/reverse-engineering-reference-manual/blob/master/contents/anti-analysis/Anti-Debugging.md>
-* Electornics design: http://www.kicad-pcb.org/
+* Electronics design: http://www.kicad-pcb.org/
 
 ## Useful Tools
 
 ### UNIX Classics
 
-* tee: Redirect both stderr and stdout to file: `./a.out |& tee output`
+* tee: Redirect both `stderr` and `stdout` to file: `./a.out |& tee output`
 * [ufw](https://help.ubuntu.com/community/UFW): The Uncomplicated Firewall - Frontend to `iptables`
     * [Introduction](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
     * [Cheatsheet](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
@@ -197,7 +212,7 @@ tac -rs # Concatenate and print files in reverse
   {% endhighlight %}
 
 * [[Reverse SSH tunnelling]]
-* `cpupower`: Manage processor power related configuration, enable/disable cpu
+* `cpupower`: Manage processor power related configuration, enable/disable CPU
   frequency scaling, frequency governors
 
   * <https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt>
@@ -210,11 +225,12 @@ tac -rs # Concatenate and print files in reverse
 * TLDR client:
     * <https://github.com/dbrgn/tealdeer>
     * <https://github.com/raylee/tldr>
-* procs - ps alternative
+* [procs](https://github.com/dalance/procs) - Modern ps alternative
 * More secure, simpler VPN solution: AlgoVPN: <https://github.com/trailofbits/algo>
 * diskus: More friendly and faster version of `du -sh`
-* grc: Command output coloriser - python - <https://github.com/garabik/grc>
+* [ncdu](https://dev.yorhel.nl/ncdu): Disk Usage Analyser
+* [grc](https://github.com/garabik/grc): Command Output Coloriser - written in python
 * hdparm: Show hard-disk/SSD related information
     * `hdparm -I /dev/sda`
 * [[Power-related utilities]]
-* Easy to use / not bloated image editor: [showfoto](https://kde.org/applications/graphics/org.kde.showfoto)
+* [showfoto](https://kde.org/applications/graphics/org.kde.showfoto): Easy to use / not bloated image editor:
