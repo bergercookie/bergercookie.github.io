@@ -226,11 +226,12 @@ tac -rs # Concatenate and print files in reverse
     * <https://github.com/dbrgn/tealdeer>
     * <https://github.com/raylee/tldr>
 * [procs](https://github.com/dalance/procs) - Modern ps alternative
-* More secure, simpler VPN solution: AlgoVPN: <https://github.com/trailofbits/algo>
-* diskus: More friendly and faster version of `du -sh`
+* [AlgoVPN](https://github.com/trailofbits/algo) - More secure, simpler VPN solution
+* [diskus](https://github.com/sharkdp/diskus): More friendly and faster version of `du -sh`
 * [ncdu](https://dev.yorhel.nl/ncdu): Disk Usage Analyser
 * [grc](https://github.com/garabik/grc): Command Output Coloriser - written in python
-* hdparm: Show hard-disk/SSD related information
+* [hdparm](https://en.wikipedia.org/wiki/Hdparm): Show hard-disk/SSD related information
     * `hdparm -I /dev/sda`
 * [[Power-related utilities]]
 * [showfoto](https://kde.org/applications/graphics/org.kde.showfoto): Easy to use / not bloated image editor:
+* [asciinema](https://asciinema.org/): Record and share your terminal sessions
