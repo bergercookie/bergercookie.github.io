@@ -1,4 +1,8 @@
-# Privacy Policy
+<p align="center">
+   <img src="/images/taskwarrior.png" width="50%" />
+</p>
+
+# Privacy Policy - TaskWarrior - Google Calendar sync
 
 I, Nikos Koukis, built the "TaskWarrior - Google Calendar sync" as an Open
 Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended
@@ -9,19 +13,24 @@ use, and disclosure of Personal Information if anyone decided to use my Service.
 
 ## Information Collection and Use
 
-I do not collect any information when you are using "TaskWarrior - Google
-Calendar sync". The purpose of this app is to synchronise your Taskwarrior tasks
-on your local machine with your Google calendar events and is limited to that
-particular use.
+I do not collect or share any of your information when you are using
+"TaskWarrior - Google Calendar sync". The purpose of this app is to synchronise
+your Taskwarrior tasks on your local machine with your Google calendar events
+and is limited to that particular use. The app uses the Google Calendar API to:
+
+* Initially create (if it doesn't exist) a new Calendar
+* Create update or delete events in that new calendar in order to synchronise it
+    with the state of your tasks in your local TaskWarrior instance.
+
+Other than that I do not capture, store, or share any of your TaskWarrior or
+Google Calendar Data.
 
 I do use the
 [google-api-python-client](https://github.com/googleapis/google-api-python-client)
 client however in order to sync your Taskwarrior tasks with your Google Calendar
 account and I do not know what data Google collects via that tool and when using
 its Google Calendar API. You can find out more about Google's Privacy policy
-though at this link:
-
-<https://policies.google.com/privacy>
+though at this link: <https://policies.google.com/privacy>
 
 ## Google API Scopes
 
