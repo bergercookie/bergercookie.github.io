@@ -1,4 +1,4 @@
-**Privacy Policy**
+# Privacy Policy
 
 I, Nikos Koukis, built the "TaskWarrior - Google Calendar sync" as an Open
 Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended
@@ -7,7 +7,7 @@ for use as is.
 This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
 
-**Information Collection and Use**
+## Information Collection and Use
 
 I do not collect any information when you are using "TaskWarrior - Google
 Calendar sync". The purpose of this app is to synchronise your Taskwarrior tasks
@@ -21,9 +21,9 @@ account and I do not know what data Google collects via that tool and when using
 its Google Calendar API. You can find out more about Google's Privacy policy
 though at this link:
 
-https://policies.google.com/privacy
+<https://policies.google.com/privacy>
 
-**Google API Scopes**
+## Google API Scopes
 
 This app needs access to your **Google Calendar** so that it can add, remove,
 and update events to synchronise the corresponding calendar with your local
@@ -36,7 +36,7 @@ sync" at your own risk.
 You can read more on how it works, or look at the source code
 [here](https://github.com/bergercookie/taskw_gcal_sync)
 
-**Security**
+## Security
 
 When using "TaskWarrior - Google Calendar sync" to sync TaskWarrior tasks with
 Google Calendar events you are using
@@ -49,7 +49,7 @@ the security of these two packages. Remember though that no method of
 transmission over the internet, or method of electronic storage is 100% secure
 and reliable, and I cannot guarantee its absolute security.
 
-**Changes to This Privacy Policy**
+## Changes to This Privacy Policy
 
 I may update our Privacy Policy from time to time. Thus, you are advised to
 review this page periodically for any changes. I will notify you of any changes
@@ -57,7 +57,7 @@ by posting the new Privacy Policy on this page.
 
 This policy is effective as of 2020-06-06
 
-**Contact Us**
+## Contact Us
 
 If you have any questions or suggestions about my Privacy Policy, do not
 hesitate to contact me at nickkouk@gmail.com.
