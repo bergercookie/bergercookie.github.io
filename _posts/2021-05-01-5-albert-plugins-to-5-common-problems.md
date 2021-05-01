@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "5+1 Albert Plugins to 5 Workflow Issues"
-date:   2021-05-01
+title: "5 Albert Plugins to 5 Workflow Issues"
+date: 2021-05-01
 author: bergercookie
 published: true
 comments: true
@@ -25,10 +25,12 @@ All are hosted under the same github repo:
 on github and here are links to each one of the plugins that I'll be discussing
 below:
 
-* [TLDR pages](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/tldr_pages)
-* [Scratchpad](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/scratchpad)
-* [Googler-enabled plugins](https://github.com/bergercookie/awesome-albert-plugins#plugins)
-* [Saxophone](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/saxophone)
+- [TLDR pages](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/tldr_pages)
+- [Scratchpad](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/scratchpad)
+- [Googler-enabled plugins](https://github.com/bergercookie/awesome-albert-plugins#plugins)
+- [Googler-enabled plugins](https://github.com/bergercookie/awesome-albert-plugins#plugins)
+- [google_translate](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/google_translate) | [words](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/words)
+- [Saxophone](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/saxophone)
 
 ## 🔎 Looking up command / tool usage instructions
 
@@ -39,18 +41,18 @@ to work in using [Poetry](https://python-poetry.org/). You may either haven't
 used these tools at all, or are not able to recall the exact flags for the task
 at hand. Two common ways of dealing with this are:
 
-* Google it! You'll then most probably want to move to a StackOverflow answer,
-copy-paste a command that seems to solve your issue, and then adjust it
-accordingly. This involves a few browser redirections (at least ``google.com``
--> ``stackoverflow.com``), as well as the overhead of selecting the right post
-and finding the right answer to your question.
-* Read the manpage / helppage of the tool, if it has one. This resource may be
-more rigorous but it will also take more time to find the documentation section
-that you're interested in.
+- Google it! You'll then most probably want to move to a StackOverflow answer,
+  copy-paste a command that seems to solve your issue, and then adjust it
+  accordingly. This involves a few browser redirections (at least `google.com`
+  -> `stackoverflow.com`), as well as the overhead of selecting the right post
+  and finding the right answer to your question.
+- Read the manpage / help page of the tool, if it has one. This resource may be
+  more rigorous but it will also take more time to find the documentation section
+  that you're interested in.
 
 A more effective approach to this would be to use a software such as
 [tldr](https://github.com/tldr-pages/tldr), [bro pages](http://bropages.org/),
-or [cheat](https://github.com/cheat/cheat). More specifically, ``tldr`` allows
+or [cheat](https://github.com/cheat/cheat). More specifically, `tldr` allows
 you to look up the most common usecases for a wide variety of tools, all without
 leaving your command line. It's also easily extensible, allowing you to add more
 examples to specific tools, or adding documentation and examples for new tools.
@@ -78,8 +80,8 @@ Whether I'm either reading articles on Wikipedia, watching videos on YouTube, or
 doing pretty much anything on the computer that involves a bit of learning, I
 like to take notes. A good approach to this would be to split your screen
 vertically and have the browser on one side and your favorite editor on the
-other. Then you would create a new text file for othe item you 're studying, add
-a title, then add your notes or copy paste accordingly.
+other. Then you would create a new text file for every new item you 're
+studying, add a title, then add your notes or copy paste accordingly.
 
 <br>
 ![scratchpad1](/images/albert-demos2/scratchpad1.png)
@@ -87,19 +89,19 @@ a title, then add your notes or copy paste accordingly.
 
 This involves a few steps in the process that can be improved:
 
-* At that particular moment I don't want to have to:
+- At that particular moment I don't want to have to:
 
-  * create a new file
-  * think of where to place it in my hierarchy of notes
-  * add the appropriate title
-  * add structure to the note that I'm taking
+  - create a new file
+  - think of where to place it in my hierarchy of notes
+  - add the appropriate title
+  - add structure to the note that I'm taking
 
   I'd rather spend this time just recording my thoughts and reading through the
   actual Wikipedia page.
 
-* I don't want to switch between reading the resource and recording my notes.
+- I don't want to switch between reading the resource and recording my notes.
 
-To deal with this, I'm using a very simple plugin called ``scratchpad``.
+To deal with this, I'm using a very simple plugin called `scratchpad`.
 
 <br>
 ![scratchpad2](/images/albert-demos2/scratchpad2.png)
@@ -122,7 +124,7 @@ if you start adding notes about a new subject
 ![scratchpad3](/images/albert-demos2/scratchpad3.png)
 <br>
 
-The plugin gets triggered either explicitly using ``s<space>`` or automatically
+The plugin gets triggered either explicitly using `s<space>` or automatically
 if your Albert query is longer than 5 words. This process allows you to record
 anything you want and then sort them out later (i.e., place them into separate
 files, structure them better, etc.).
@@ -146,7 +148,7 @@ launch your browser, search on google the thing you're interested in and
 navigate to it, and finally, copy the link displayed in your browser prompt
 
 Again, as with the previous issues discussed this approach takes too much time
-*and* makes you context switch from the thing you're currently doing.
+_and_ makes you context switch from the thing you're currently doing.
 
 Instead use [googler](https://github.com/jarun/googler) or even better one of
 the many googler-enabled plugins in the
@@ -176,21 +178,29 @@ watching a movie and you don't know a word or a phrase written there. It's too
 much of a hassle to open a new browser tab, go to Google Translate to do the
 translation.
 
-Use the ``google_translate`` plugin in conjunction with the `word` plugin.
+Use the `google_translate` plugin in conjunction with the `word` plugin.
 
 | ![](/images/albert-demos2/google_translate.png) | ![](/images/albert-demos2/word.png) |
 
-The ``google_translate`` plugin will translate the word from the source language
-to the destination language while you can also use the ``auto`` source to enable
+The `google_translate` plugin will translate the word from the source language
+to the destination language while you can also use the `auto` source to enable
 autodetection.
 
-The ``word`` plugin on the other hand will give you the definition of the given
+The `word` plugin on the other hand will give you the definition of the given
 word along with synonyms and antonyms.
 
-## Bonus: 🎷 Playing radio streams
+## 🎷 Playing Radio Streams
 
-If you're a fan of listening to radio, you can use the ``saxophone`` plugin to
-listen to one of the many radio stations. Under the hood it uses the [VLC
-Remote-Control Interface](https://wiki.videolan.org/documentation:modules/rc/).
+This last plugin allows you to play and alternate between different stations
+easily and without jumping around different webpages to do so.
+
+It's called `saxophone`, and this is how its interface looks.
 
 ![](/images/albert-demos2/saxophone.png)
+
+There's a bunch of preconfigured radios, specified in the
+`config/saxophone.json` file. You can easily extend that list to include your
+preferences as well.
+
+Under the hood it uses the [VLC Remote-Control
+Interface](https://wiki.videolan.org/documentation:modules/rc/).
