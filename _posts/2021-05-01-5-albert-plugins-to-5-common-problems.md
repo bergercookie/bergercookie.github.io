@@ -5,6 +5,7 @@ date: 2021-05-01
 author: bergercookie
 published: true
 comments: true
+toc: true
 ---
 
 This is part two of my articles on the Albert launcher. Read the first part
@@ -137,7 +138,7 @@ different pages:
 
 ![scratchpad-final-result](/images/albert-demos2/scratchpad-final-result.png)
 
-## Adding Links during Text Editing
+## 🔗 Adding Links during Text Editing
 
 Another common issue is inserting links to other pages or documentation while
 you're creating or editing an existing page. That may be a markdown document for
