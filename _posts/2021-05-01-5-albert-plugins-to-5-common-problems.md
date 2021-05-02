@@ -28,8 +28,7 @@ below:
 - [TLDR pages](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/tldr_pages)
 - [Scratchpad](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/scratchpad)
 - [Googler-enabled plugins](https://github.com/bergercookie/awesome-albert-plugins#plugins)
-- [Googler-enabled plugins](https://github.com/bergercookie/awesome-albert-plugins#plugins)
-- [google_translate](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/google_translate) | [words](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/words)
+- [google_translate](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/google_translate) \| [words](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/words)
 - [Saxophone](https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/saxophone)
 
 ## 🔎 Looking up command / tool usage instructions
@@ -41,7 +40,7 @@ to work in using [Poetry](https://python-poetry.org/). You may either haven't
 used these tools at all, or are not able to recall the exact flags for the task
 at hand. Two common ways of dealing with this are:
 
-- Google it! You'll then most probably want to move to a StackOverflow answer,
+- Google it! You'll then most probably want to move to a stackoverflow answer,
   copy-paste a command that seems to solve your issue, and then adjust it
   accordingly. This involves a few browser redirections (at least `google.com`
   -> `stackoverflow.com`), as well as the overhead of selecting the right post
