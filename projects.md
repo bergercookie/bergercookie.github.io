@@ -5,11 +5,9 @@ permalink: /projects/
 published: true
 ---
 
-Following is a list of projects that I worked on either academically or during
-my free time.
+Following is a list of projects that I have worked in.
 
-## Academic Projects
-
+- [**Taskwarrior - Google Calendar Sync**](/projects/taskw-gcal-sync)
 - [**Aerodynamic and Control Analysis of J35 Draken**](https://github.com/bergercookie/Flight-Mechanics)
 
   A very interesting project that I took up during the _Flight Mechanics_
@@ -20,13 +18,13 @@ my free time.
 
   First real project that I undertook using _Python_
 
-- [**Pump3000: A Graphical User Interface for Cavro XP3000**](http://bergercookie.github.io/Projects/Pump3000/)
-- [**ElecMicroscope2000: GUI for arduino-driven electrical microscope motors**](http://bergercookie.github.io/Projects/ElecMicroscope2000/)
+- [**Pump3000: A Graphical User Interface for Cavro XP3000**](/projects/Pump3000/)
+- [**ElecMicroscope2000: GUI for arduino-driven electrical microscope motors**](/projects/ElecMicroscope2000/)
 - [**SpermProject**](http://biotech-ntua.wikispaces.com/Project_20152016_Spermodiagram)
 
   - Design the hardware and software for a sperm-test device. The
     goal of the device is to offer an in-house cost-affordable alternative
-    to the costy, and often uncomfortable for the patient, procedure of
+    to the costly, and often uncomfortable for the patient, procedure of
     laboratory sperm exam
   - Design in CAD the device for magnification
   - Code an android application, which is to run on the phone of the
@@ -39,7 +37,7 @@ my free time.
     population and sperm motility statistics from the given video
   - Information about the overall project can be found
     [here](http://biotech-ntua.wikispaces.com/Project_20152016_Spermodiagram)
-    while the code is can be accesseed from Github.
+    while the code is can be accessed via Github.
 
   Relevant links:
 

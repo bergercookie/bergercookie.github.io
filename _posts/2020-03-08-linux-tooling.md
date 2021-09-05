@@ -61,7 +61,7 @@ solution to these problems
 Add the following line to `/etc/syslog.conf` /  `/etc/rsyslog.conf`
 
 {% highlight syslog %}
-kern.*          /dev/tty10
+kern.* /dev/tty10
 {% endhighlight %}
 
 Alternatively if you don't want to modify preexisting system configuration
@@ -214,7 +214,6 @@ tac -rs # Concatenate and print files in reverse
 * [[Reverse SSH tunnelling]]
 * `cpupower`: Manage processor power related configuration, enable/disable CPU
   frequency scaling, frequency governors
-
   * <https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt>
 * top/htop alterantives:
     * `glances` - <https://github.com/nicolargo/glances>
@@ -229,6 +228,7 @@ tac -rs # Concatenate and print files in reverse
 * [AlgoVPN](https://github.com/trailofbits/algo) - More secure, simpler VPN solution
 * [diskus](https://github.com/sharkdp/diskus): More friendly and faster version of `du -sh`
 * [ncdu](https://dev.yorhel.nl/ncdu): Disk Usage Analyser
+* [Disk Usage Analyzer](http://www.marzocca.net/linux/baobab/baobab-getting-started.html)
 * [grc](https://github.com/garabik/grc): Command Output Coloriser - written in python
 * [hdparm](https://en.wikipedia.org/wiki/Hdparm): Show hard-disk/SSD related information
     * `hdparm -I /dev/sda`
