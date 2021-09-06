@@ -1,8 +1,8 @@
 <p align="center">
-   <img src="/images/taskwarrior.png" width="50%" />
+   <img src="/images/taskwarrior.png" width="30%" />
 </p>
 
-# Privacy Policy - TaskWarrior - Google Calendar sync
+# Privacy Policy - Taskwarrior - GCal Sync
 
 I, Nikos Koukis, built the "TaskWarrior - Google Calendar sync" as an Open
 Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended

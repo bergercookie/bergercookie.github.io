@@ -1,9 +1,13 @@
 ---
-layout: page
-title: Taskwarrior - Google Calendar Sync
+layout: page-no-banner
+title: Taskwarrior - GCal Sync
 permalink: /projects/taskw-gcal-sync
 published: true
 ---
+
+<p align="center">
+   <img src="/images/taskwarrior.png" width="30%" />
+</p>
 
 Synchronization between Taskwarrior tasks and Google Calendar events-reminders.
 

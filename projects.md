@@ -7,7 +7,7 @@ published: true
 
 Following is a list of projects that I have worked in.
 
-- [**Taskwarrior - Google Calendar Sync**](/projects/taskw-gcal-sync)
+- [**Taskwarrior - GCal Sync**](/projects/taskw-gcal-sync)
 - [**Aerodynamic and Control Analysis of J35 Draken**](https://github.com/bergercookie/Flight-Mechanics)
 
   A very interesting project that I took up during the _Flight Mechanics_
