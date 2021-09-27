@@ -1,1 +1,1 @@
-See https://bergercookie.github.io for the rendered result
+See https://bergercookie.dev for the rendered result
