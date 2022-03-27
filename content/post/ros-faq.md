@@ -1,0 +1,289 @@
+---
+author: bergercookie
+categories:
+- ros
+- programming
+- linux
+- scratchpad
+comments: true
+date: "2019-10-13T15:00:00Z"
+draft: false
+title: Scratchpad - ROS1
+toc: true
+---
+
+A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
+
+## Questions/Answers
+
+### Set an argument based on the exclusive OR of two other arguments
+
+{{< highlight xml >}}
+<!-- arg1 XOR arg2 -->
+<arg if="$(eval (arg1 != '') == (arg2 != ''))" name="Please_Set_Exclusively_Either_Arg1_Or_Arg2"/>
+<arg if="$(eval (arg1 != '') == (arg2 != ''))" name="dummy" value="$(arg Please_Set_Exclusively_Either_Arg1_Or_Arg2)"/>
+{{< / highlight >}}
+
+### Set an argument based on an optional environment variable
+
+{{< highlight xml >}}
+<launch>
+  <arg name="mydefault" value="kalimera"/>
+  <arg if="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(env KALIMERA)"/>
+  <arg unless="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(arg mydefault)"/>
+  <param name="kalimera" value="$(arg kalimera)"/>
+</launch>
+{{< / highlight >}}
+
+### How to debug launchfile execution:
+
+See the following CLI arguments
+
+{{< highlight bash >}}
+--wait
+    Delay the launch until a roscore is detected.
+
+--local
+    Launch of the local nodes only. Nodes on remote machines will not be run.
+
+--screen
+    Force all node output to screen. Useful for node debugging.
+
+--log
+    Force all node output to log file. Also useful for node debugging.
+
+-v
+    Enable verbose printing. Useful for tracing roslaunch file parsing.
+
+--dump-params
+    Print parameters in launch file in YAML format.
+{{< / highlight >}}
+
+### Roslaunch conditional <arg>
+
+{{< highlight xml >}}
+<include file="..." >
+  <arg if="$(arg var1)" name="var" value="value" />
+  <arg unless="$(arg var1)" name="var" value="value2" />
+</include>
+{{< / highlight >}}
+
+### Visualise topics/services/images etc from the command line (without X/OpenGL):
+
+Use [rosshow](https://github.com/dheera/rosshow)
+
+### Kill ros/gazebo related processes
+
+{{< highlight bash >}}
+ps -ef | grep -E ros\|melodic | awk '{print 2}' | xargs kill -9
+{{< / highlight >}}
+
+### How do I debug a URDF file and its transforms?
+
+Use the urdfdom tools (independent package)
+
+{{< highlight bash >}}
+apt-get install liburdfdom-tools graphviz
+urdf_to_graphiz <path-to-your-urdf
+{{< / highlight >}}
+
+You can also use the `xacro` package  and the `check_urdf` tool:
+
+{{< highlight bash >}}
+rosrun xacro xacro.py `rospack find pr2_description`/robots/pr2.urdf.xacro -o /tmp/pr2.urdf
+check_urdf pr2.urdf
+{{< / highlight >}}
+
+### [ERROR]: Creation of publisher failed: unknown error handler name 'rosmsg'
+
+There is a bug in `genpy` for version <= 0.6.13, try `apt-get upgrade`-ing it
+
+[Source](https://answers.ros.org/question/360537/unknown-error-handler-name-rosmsg/?answer=360643#post-id-360643)
+
+
+### Error: `RQT doesn't list plugins on startup`:
+
+Remove its cache, then it works: `rm ~/.config/ros.org/rqt_gui.ini`
+
+[Source](https://answers.ros.org/question/91231/rqt-plugin-not-listedfound-in-list-returned-by-rqt-list-plugins/)
+
+### I'm getting the following error: `multiple files named ... in package`
+
+Disable install space.
+
+{{< highlight bash >}}
+catkin clean
+catkin build <package-name> --no-install
+{{< / highlight >}}
+
+### Run catkin for the package in the current directory:
+
+{{< highlight bash >}}
+catkin build --this -DCMAKE...
+{{< / highlight >}}
+
+### Publish to `/move_base_simple/goal`:
+
+{{< highlight bash >}}
+rostpic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 1.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}'
+{{< / highlight >}}
+
+[Source](https://answers.ros.org/question/47973/publishing-to-move_base_simplegoal/)
+
+### image_transport plugins - how to setup:
+
+{{< highlight bash >}}
+sudo apt-get install ros-melodic-*-image-transport
+rosrun image_transport republish compressed /in/compressed:=/<path-to-topic>/compressed_image0  "raw" out:=/<path-to-topic>/image0
+{{< / highlight >}}
+
+[Source](http://wiki.ros.org/image_transport/Tutorials/ManagingPlugins)
+
+### Use `ninja` when building with `catkin_make`
+
+{{< highlight bash >}}
+catkin_make --use-ninja --cmake-args -DCMAKE_BUILD_TYPE=Release
+{{< / highlight >}}
+
+### Adjust logger verbosity - inspect "debug" messages:
+
+Run the rqt_logger_level GUI:
+
+{{< highlight bash >}}
+rosrun rqt_logger_level rqt_logger_level
+{{< / highlight >}}
+
+Alternatively adjust it using the service call:
+
+{{< highlight bash >}}
+rosservice list
+rosservice call /rviz_123/get_loggers <tab><tab>
+rosservice call /rviz_123/set_logger_level <tab><tab>
+{{< / highlight >}}
+
+### Adjust the logger verbosity from the start of the run
+
+Define your own `ROSCONSOLE_CONFIG_FILE` variable + config file.
+
+`rosconsole` will load a config file from `$ROS_ROOT/config/rosconsole.config`
+when it initializes.
+
+`rosconsole` also lets you define your own configuration file that will be
+used by `log4cxx,` defined by the `ROSCONSOLE_CONFIG_FILE` environment variable.
+Anything defined in this config file will override the default config file.
+
+A simple example:
+
+{{< highlight conf >}}
+# Set the default ros output to warning and higher
+log4j.logger.ros=WARN
+# Override my package to output everything
+log4j.logger.ros.my_package_name=DEBUG
+{{< / highlight >}}
+
+### List all available plugins of a particular package
+
+{{< highlight bash >}}
+rospack plugins --attrib=plugin nav_core
+{{< / highlight >}}
+
+See also: http://wiki.ros.org/pluginlib
+
+### Have detailed output for debugging
+
+{{< highlight bash >}}
+# Try one of the following
+export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${message}' # default
+export ROSCONSOLE_FORMAT='${severity} | ${time} | ${message}'
+export ROSCONSOLE_FORMAT='${severity} | ${node} | ${time} | ${message} | ${file}:${line}'
+export ROSCONSOLE_FORMAT='${severity} | ${node} - ${thread} | ${time} | ${message} | +${line} ${file}'
+{{< / highlight >}}
+
+### ROS Unittesting
+
+If you use only `gtest` then you have to add your target like this:
+
+{{< highlight cmake >}}
+catkin_add_gtest(UT_${PROJECT_NAME} test/test_file.cpp
+                                    ...)
+{{< / highlight >}}
+
+However, if you also use `gmock` then you should use `catkin_add_gmock` instead!
+
+{{< highlight cmake >}}
+catkin_add_gmock(UT_{PROJECT_NAME} test/test_file.cpp
+                                    ...)
+{{< / highlight >}}
+
+To run all the tests:
+
+{{< highlight bash >}}
+catkin_make run_tests
+{{< / highlight >}}
+
+Notice that the previous call will return a 0 (success) error code in any case
+even if the tests fail.
+
+To get a summary and get the appropriate error code you can either run `catkin_test_results`
+or the `CTest` target `test`:
+
+{{< highlight bash >}}
+catkin_make test
+{{< / highlight >}}
+
+Source: https://github.com/ros/catkin/issues/576
+
+### Get all ROS topics programmatically
+
+Query the master; from C++ use something like this:
+
+{{< highlight cpp >}}
+#include <ros/master.h>
+// see /opt/ros/<ros-version>/include/ros/master.h for more details on this
+// struct
+ros::master::V_TopicInfo allTopics;
+ros::master::getTopics(allTopics);
+{{< / highlight >}}
+
+[Source](https://answers.ros.org/question/256251/how-to-obtain-list-of-all-available-topics-python/?answer=256260#post-id-256260)
+
+### Remap a topic in the same TF Tree
+
+
+{{< highlight xml >}}
+<node name="remapper" pkg="tf_remapper_cpp" type="tf_remap">
+  <rosparam param="mappings">[{old: /slamcore/map, new: /kalimera}]</rosparam>
+  <param name="old_tf_topic_name" value="/tf" />
+  <param name="new_tf_topic_name" value="/tf" />
+</node>
+{{< / highlight >}}
+
+## More Useful links
+
+* [Environment variables](http://wiki.ros.org/ROS/EnvironmentVariables)
+* [ROS1 Turtlebot navigation tutorial](http://wiki.ros.osuosl.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map)
+
+## ROS REPs of interest
+
+* [REP-117](https://www.ros.org/reps/rep-0117.html):
+  * Readings too close to measure -> `-Inf`
+  * Invalid measurements          -> ` NaN`
+  * Readings of no return         -> `+Inf`
+* [REP-118](https://www.ros.org/reps/rep-0118.html)
+  * Representing depth data
+  * Use 32-bit Float
+* [REP-105](https://www.ros.org/reps/rep-0105.html)
+  * Frames of reference convention
+  * [Relevant answer with rationale](https://answers.ros.org/question/226916/rep-105-and-robot_localization/)
+
+## ROS Ecosystem - Miscellaneous Tools
+
+* [champ](https://github.com/chvmp/champ): ROS packages for Quadruped Robot based on MIT Cheetah I
+* [colcon](https://colcon.readthedocs.io/): CLI Tool to improve the workflow of building, testing, and using multiple packages
+* [vcstool](https://github.com/dirk-thomas/vcstool): VCS Designed to facilitate working with multiple repositories
+* [publish-python](https://github.com/dirk-thomas/publish-python): Python script to publish your python code to Github Release / PyPI, etc. or generate a debian package
+
+
+## A Mental Model of the ROS1 Navigation Stack
+
+<iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>

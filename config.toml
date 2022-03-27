@@ -1,0 +1,4 @@
+baseURL = "https://bergercookie.dev"
+languageCode = "en-us"
+title = "Bergercookie's Thoughtstream"
+theme = "ananke"
