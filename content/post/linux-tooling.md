@@ -1,13 +1,14 @@
 ---
 author: bergercookie
 categories:
+- scratchpad
 - programming
 - linux
 comments: true
 date: "2020-03-08T20:00:00Z"
 draft: false
-tags: scratchpad
 title: Scratchpad - Linux Tooling
+showtoc: true
 ---
 
 A scratchpad of techniques, tools, and routines that I tend to use on my Linux

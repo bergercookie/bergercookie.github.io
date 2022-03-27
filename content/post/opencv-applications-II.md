@@ -9,7 +9,7 @@ comments: true
 date: "2019-10-14T00:00:00Z"
 draft: false
 title: Scratchpad - CV Applications II Course by OpenCV
-toc: true
+showtoc: true
 ---
 
 # Computer Vision Applications using OpenCV

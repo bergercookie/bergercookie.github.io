@@ -8,6 +8,13 @@ comments: true
 date: "2019-12-23T15:28:00Z"
 draft: false
 title: Using Albert to boost your productivity
+showtoc: true
+cover:
+    image: "/images/albert-demos/search_plugins.png"
+    alt: "Using Albert to boost your productivity"
+    caption: "An image of the search plugins using `googler`"
+    relative: false # To use relative path for cover image, used in hugo Page-bundles
+
 ---
 
 I've lately been very active developing plugins for the
@@ -99,7 +106,7 @@ usecases:
   {{< highlight sh >}}
     cookiecutter/
     ├── cookiecutter.json
-  ├── {{cookiecutter.plugin_name}}
+    ├── {{cookiecutter.plugin_name}}
     │   ├── __init__.py
     │   ├── install-plugin.sh
     │   ├── misc

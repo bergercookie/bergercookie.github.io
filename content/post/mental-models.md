@@ -6,6 +6,7 @@ comments: true
 date: "2020-12-27T17:29:00Z"
 draft: false
 title: A Mind Map of Mental Models
+showtoc: false
 ---
 
 Behavioral psychology and the works of Kanheman and Tversky has been a hobby

@@ -8,7 +8,7 @@ comments: true
 date: "2020-03-10T20:00:00Z"
 draft: false
 title: Scratchpad - Create multi-ISO USBs with Easy2boot
-toc: true
+showtoc: true
 ---
 
 [Easy2boot](https://www.easy2boot.com/) is a utility that allows you to flash a USB with multiple bootable

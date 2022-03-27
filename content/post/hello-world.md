@@ -4,7 +4,7 @@ comments: true
 date: "2017-04-11T15:10:19Z"
 draft: false
 title: Hello world!
-toc: true
+showtoc: true
 ---
 
 Hey people, this is the first post in my attempt of a proper Jekyll blog.

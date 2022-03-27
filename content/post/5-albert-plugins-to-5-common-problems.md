@@ -4,7 +4,7 @@ comments: true
 date: "2021-05-01T00:00:00Z"
 draft: false
 title: 5 Albert Plugins to 5 Workflow Issues
-toc: true
+showtoc: true
 ---
 
 This is part two of my articles on the Albert launcher. Read the first part

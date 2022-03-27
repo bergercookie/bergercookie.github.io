@@ -9,7 +9,7 @@ comments: true
 date: "2019-10-13T15:00:00Z"
 draft: false
 title: Scratchpad - ROS1
-toc: true
+showtoc: true
 ---
 
 A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.

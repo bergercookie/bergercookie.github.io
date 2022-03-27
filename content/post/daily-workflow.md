@@ -8,7 +8,7 @@ comments: true
 date: "2019-05-18T15:28:00Z"
 draft: false
 title: My daily workflow and tools
-toc: true
+showtoc: true
 ---
 
 As this is my first actual post I thought I'd write about something I'm a big

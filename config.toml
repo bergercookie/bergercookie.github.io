@@ -1,4 +1,172 @@
 baseURL = "https://bergercookie.dev"
 languageCode = "en-us"
 title = "Bergercookie's Thoughtstream"
-theme = "ananke"
+theme = "PaperMod"
+
+# Options for PaperMod vvvvv
+paginate = 5
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+# googleAnalytics = "UA-123-45"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[minify]
+# disableXML = true
+minifyOutput = true
+
+[params]
+env = "production"
+title = "Bergercookie's Thoughtstream"
+description = "Everything on Robotics, Vim, Producitivy tools"
+keywords = ["Robotics", "Vim", "Productivity", "Anki", "Linux", "ROS", "ROS2",
+"Hardware"]
+author = "Nikos Koukis"
+images = []
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = false
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = true
+hidemeta = false
+hideSummary = false
+showtoc = true
+tocopen = true
+
+[params.assets]
+favicon = "/favicon.ico"
+favicon16x16 = "<link / abs url>"
+favicon32x32 = "<link / abs url>"
+apple_touch_icon = "<link / abs url>"
+safari_pinned_tab = "<link / abs url>"
+
+[params.label]
+text = "Home"
+icon = "/apple-touch-icon.png"
+iconHeight = 35
+
+[params.profileMode]
+enabled = true
+title = "Nikos Koukis"
+subtitle = "Open-Source hacker, Robotics Engineer @[SLAMcore](https://slamcore.com) (He/Him)"
+imageUrl = "/res/profile-picture.png"
+imageWidth = 120
+imageHeight = 120
+imageTitle = "my image"
+
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "post"
+
+[[params.profileMode.buttons]]
+name = "Tags"
+url = "tags"
+
+[params.homeInfoParams]
+Title = "Hi there, I'm Nikos"
+Content = """
+I'm a Robotics Engineer, currently situated in London, working for a cool startup, [SLAMcore](https://slamcore.com).
+
+I’m working on Open-Source Robotics 🤖, Automation tools 🛠️,
+[Anki](https://apps.ankiweb.net/),
+[Albert](https://albertlauncher.github.io/), [Vim](https://www.vim.org/)
+plugins, and lots more! I’m also learning about
+[Rust](https://www.rust-lang.org/), 🦀, Embedded Systems , Photography 📷,
+Spanish 🇪🇸,
+"""
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com/bergercookie12"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/nikos-koukis/"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/bergercookie"
+
+[[params.socialIcons]]
+name = "stackoverflow"
+url = "https://stackoverflow.com/users/2843583/bergercookie"
+
+# [params.analytics]
+
+# [params.analytics.google]
+# SiteVerificationTag = "XYZabc"
+
+# [params.analytics.bing]
+# SiteVerificationTag = "XYZabc"
+
+# [params.analytics.yandex]
+# SiteVerificationTag = "XYZabc"
+
+[params.cover]
+hidden = false
+hiddenInList = false
+hiddenInSingle = false
+linkFullImages = true
+responsiveImages = true
+
+[params.editPost]
+URL = "https://github.com/bergercookie/bergercookie.github.io/content/post"
+Text = "Suggest Changes"
+appendFilePath = true
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+distance = 1000
+threshold = 0.4
+minMatchCharLength = 0
+keys = ["title", "permalink", "summary", "content"]
+
+[menu]
+
+[[menu.main]]
+identifier = "about"
+name = "about"
+url = "/about/"
+weight = 1
+
+[[menu.main]]
+identifier = "posts"
+name = "posts"
+url = "/post/"
+weight = 2
+
+[[menu.main]]
+identifier = "categories"
+name = "categories"
+url = "/categories/"
+weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "photography"
+name = "photography"
+url = "https://bergercookie.dev/photography/"
+weight = 30
+
+[[menu.main]]
+identifier = "search"
+name = "search"
+url = "/search/"
+weight = 100
+
+

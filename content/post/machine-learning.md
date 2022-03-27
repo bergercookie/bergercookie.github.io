@@ -1,13 +1,14 @@
 ---
 author: bergercookie
 categories:
+- scratchpad
 - machine-learning
 - programming
 comments: true
 date: "2019-10-14T00:00:00Z"
 draft: false
-tags: scratchpad
 title: Scratchpad - Machine Learning
+showtoc: true
 ---
 
 **Definition:** The science/art of *programming computers* so that they can

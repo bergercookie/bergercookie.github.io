@@ -4,7 +4,7 @@ comments: true
 date: "2020-10-03T00:00:00Z"
 draft: false
 title: Cracking the OpenCV Applications Course - Project 1
-toc: true
+showtoc: true
 ---
 
 This is a writeup of my first assignment for the "Computer Vision II: Applications" course.

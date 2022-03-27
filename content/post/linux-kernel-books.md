@@ -4,6 +4,7 @@ comments: true
 date: "2020-07-04T10:34:21Z"
 draft: false
 title: Linux Code Commentary ... in a nutshell
+showtoc: true
 ---
 
 I recently got my hands on two books that talk about the Linux Kernel. These

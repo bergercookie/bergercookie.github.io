@@ -1,13 +1,14 @@
 ---
 author: bergercookie
 categories:
+- scratchpad
 - programming
 - linux
 comments: true
 date: "2020-03-10T20:00:00Z"
 draft: false
-tags: scratchpad
 title: Scratchpad - Linux Debugging Tools
+showtoc: false
 ---
 
 * [[rr]]
