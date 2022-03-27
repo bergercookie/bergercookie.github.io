@@ -1,14 +1,23 @@
 ---
 author: bergercookie
+categories:
+- programming
+- linux
+- tooling
 comments: true
 date: "2021-05-01T00:00:00Z"
 draft: false
 title: 5 Albert Plugins to 5 Workflow Issues
 showtoc: true
+cover:
+    image: "/images/albert-demos/example.png"
+    alt: "Using Albert to boost your productivity"
+    caption: "An image of the search plugins using `googler`"
+    relative: false # To use relative path for cover image, used in hugo Page-bundles
 ---
 
 This is part two of my articles on the Albert launcher. Read the first part
-[here]({% post_url 2019-12-23-albert-plugins %})
+[here](/post/albert-plugins)
 
 This post outlines 5 common issues that I had been facing during my day-to-day
 development and the solutions that I came up with via 5 Albert plugins
@@ -82,9 +91,7 @@ vertically and have the browser on one side and your favorite editor on the
 other. Then you would create a new text file for every new item you 're
 studying, add a title, then add your notes or copy paste accordingly.
 
-<br>
 ![scratchpad1](/images/albert-demos2/scratchpad1.png)
-<br>
 
 This involves a few steps in the process that can be improved:
 
@@ -102,35 +109,27 @@ This involves a few steps in the process that can be improved:
 
 To deal with this, I'm using a very simple plugin called `scratchpad`.
 
-<br>
 ![scratchpad2](/images/albert-demos2/scratchpad2.png)
-<br>
 
 Its logic is super simple. You write some text to it and it writes it to a file;
 The same file all the time. You specify the path to that file the first time you
 trigger the plugin.
 
-<br>
 ![scratchpad3](/images/albert-demos2/scratchpad3.png)
-<br>
 
 Each text is saved there and by default it's formatted with a maximum width of
 80 characters to assist in later potential reformatting. A blank line is
 inserted between successive entries to the file and it allows to add a separator
 if you start adding notes about a new subject
 
-<br>
 ![scratchpad3](/images/albert-demos2/scratchpad3.png)
-<br>
 
 The plugin gets triggered either explicitly using `s<space>` or automatically
 if your Albert query is longer than 5 words. This process allows you to record
 anything you want and then sort them out later (i.e., place them into separate
 files, structure them better, etc.).
 
-<br>
 ![scratchpad4](/images/albert-demos2/scratchpad4.png)
-<br>
 
 Here's how your scratchpad looks like after a bunch of additions from two
 different pages:

@@ -1,15 +1,20 @@
 ---
 author: bergercookie
 categories:
-- ros
-- programming
-- linux
-- scratchpad
+  - ros
+  - programming
+  - linux
+  - scratchpad
 comments: true
 date: "2019-10-13T15:00:00Z"
 draft: false
-title: Scratchpad - ROS1
+title: 🛠️  Scratchpad -ROS1
 showtoc: true
+cover:
+  image: "/images/ros.png"
+  alt: ""
+  caption: "ROS Scratchpad"
+  relative: false
 ---
 
 A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
@@ -18,53 +23,59 @@ A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
 
 ### Set an argument based on the exclusive OR of two other arguments
 
+This is a really ugly hack, but it gets the job done. Since we don't care much
+about the name, we set it so that if the user provides both of them at the same
+time, they get a descriptive message back.
+
 {{< highlight xml >}}
+
 <!-- arg1 XOR arg2 -->
 <arg if="$(eval (arg1 != '') == (arg2 != ''))" name="Please_Set_Exclusively_Either_Arg1_Or_Arg2"/>
 <arg if="$(eval (arg1 != '') == (arg2 != ''))" name="dummy" value="$(arg Please_Set_Exclusively_Either_Arg1_Or_Arg2)"/>
 {{< / highlight >}}
 
-### Set an argument based on an optional environment variable
+### Set a parameter based on an environment variable, fallback to a default
 
 {{< highlight xml >}}
 <launch>
-  <arg name="mydefault" value="kalimera"/>
-  <arg if="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(env KALIMERA)"/>
-  <arg unless="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(arg mydefault)"/>
-  <param name="kalimera" value="$(arg kalimera)"/>
+<arg name="mydefault" value="kalimera"/>
+<arg if="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(env KALIMERA)"/>
+<arg unless="$(eval optenv('KALIMERA') != '')" name="kalimera" value="$(arg mydefault)"/>
+
+<param name="kalimera" value="$(arg kalimera)"/>
 </launch>
 {{< / highlight >}}
 
-### How to debug launchfile execution:
+### How to debug launchfile execution
 
 See the following CLI arguments
 
 {{< highlight bash >}}
 --wait
-    Delay the launch until a roscore is detected.
+Delay the launch until a roscore is detected.
 
 --local
-    Launch of the local nodes only. Nodes on remote machines will not be run.
+Launch of the local nodes only. Nodes on remote machines will not be run.
 
 --screen
-    Force all node output to screen. Useful for node debugging.
+Force all node output to screen. Useful for node debugging.
 
 --log
-    Force all node output to log file. Also useful for node debugging.
+Force all node output to log file. Also useful for node debugging.
 
 -v
-    Enable verbose printing. Useful for tracing roslaunch file parsing.
+Enable verbose printing. Useful for tracing roslaunch file parsing.
 
 --dump-params
-    Print parameters in launch file in YAML format.
+Print parameters in launch file in YAML format.
 {{< / highlight >}}
 
 ### Roslaunch conditional <arg>
 
 {{< highlight xml >}}
 <include file="..." >
-  <arg if="$(arg var1)" name="var" value="value" />
-  <arg unless="$(arg var1)" name="var" value="value2" />
+<arg if="$(arg var1)" name="var" value="value" />
+<arg unless="$(arg var1)" name="var" value="value2" />
 </include>
 {{< / highlight >}}
 
@@ -87,7 +98,7 @@ apt-get install liburdfdom-tools graphviz
 urdf_to_graphiz <path-to-your-urdf
 {{< / highlight >}}
 
-You can also use the `xacro` package  and the `check_urdf` tool:
+You can also use the `xacro` package and the `check_urdf` tool:
 
 {{< highlight bash >}}
 rosrun xacro xacro.py `rospack find pr2_description`/robots/pr2.urdf.xacro -o /tmp/pr2.urdf
@@ -99,7 +110,6 @@ check_urdf pr2.urdf
 There is a bug in `genpy` for version <= 0.6.13, try `apt-get upgrade`-ing it
 
 [Source](https://answers.ros.org/question/360537/unknown-error-handler-name-rosmsg/?answer=360643#post-id-360643)
-
 
 ### Error: `RQT doesn't list plugins on startup`:
 
@@ -133,8 +143,8 @@ rostpic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: n
 ### image_transport plugins - how to setup:
 
 {{< highlight bash >}}
-sudo apt-get install ros-melodic-*-image-transport
-rosrun image_transport republish compressed /in/compressed:=/<path-to-topic>/compressed_image0  "raw" out:=/<path-to-topic>/image0
+sudo apt-get install ros-melodic-\*-image-transport
+rosrun image_transport republish compressed /in/compressed:=/<path-to-topic>/compressed_image0 "raw" out:=/<path-to-topic>/image0
 {{< / highlight >}}
 
 [Source](http://wiki.ros.org/image_transport/Tutorials/ManagingPlugins)
@@ -175,9 +185,13 @@ Anything defined in this config file will override the default config file.
 A simple example:
 
 {{< highlight conf >}}
+
 # Set the default ros output to warning and higher
+
 log4j.logger.ros=WARN
+
 # Override my package to output everything
+
 log4j.logger.ros.my_package_name=DEBUG
 {{< / highlight >}}
 
@@ -192,7 +206,9 @@ See also: http://wiki.ros.org/pluginlib
 ### Have detailed output for debugging
 
 {{< highlight bash >}}
+
 # Try one of the following
+
 export ROSCONSOLE_FORMAT='[${severity}] [${time}]: ${message}' # default
 export ROSCONSOLE_FORMAT='${severity} | ${time} | ${message}'
 export ROSCONSOLE_FORMAT='${severity} | ${node} | ${time} | ${message} | ${file}:${line}'
@@ -204,15 +220,15 @@ export ROSCONSOLE_FORMAT='${severity} | ${node} - ${thread} | ${time} | ${messag
 If you use only `gtest` then you have to add your target like this:
 
 {{< highlight cmake >}}
-catkin_add_gtest(UT_${PROJECT_NAME} test/test_file.cpp
-                                    ...)
+catkin*add_gtest(UT*${PROJECT_NAME} test/test_file.cpp
+...)
 {{< / highlight >}}
 
 However, if you also use `gmock` then you should use `catkin_add_gmock` instead!
 
 {{< highlight cmake >}}
-catkin_add_gmock(UT_{PROJECT_NAME} test/test_file.cpp
-                                    ...)
+catkin*add_gmock(UT*{PROJECT_NAME} test/test_file.cpp
+...)
 {{< / highlight >}}
 
 To run all the tests:
@@ -249,10 +265,10 @@ ros::master::getTopics(allTopics);
 
 ### Remap a topic in the same TF Tree
 
-
 {{< highlight xml >}}
 <node name="remapper" pkg="tf_remapper_cpp" type="tf_remap">
-  <rosparam param="mappings">[{old: /slamcore/map, new: /kalimera}]</rosparam>
+<rosparam param="mappings">[{old: /slamcore/map, new: /kalimera}]</rosparam>
+
   <param name="old_tf_topic_name" value="/tf" />
   <param name="new_tf_topic_name" value="/tf" />
 </node>
@@ -260,30 +276,43 @@ ros::master::getTopics(allTopics);
 
 ## More Useful links
 
-* [Environment variables](http://wiki.ros.org/ROS/EnvironmentVariables)
-* [ROS1 Turtlebot navigation tutorial](http://wiki.ros.osuosl.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map)
+- [Environment variables](http://wiki.ros.org/ROS/EnvironmentVariables)
+- [ROS1 Turtlebot navigation tutorial](http://wiki.ros.osuosl.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map)
 
-## ROS REPs of interest
+## REPs of interest
 
-* [REP-117](https://www.ros.org/reps/rep-0117.html):
-  * Readings too close to measure -> `-Inf`
-  * Invalid measurements          -> ` NaN`
-  * Readings of no return         -> `+Inf`
-* [REP-118](https://www.ros.org/reps/rep-0118.html)
-  * Representing depth data
-  * Use 32-bit Float
-* [REP-105](https://www.ros.org/reps/rep-0105.html)
-  * Frames of reference convention
-  * [Relevant answer with rationale](https://answers.ros.org/question/226916/rep-105-and-robot_localization/)
+> REP stands for ROS Enhancement Proposal. A REP is a design document providing
+> information to the ROS community, or describing a new feature for ROS or its
+> processes or environment.
+
+- [REP-117](https://www.ros.org/reps/rep-0117.html):
+  - Readings too close to measure -> `-Inf`
+  - Invalid measurements -> ` NaN`
+  - Readings of no return -> `+Inf`
+- [REP-118](https://www.ros.org/reps/rep-0118.html)
+  - Representing depth data
+  - Use 32-bit Float
+- [REP-105](https://www.ros.org/reps/rep-0105.html)
+  - Frames of reference convention
+  - [Relevant answer with rationale](https://answers.ros.org/question/226916/rep-105-and-robot_localization/)
 
 ## ROS Ecosystem - Miscellaneous Tools
 
-* [champ](https://github.com/chvmp/champ): ROS packages for Quadruped Robot based on MIT Cheetah I
-* [colcon](https://colcon.readthedocs.io/): CLI Tool to improve the workflow of building, testing, and using multiple packages
-* [vcstool](https://github.com/dirk-thomas/vcstool): VCS Designed to facilitate working with multiple repositories
-* [publish-python](https://github.com/dirk-thomas/publish-python): Python script to publish your python code to Github Release / PyPI, etc. or generate a debian package
-
+- [champ](https://github.com/chvmp/champ): ROS packages for Quadruped Robot
+  based on MIT Cheetah I
+- [colcon](https://colcon.readthedocs.io/): CLI Tool to improve the workflow of
+  building, testing, and using multiple packages - Default build orchestrator
+  for ROS2
+- [vcstool](https://github.com/dirk-thomas/vcstool): VCS Designed to facilitate
+  working with multiple repositories
+- [publish-python](https://github.com/dirk-thomas/publish-python): Python script
+  to publish your python code to Github Release / PyPI, etc. or generate a
+  debian package
 
 ## A Mental Model of the ROS1 Navigation Stack
 
+{{< rawhtml >}}
+
 <iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>
+
+{{< /rawhtml >}}

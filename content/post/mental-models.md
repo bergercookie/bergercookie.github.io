@@ -1,7 +1,7 @@
 ---
 author: bergercookie
 categories:
-- behavioral_phycology
+  - behavioral_phycology
 comments: true
 date: "2020-12-27T17:29:00Z"
 draft: false
@@ -31,6 +31,4 @@ Instead, I created a mind map for the same content which puts all the models
 into groups and in a single page. Have a look below, and let me know what you
 think:
 
-<iframe width='1280' height='720'
-        src='https://embed.coggle.it/diagram/X-g-vCrTPmLCD_K7/935cb8fe7e0d3f4288c234663aeed31277eb3c390388704e6f942c0e00c2af5d' frameborder='0' allowfullscreen>
-</iframe>
+{{< iframe "https://embed.coggle.it/diagram/X-g-vCrTPmLCD_K7/935cb8fe7e0d3f4288c234663aeed31277eb3c390388704e6f942c0e00c2af5d">}}

@@ -6,9 +6,14 @@ categories:
 - linux
 comments: true
 date: "2020-03-10T20:00:00Z"
-draft: false
-title: Scratchpad - Linux Debugging Tools
+draft: true
+title: 🛠️ Scratchpad - Linux Debugging Tools
 showtoc: false
+cover:
+  image: "/images/linux-dbg.png"
+  alt: ""
+  caption: "Linux Debugging Tools"
+  relative: false
 ---
 
 * [[rr]]
@@ -25,6 +30,6 @@ showtoc: false
     versatile replacement for *vmstat*, *iostat* and *ifstat*
 * [[perf|perf tools]]
 * [[bcc tools|Collection of BCC tools]]
-    * opensnoop - trace open() syscalls with file details. Uses Linux ftrace.
-    * killsnoop - Track kill signals
-* Cross-compilation debugger (?) : `aarch64-gnu-gdb`
+    * `opensnoop` - trace open() syscalls with file details. Uses Linux ftrace.
+    * `killsnoop` - Track kill signals
+* Cross-compilation debugger: Use `aarch64-gnu-gdb`

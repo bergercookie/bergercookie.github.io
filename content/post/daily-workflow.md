@@ -9,6 +9,12 @@ date: "2019-05-18T15:28:00Z"
 draft: false
 title: My daily workflow and tools
 showtoc: true
+cover:
+  image: "/images/tmux-view.png"
+  alt: ""
+  caption: "A view of my environment while editing this very article"
+  relative: false
+
 ---
 
 As this is my first actual post I thought I'd write about something I'm a big
@@ -70,22 +76,22 @@ Here are some of the plugins that I use on a daily basis and I'm confident have
 boosted my editing efficiency significantly. Refer to the corresponding
 `README`s for more details:
 
-* Plugin manager: [vim-plug](https://github.com/junegunn/vim-plug)
-* Asynchronous syntax checking/linting: [ale](https://github.com/w0rp/ale)
-* Semantically-accurate syntax highlighting: [chromatica](https://github.com/arakashic/chromatica.nvim)
-* Indentation level detection: [detectindent](https://github.com/ciaranm/detectindent)
-* Git client: [fugitive](https://github.com/tpope/vim-fugitive)
-* `Printf`-like code debugging ([^debugstring-ps]): [debugstring](https://github.com/bergercookie/vim-debugstring)
-* UNIX helper functions: [eunuch](https://github.com/tpope/vim-fugitive)
-* Asynchronous fuzzy searching: [fzf](https://github.com/junegunn/fzf.vim)
-* Personal knowledge base /Task management: [vimwiki](https://github.com/vimwiki/vimwiki), [taskwiki](https://github.com/tbabej/taskwiki)
+- Plugin manager: [vim-plug](https://github.com/junegunn/vim-plug)
+- Asynchronous syntax checking/linting: [ale](https://github.com/w0rp/ale)
+- Semantically-accurate syntax highlighting: [chromatica](https://github.com/arakashic/chromatica.nvim)
+- Indentation level detection: [detectindent](https://github.com/ciaranm/detectindent)
+- Git client: [fugitive](https://github.com/tpope/vim-fugitive)
+- `Printf`-like code debugging ([^debugstring-ps]): [debugstring](https://github.com/bergercookie/vim-debugstring)
+- UNIX helper functions: [eunuch](https://github.com/tpope/vim-fugitive)
+- Asynchronous fuzzy searching: [fzf](https://github.com/junegunn/fzf.vim)
+- Personal knowledge base /Task management: [vimwiki](https://github.com/vimwiki/vimwiki), [taskwiki](https://github.com/tbabej/taskwiki)
 
 The important thing to note here is that you have to find a combination that
 works for you.
 
-* Don't use more plugins than you actually need or you'll bloat vim and you'll
-    have awful startup times,
-* Double-check that adding the plugin is worth the maintenance cost / potential
+- Don't use more plugins than you actually need or you'll bloat vim and you'll
+  have awful startup times,
+- Double-check that adding the plugin is worth the maintenance cost / potential
   startup overhead / effort to learn it. Maybe there's already has a way of
   expressing it? Maybe it's just a matter of a single function in your `.vimrc`?
 
@@ -145,40 +151,42 @@ to reach a version that works.
 
 I use i3 mainly for the following:
 
-* Split apps into workspaces. Be able to navigate between workspaces and between
-    apps using only the mouse
-* Stacked views of windows
-* Automatic placement of a windowed app on startup/launch.
+- Split apps into workspaces. Be able to navigate between workspaces and between
+  apps using only the mouse
+- Stacked views of windows
+- Automatic placement of a windowed app on startup/launch.
 
-    No more shoving windows around when you launch a program. It will
-    automatically take its place based on the corresponding workspace. You can
-    do it with simple rules in your i3 config file. For example:
+  No more shoving windows around when you launch a program. It will
+  automatically take its place based on the corresponding workspace. You can
+  do it with simple rules in your i3 config file. For example:
 
-    {{< highlight sh "linenos=table" >}}
-    # assign apps to workspaces
-    assign [class="Firefox"] $ws_www
-    assign [class="Terminator"] $ws_term
-    assign [class="Alacritty"] $ws_term
-    assign [class="Franz"] $ws_msg
-    assign [class="Viber"] $ws_msg
-    assign [class="Slack"] $ws_msg
-    assign [class="calibre"] $ws_calibre
-    assign [class="spotify"] $ws_music
-    assign [class="Gnome-terminal"] $ws_fm
-    assign [class="Transmission-gtk"] $ws_random
-    assign [class="Filezilla"] $ws_random
-    assign [class="Nautilus"] $ws_fm
-    assign [class="Pcmanfm"] $ws_fm
-    assign [class="Vmplayer"] $ws_win
-    assign [class="vlc"] $ws_www
-    {{< / highlight >}}
+  {{< highlight sh "linenos=table" >}}
 
-* Support for beautiful dock with reasonable configuration and time spent, via
-    the use of powerline symbols +
-    [i3status-rust](https://github.com/greshake/i3status-rust). Here is a
-    sample:
+  # assign apps to workspaces
 
-    ![i3-bar](/images/i3-bar.png)
+  assign [class="Firefox"] $ws_www
+  assign [class="Terminator"] $ws_term
+  assign [class="Alacritty"] $ws_term
+  assign [class="Franz"] $ws_msg
+  assign [class="Viber"] $ws_msg
+  assign [class="Slack"] $ws_msg
+  assign [class="calibre"] $ws_calibre
+  assign [class="spotify"] $ws_music
+  assign [class="Gnome-terminal"] $ws_fm
+  assign [class="Transmission-gtk"] $ws_random
+  assign [class="Filezilla"] $ws_random
+  assign [class="Nautilus"] $ws_fm
+  assign [class="Pcmanfm"] $ws_fm
+  assign [class="Vmplayer"] $ws_win
+  assign [class="vlc"] $ws_www
+  {{< / highlight >}}
+
+- Support for beautiful dock with reasonable configuration and time spent, via
+  the use of powerline symbols +
+  [i3status-rust](https://github.com/greshake/i3status-rust). Here is a
+  sample:
+
+  ![i3-bar](/images/i3-bar.png)
 
 ## Miscellaneous UNIX-related tooling
 
@@ -197,19 +205,19 @@ still worth mentioning:
 
 - **E-Book/Scientific works management:** [Calibre](https://calibre-ebook.com/)
 
-    Calibre is an open-source e-book management tool written in Python. Apart
-    from its obvious task, it can sync your books with Kindle or android devices
-    it can import and manage various formats (e.g., `pdf`, `mobi`), and it can
-    also has a pretty decent android client.
+  Calibre is an open-source e-book management tool written in Python. Apart
+  from its obvious task, it can sync your books with Kindle or android devices
+  it can import and manage various formats (e.g., `pdf`, `mobi`), and it can
+  also has a pretty decent android client.
 
 - **Personal TODO list - task management:** [Taskwarrior](https://taskwarrior.org/)
 
-    More on this in another post.
+  More on this in another post.
 
 - **Linux application Launcher:** [Albert](https://albertlauncher.github.io/)
 - **Fuzzy searching, autocompletion, directory navigation:** [fzf](https://github.com/junegunn/fzf)
 - **Rust-alternatives to classic UNIX tools:**
-    [ripgrep](https://github.com/BurntSushi/ripgrep), [fd](https://github.com/sharkdp/fd)
+  [ripgrep](https://github.com/BurntSushi/ripgrep), [fd](https://github.com/sharkdp/fd)
 - **Messeging apps bundler:** [Franz](https://meetfranz.com)
 
 ## More on the menu - feedback

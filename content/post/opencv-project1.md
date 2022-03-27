@@ -17,9 +17,13 @@ features to it:
 
 Here's the original image that we'll be working on:
 
+{{< rawhtml >}}
+
 <center>
 <img src="/images/opencv/girl-no-makeup.jpg" alt="Original picture of girl" width="400" height="400">
 </center>
+
+{{</ rawhtml >}}
 
 ## Initialisation actions
 

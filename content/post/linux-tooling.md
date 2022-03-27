@@ -7,8 +7,13 @@ categories:
 comments: true
 date: "2020-03-08T20:00:00Z"
 draft: false
-title: Scratchpad - Linux Tooling
+title: 🛠️  Scratchpad - Linux Tooling
 showtoc: true
+cover:
+  image: "/images/linux.png"
+  alt: ""
+  caption: "Linux Tooling"
+  relative: false
 ---
 
 A scratchpad of techniques, tools, and routines that I tend to use on my Linux

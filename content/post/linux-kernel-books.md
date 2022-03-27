@@ -5,6 +5,11 @@ date: "2020-07-04T10:34:21Z"
 draft: false
 title: Linux Code Commentary ... in a nutshell
 showtoc: true
+cover:
+  image: "images/linux-books.jpg"
+  alt: ""
+  caption: "Linux Kernel Books"
+  relative: false
 ---
 
 I recently got my hands on two books that talk about the Linux Kernel. These
@@ -12,8 +17,6 @@ are the [Linux Kernel in a
 Nutshell](https://www.amazon.co.uk/Linux-Kernel-Nutshell-OReilly/dp/0596100795),
 and [LINUX Core Kernel
 Commentary](https://www.amazon.co.uk/Linux-Core-Kernel-Commentary-Knowledge/dp/1576104699).
-
-![Linux Books](/images/linux-books.jpg)
 
 These books are rather old, so some bits are outdated, but don't let this fact
 discourage you. Both can be super useful and can definitely help you learn more

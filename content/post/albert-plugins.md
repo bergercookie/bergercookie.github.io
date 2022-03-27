@@ -10,11 +10,10 @@ draft: false
 title: Using Albert to boost your productivity
 showtoc: true
 cover:
-    image: "/images/albert-demos/search_plugins.png"
+    image: "/images/albert-demos/example.png"
     alt: "Using Albert to boost your productivity"
     caption: "An image of the search plugins using `googler`"
     relative: false # To use relative path for cover image, used in hugo Page-bundles
-
 ---
 
 I've lately been very active developing plugins for the
@@ -70,25 +69,23 @@ plugin does:
 Here are some demo pictures of these plugins:
 
 | ![](/images/albert-demos/albert-suggestions-demo2.gif) | ![](/images/albert-demos/albert-suggestions-demo.gif) |
-|:---:|:---:|
 | ![](/images/albert-demos/albert-suggestions-demo3.gif) | ![](/images/albert-demos/taskwarrior-demo.gif) |
 | ![](/images/albert-demos/xkcd-demo.gif) | ![](/images/albert-demos/youtube-demo.gif) |
 
+{{< rawhtml >}}
 <br/>
-
 <center>
 <img src="/images/albert-demos/demo-fuzzy-search-title.png">
 <br/>
 Do a fuzzy search of your assigned JIRA tickets
 </center>
-
 <br/>
-
 <center>
 <img src="/images/albert-demos/search_plugins.png">
 <br/>
 View of many suggestions-enabled saerch plugins
 </center>
+{{</ rawhtml >}}
 
 Since I spent a good deal of time writing these plugins, I figured I could share
 some of my conclusions, shortcuts into writing a new plugin for your own
