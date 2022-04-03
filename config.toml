@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Bergercookie's Thoughtstream"
 theme = "PaperMod"
 enableEmoji = "true"
-disqusShortname = "bergercookie"
 
 # Options for PaperMod vvvvv
 paginate = 5
@@ -66,13 +65,13 @@ imageWidth = 120
 imageHeight = 120
 imageTitle = "my image"
 
-[[params.profileMode.buttons]]
-name = "Posts"
-url = "post"
+# [[params.profileMode.buttons]]
+# name = "Posts"
+# url = "post"
 
-[[params.profileMode.buttons]]
-name = "Tags"
-url = "tags"
+# [[params.profileMode.buttons]]
+# name = "Tags"
+# url = "tags"
 
 [params.homeInfoParams]
 Title = "Hi there, I'm Nikos"
@@ -138,7 +137,7 @@ keys = ["title", "permalink", "summary", "content"]
 
 [[menu.main]]
 identifier = "about"
-name = "about"
+name = "~about"
 url = "/about/"
 weight = 1
 
@@ -168,7 +167,7 @@ weight = 30
 
 [[menu.main]]
 identifier = "search"
-name = "search"
+name = "🔍"
 url = "/search/"
 weight = 100
 
