@@ -2,5 +2,745 @@
 For this assignment, I&amp;rsquo;m given an image of a girl, and I have to add 2 new features to it:
 Apply lipstick Applying blush Here&amp;rsquo;s the original image that we&amp;rsquo;ll be working on:
 Initialisation actions We first load and initialise all the necessary modules and objects that we&amp;rsquo;ll need
-1 2 3 4 5 6 7 8 # various imports import cv2, sys, dlib, time, math import numpy as np import matplotlib.</description></item><item><title>🛠️ Scratchpad - CV Applications II Course by OpenCV</title><link>https://bergercookie.dev/post/opencv-applications-ii/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/opencv-applications-ii/</guid><description>Computer Vision Applications using OpenCV Facial Landmark Detection Improve the speed of Facial Landmark Detection: Use face detection that comes with OS - if possible (e.g., Android, iOS) Skip frames - e.g,. run every 3 frames Downscale image, detect faces there &amp;hellip; then propagate bboxes to original image (dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on original image and computed bounding box Improve landmark stabilisation Weighted Moving Average - Average the landmark point location over a small time window Kalman Filtering Optical Flow Code snippets OpenCV - Rescale an image - keep ratio import cv2 # Load image img = cv2.</description></item><item><title>🛠️ Scratchpad - Machine Learning</title><link>https://bergercookie.dev/post/machine-learning/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/machine-learning/</guid><description>Definition: The science/art of programming computers so that they can learn from data
-Popular ML Algorithms Linear &amp;amp; Polynomial Regression Logistic Regression k-nearest Neighbors Support Vector machines Decision Trees Random Forests Ensemble methods Neural Networks Architectures Feedforward Neural Nets Convolutional Nets Recurrent Nets Long short-term memory (LSTM) nets Autoencoders Multi-Layer Perceptons (MLPs) Famous Papers Machine Learning on handwritten digits - 2006 - &amp;lt;www.cs.toronto.edu/~hinton&amp;gt; The Unreasonable Effectiveness of Data - 2009 Useful links - resources www.</description></item></channel></rss>
+1 2 3 4 5 6 7 8 # various imports import cv2, sys, dlib, time, math import numpy as np import matplotlib.</description><content:encoded><![CDATA[<p>This is a writeup of my first assignment for the &ldquo;Computer Vision II: Applications&rdquo; course.</p>
+<p>For this assignment, I&rsquo;m given an image of a girl, and I have to add 2 new
+features to it:</p>
+<ol>
+<li>Apply lipstick</li>
+<li>Applying blush</li>
+</ol>
+<p>Here&rsquo;s the original image that we&rsquo;ll be working on:</p>
+
+
+
+<center>
+<img src="/images/opencv/girl-no-makeup.jpg" alt="Original picture of girl" width="400" height="400">
+</center>
+
+
+<h2 id="initialisation-actions">Initialisation actions</h2>
+<p>We first load and initialise all the necessary modules and objects that we&rsquo;ll
+need</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#75715e"># various imports</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> cv2<span style="color:#f92672">,</span> sys<span style="color:#f92672">,</span> dlib<span style="color:#f92672">,</span> time<span style="color:#f92672">,</span> math
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">from</span> pathlib <span style="color:#f92672">import</span> Path
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Tuple
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">from</span> cv_helpers <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">from</span> helpers <span style="color:#f92672">import</span> <span style="color:#f92672">*</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Note that <code>cv_helpers</code> and <code>helpers</code> are personal modules, mainly for debugging
+/ visualisation purposes.</p>
+<p>We then load the dlib 68 point face detector:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  path <span style="color:#f92672">=</span> Path(__file__)<span style="color:#f92672">.</span>absolute()<span style="color:#f92672">.</span>parent
+</span></span><span style="display:flex;"><span>  predictor_path <span style="color:#f92672">=</span>  path <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;shape_predictor_68_face_landmarks.dat&#34;</span>
+</span></span><span style="display:flex;"><span>  faceDetector <span style="color:#f92672">=</span> dlib<span style="color:#f92672">.</span>get_frontal_face_detector()
+</span></span><span style="display:flex;"><span>  landmarkDetector <span style="color:#f92672">=</span> dlib<span style="color:#f92672">.</span>shape_predictor(str(predictor_path))</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Notice that we&rsquo;re taking the absolute path to the trained predictor; That&rsquo;s the
+correct way of opening files since this allows you to run the application
+regardless your working directory. We then load the image via the <code>cv2.imread</code>
+function, taking care of the BGR -&gt; RGB conversion since OpenCV uses the <code>BGR</code>
+format and finally we detect the face landmarks:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  im <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(str(path <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;girl-no-makeup.jpg&#34;</span>))
+</span></span><span style="display:flex;"><span>  imDlib <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(im, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB)
+</span></span><span style="display:flex;"><span>  landmarks <span style="color:#f92672">=</span> fbc<span style="color:#f92672">.</span>getLandmarks(faceDetector, landmarkDetector, im)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>To verify that we&rsquo;ve loaded the image and we&rsquo;ve detected the required features
+succesfully, we can plot the original image, along with it superimposed by the
+detected features. To do that, we&rsquo;ll make use of the following helper functions:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mark_points_in_img</span>(img: np<span style="color:#f92672">.</span>ndarray, points, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>) <span style="color:#f92672">-&gt;</span> np<span style="color:#f92672">.</span>ndarray:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Each one of the points in the `points` sequence is marked by a circle and its corresponding
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      index in text.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> inplace:
+</span></span><span style="display:flex;"><span>          img <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> i, la <span style="color:#f92672">in</span> enumerate(points):
+</span></span><span style="display:flex;"><span>          cv2<span style="color:#f92672">.</span>circle(img, la, radius<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>          cv2<span style="color:#f92672">.</span>putText(img, str(i), la, cv2<span style="color:#f92672">.</span>FONT_HERSHEY_SIMPLEX, <span style="color:#ae81ff">0.5</span>, (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>), <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> img
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_num_rows_cols</span>(size: int, max_cols: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> Tuple[int, int]:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Format `size` elements into an xy grid.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &gt;&gt;&gt; get_num_rows_cols(2, max_cols=4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      (1, 2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &gt;&gt;&gt; get_num_rows_cols(4, max_cols=4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      (1, 4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &gt;&gt;&gt; get_num_rows_cols(5, max_cols=4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      (2, 4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &gt;&gt;&gt; get_num_rows_cols(10, max_cols=4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      (3, 4)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &gt;&gt;&gt; get_num_rows_cols(6, max_cols=2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      (3, 2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      ncols <span style="color:#f92672">=</span> min(size, max_cols)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> size <span style="color:#f92672">%</span> ncols <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>          nrows <span style="color:#f92672">=</span> size <span style="color:#f92672">//</span> ncols
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>          nrows <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>ceil(size <span style="color:#f92672">/</span> ncols))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> nrows, ncols
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plt_imshow</span>(<span style="color:#f92672">*</span>imgs, is_bgr<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>):
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Render the given images in matplotlib. The function will automatically arrange them in a
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      grid layout if they are more than 2.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> is_bgr:
+</span></span><span style="display:flex;"><span>          imgs <span style="color:#f92672">=</span> [cv2<span style="color:#f92672">.</span>cvtColor(img, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB) <span style="color:#66d9ef">for</span> img <span style="color:#f92672">in</span> imgs]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> imgs:
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      n <span style="color:#f92672">=</span> len(imgs)
+</span></span><span style="display:flex;"><span>      rows, cols <span style="color:#f92672">=</span> get_num_rows_cols(n, max_cols<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>      fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> i, img <span style="color:#f92672">in</span> enumerate(imgs):
+</span></span><span style="display:flex;"><span>          fig<span style="color:#f92672">.</span>add_subplot(rows, cols, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>          plt<span style="color:#f92672">.</span>imshow(img)
+</span></span><span style="display:flex;"><span>      plt<span style="color:#f92672">.</span>show()</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>And now to put these functions to good use:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#75715e"># Copy the image - keep the original intact</span>
+</span></span><span style="display:flex;"><span>  im1 <span style="color:#f92672">=</span> mark_points_in_img(imDlib, landmarks, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>  plt_imshow(imDlib, im1)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>And here&rsquo;s the result:</p>
+<p><img loading="lazy" src="/images/opencv/proj1-detected-landmarks.png" alt="original image"  />
+</p>
+<h2 id="applying-lipstick">Applying lipstick</h2>
+<p>To apply lipstick to the girl in the image, we follow the steps below:</p>
+<ol>
+<li>Identify the list of landmarks that comprise the lips area as well as the
+area that corresponds to the mouth cavity (in case the person has slightly
+opened their mouth).</li>
+<li>Initialise a new black image, that has the same size as the original one,
+and has a solid red color at the lips.</li>
+<li>Slightly blur the latter, in order to soften its edges and hide potential
+defects in the end result</li>
+<li>Finally do an alpha-blend of the two images (original girl image, lipsticks
+only image) giving a higher weight to the girl</li>
+</ol>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  im_lipstick <span style="color:#f92672">=</span> im<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># gather the indexes of the outer and inner  lip cavities</span>
+</span></span><span style="display:flex;"><span>  lips_outer_idx <span style="color:#f92672">=</span> range(<span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">60</span>)
+</span></span><span style="display:flex;"><span>  lips_outer_landmarks <span style="color:#f92672">=</span> [landmarks[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> lips_outer_idx]
+</span></span><span style="display:flex;"><span>  lips_inner_idx <span style="color:#f92672">=</span> range(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">67</span>)
+</span></span><span style="display:flex;"><span>  lips_inner_landmarks <span style="color:#f92672">=</span> [landmarks[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> lips_inner_idx]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># create lipstick-only area</span>
+</span></span><span style="display:flex;"><span>  im_lipstick_only <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(im_lipstick<span style="color:#f92672">.</span>shape, dtype<span style="color:#f92672">=</span>im_lipstick<span style="color:#f92672">.</span>dtype)
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>fillPoly(
+</span></span><span style="display:flex;"><span>      im_lipstick_only, np<span style="color:#f92672">.</span>array([lips_outer_landmarks], np<span style="color:#f92672">.</span>int32), color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>fillConvexPoly(  <span style="color:#75715e"># mouth cavity</span>
+</span></span><span style="display:flex;"><span>      im_lipstick_only, np<span style="color:#f92672">.</span>array(lips_inner_landmarks, np<span style="color:#f92672">.</span>int32), color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># do a minor blur to sotften the edges</span>
+</span></span><span style="display:flex;"><span>  im_lipstick_only <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>blur(im_lipstick_only, (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>
+</span></span><span style="display:flex;"><span>  im_lipstick <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>addWeighted(im, alpha, im_lipstick_only, <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> alpha, <span style="color:#ae81ff">0.0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  plt_imshow(im, im_lipstick, is_bgr<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Here&rsquo;s how the girl looks after having applied the lipstick:</p>
+<p><img loading="lazy" src="/images/opencv/proj1-lipstick.png" alt="original image"  />
+</p>
+<h2 id="applying-blush">Applying blush</h2>
+<p>Let&rsquo;s start where we left off at the previous section,</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  im <span style="color:#f92672">=</span> im_lipstick
+</span></span><span style="display:flex;"><span>  im <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(im, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Our goal is to use a second image, let&rsquo;s call it <code>im2</code> which has intense blush
+characteristics, and try to somehow blend it with our original image, <code>im</code>. To
+do that, we first normalise both <code>im</code> and <code>im2</code> to a specifc size and using
+specific features and distances as reference for  the normalisation. For this,
+as in the first step, we will use the <code>fbc.normalizeImagesAndLandmarks</code> function
+provided in the course material. However, instead of using the corners of the
+eyes, as the points for normalisation , we will instead use the distance between
+the cheek bones. Thus we add an extra class to encode this extra information,
+and we change the signature of the <code>fbc.normalizeImagesAndLandmarks</code> function as
+follows:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PointsForNormalisation</span>:
+</span></span><span style="display:flex;"><span>      loc0: Tuple[int, int] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>      loc1: Tuple[int, int] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>      new_loc0: Tuple[int, int]  <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>      new_loc1: Tuple[int, int]  <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">normalizeImagesAndLandmarks</span>(outSize: Tuple[int, int], imIn, pointsIn: np<span style="color:#f92672">.</span>ndarray,
+</span></span><span style="display:flex;"><span>                                  points_for_normalisation:
+</span></span><span style="display:flex;"><span>                                  Optional[PointsForNormalisation]<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> points_for_normalisation:
+</span></span><span style="display:flex;"><span>          ps <span style="color:#f92672">=</span> points_for_normalisation
+</span></span><span style="display:flex;"><span>          loc0 <span style="color:#f92672">=</span> ps<span style="color:#f92672">.</span>loc0
+</span></span><span style="display:flex;"><span>          loc1 <span style="color:#f92672">=</span> ps<span style="color:#f92672">.</span>loc1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          new_loc0 <span style="color:#f92672">=</span> ps<span style="color:#f92672">.</span>new_loc0
+</span></span><span style="display:flex;"><span>          new_loc1 <span style="color:#f92672">=</span> ps<span style="color:#f92672">.</span>new_loc1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># business as usual</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># use corners of eyes</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>We then execute the normalisation as follows:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  dst_shape <span style="color:#f92672">=</span> (<span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">600</span>)
+</span></span><span style="display:flex;"><span>  landmarks_arr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(landmarks)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ps_for_cheeks</span>(landmarks: np<span style="color:#f92672">.</span>ndarray, w, h) <span style="color:#f92672">-&gt;</span> fbc<span style="color:#f92672">.</span>PointsForNormalisation:
+</span></span><span style="display:flex;"><span>      ps <span style="color:#f92672">=</span> fbc<span style="color:#f92672">.</span>PointsForNormalisation()
+</span></span><span style="display:flex;"><span>      ps<span style="color:#f92672">.</span>loc0 <span style="color:#f92672">=</span> landmarks[<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>      ps<span style="color:#f92672">.</span>loc1 <span style="color:#f92672">=</span> landmarks[<span style="color:#ae81ff">14</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      ps<span style="color:#f92672">.</span>new_loc0 <span style="color:#f92672">=</span> (np<span style="color:#f92672">.</span>int(<span style="color:#ae81ff">0.15</span> <span style="color:#f92672">*</span> w), np<span style="color:#f92672">.</span>int(h <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>      ps<span style="color:#f92672">.</span>new_loc1 <span style="color:#f92672">=</span> (np<span style="color:#f92672">.</span>int(<span style="color:#ae81ff">0.85</span> <span style="color:#f92672">*</span> w), np<span style="color:#f92672">.</span>int(h <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  im, landmarks_arr <span style="color:#f92672">=</span> fbc<span style="color:#f92672">.</span>normalizeImagesAndLandmarks(dst_shape, im, landmarks_arr,
+</span></span><span style="display:flex;"><span>                                                      get_ps_for_cheeks(landmarks_arr,
+</span></span><span style="display:flex;"><span>                                                                         dst_shape[<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>                                                                         dst_shape[<span style="color:#ae81ff">1</span>]))
+</span></span><span style="display:flex;"><span>  landmarks <span style="color:#f92672">=</span> [(la[<span style="color:#ae81ff">0</span>], la[<span style="color:#ae81ff">1</span>]) <span style="color:#66d9ef">for</span> la <span style="color:#f92672">in</span> landmarks_arr]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">assert</span> im<span style="color:#f92672">.</span>shape[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> dst_shape
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># load, find landmarks in and reshape second image</span>
+</span></span><span style="display:flex;"><span>  im2_orig <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(str(path <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;makeup2.jpeg&#34;</span>))
+</span></span><span style="display:flex;"><span>  im2 <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(im2, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB)
+</span></span><span style="display:flex;"><span>  landmarks2 <span style="color:#f92672">=</span> fbc<span style="color:#f92672">.</span>getLandmarks(faceDetector, landmarkDetector, im2)
+</span></span><span style="display:flex;"><span>  landmarks_arr2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(landmarks2)
+</span></span><span style="display:flex;"><span>  im2, landmarks_arr2 <span style="color:#f92672">=</span> fbc<span style="color:#f92672">.</span>normalizeImagesAndLandmarks(dst_shape, im2, landmarks_arr2,
+</span></span><span style="display:flex;"><span>                                                        get_ps_for_cheeks(landmarks_arr2,
+</span></span><span style="display:flex;"><span>                                                                           dst_shape[<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>                                                                           dst_shape[<span style="color:#ae81ff">1</span>]))
+</span></span><span style="display:flex;"><span>  landmarks2 <span style="color:#f92672">=</span> [(la[<span style="color:#ae81ff">0</span>], la[<span style="color:#ae81ff">1</span>]) <span style="color:#66d9ef">for</span> la <span style="color:#f92672">in</span> landmarks_arr2]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">assert</span> im2<span style="color:#f92672">.</span>shape[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> dst_shape</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Let&rsquo;s verify that the normalisation works as expected:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  plt_imshow(
+</span></span><span style="display:flex;"><span>      cv2<span style="color:#f92672">.</span>cvtColor(im_lipstick, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB),
+</span></span><span style="display:flex;"><span>      cv2<span style="color:#f92672">.</span>cvtColor(im2_orig, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB),
+</span></span><span style="display:flex;"><span>      im,
+</span></span><span style="display:flex;"><span>      im2,
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p><img loading="lazy" src="/images/opencv/proj1-normalisation.png" alt="original image"  />
+</p>
+<p>Initially I thought that doing delaunay triangulation and then warping the
+triangles around the cheeks area would solve it, however, as demonstrated in the
+course materials, because of the different texture and skin color, this doesn&rsquo;t
+work and the end result doesn&rsquo;t look good. I then decided to opt for two
+seamless cloning operations, one for each cheek, and circular patches in the
+cheeks as the mask.</p>
+<p>Here&rsquo;s how I finally implemented it:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#75715e"># Find the center of each cheek - that&#39;s where the kernel of the blush will be</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_cheek_loc</span>(a: tuple, b: tuple):
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># return (a[0] + b[0])//2, (a[1] + b[1])//2</span>
+</span></span><span style="display:flex;"><span>      xdist <span style="color:#f92672">=</span> b[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> a[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>      ydist <span style="color:#f92672">=</span> b[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> a[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      x <span style="color:#f92672">=</span> int(a[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> xdist)
+</span></span><span style="display:flex;"><span>      y <span style="color:#f92672">=</span> int(a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> ydist)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> x, y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  cheek1_xy <span style="color:#f92672">=</span> get_cheek_loc(landmarks[<span style="color:#ae81ff">2</span>], landmarks[<span style="color:#ae81ff">29</span>])
+</span></span><span style="display:flex;"><span>  cheek2_xy <span style="color:#f92672">=</span> get_cheek_loc(landmarks[<span style="color:#ae81ff">14</span>], landmarks[<span style="color:#ae81ff">29</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># create the masks</span>
+</span></span><span style="display:flex;"><span>  mask1 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(im<span style="color:#f92672">.</span>shape, im<span style="color:#f92672">.</span>dtype)
+</span></span><span style="display:flex;"><span>  mask2 <span style="color:#f92672">=</span> mask1<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>circle(mask1, cheek1_xy, radius<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>), thickness<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>FILLED)
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>circle(mask2, cheek2_xy, radius<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>), thickness<span style="color:#f92672">=</span>cv2<span style="color:#f92672">.</span>FILLED)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># create a copy for visualisation purposes - show where we copied pixels from</span>
+</span></span><span style="display:flex;"><span>  im2_ <span style="color:#f92672">=</span> im2<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>circle(im2_, cheek1_xy, radius<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>))
+</span></span><span style="display:flex;"><span>  cv2<span style="color:#f92672">.</span>circle(im2_, cheek2_xy, radius<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, color<span style="color:#f92672">=</span>(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>seamlessClone(np<span style="color:#f92672">.</span>uint8(im2), im, mask1, cheek1_xy, cv2<span style="color:#f92672">.</span>NORMAL_CLONE)
+</span></span><span style="display:flex;"><span>  dst <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>seamlessClone(np<span style="color:#f92672">.</span>uint8(im2), dst, mask2, cheek2_xy, cv2<span style="color:#f92672">.</span>NORMAL_CLONE)
+</span></span><span style="display:flex;"><span>  plt_imshow(im, im2_, dst)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Here&rsquo;s how the final image looks like:</p>
+<p><img loading="lazy" src="/images/opencv/proj1-seamless-cloning-success.png" alt="final seamless cloning"  />
+</p>
+<p>As you can see, the seamless cloning operations brought a few inaccuracies from
+<code>im2</code> however the blush itself is visible and almost natural.</p>
+<h3 id="notes">Notes</h3>
+<p>You may need to do a few iterations selecting the image to
+clone from to find one that looks as you expect. Alternatively if you found one
+that you want to use but the blush is not that intense, consider editing it in a
+software like <code>gimp</code> to increase it (e.g., by adding a new layer, painting in
+it, and setting its opacity to ~60%)</p>
+<p>Even though I demonstrated a roughly straight line between the start of this
+task and the end result, that really wasn&rsquo;t the case during experimentation.
+Operations that you think make sense for a certain task may not, and you may
+need to backtrack, think the problem differently, read the course material a few
+more times, or even delete the code that you were writing for the
+whole day. Might not obvious at that point in time, but this is all part of the
+learning process. As you gain experience in this subject you&rsquo;ll start getting a
+sense of what operations should be done for each particular class of problems
+and hopefully the whole process will start getting smoother.</p>
+]]></content:encoded></item><item><title>🛠️ Scratchpad - CV Applications II Course by OpenCV</title><link>https://bergercookie.dev/post/opencv-applications-ii/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/opencv-applications-ii/</guid><description>Computer Vision Applications using OpenCV Facial Landmark Detection Improve the speed of Facial Landmark Detection: Use face detection that comes with OS - if possible (e.g., Android, iOS) Skip frames - e.g,. run every 3 frames Downscale image, detect faces there &amp;hellip; then propagate bboxes to original image (dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on original image and computed bounding box Improve landmark stabilisation Weighted Moving Average - Average the landmark point location over a small time window Kalman Filtering Optical Flow Code snippets OpenCV - Rescale an image - keep ratio import cv2 # Load image img = cv2.</description><content:encoded><![CDATA[<h1 id="computer-vision-applications-using-opencv">Computer Vision Applications using OpenCV</h1>
+<h2 id="facial-landmark-detection">Facial Landmark Detection</h2>
+<h3 id="improve-the-speed-of-facial-landmark-detection">Improve the speed of Facial Landmark Detection:</h3>
+<ol>
+<li>Use face detection that comes with OS - if possible (e.g., Android, iOS)</li>
+<li>Skip frames - e.g,. run every 3 frames</li>
+<li>Downscale image, detect faces there &hellip; then propagate bboxes to original image
+(dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on
+original image and computed bounding box</li>
+</ol>
+<h3 id="improve-landmark-stabilisation">Improve landmark stabilisation</h3>
+<ol>
+<li><strong>Weighted Moving Average</strong> - Average the landmark point location over a small time window</li>
+<li>Kalman Filtering</li>
+<li>Optical Flow</li>
+</ol>
+<h2 id="code-snippets">Code snippets</h2>
+<h3 id="opencv---rescale-an-image---keep-ratio">OpenCV - Rescale an image - keep ratio</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load image</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#34;&lt;path-to-img&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scale down - keep ratio</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dims <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>ratio <span style="color:#f92672">=</span> dims[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> dims[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>target_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">960</span> <span style="color:#75715e"># resolution - x</span>
+</span></span><span style="display:flex;"><span>target_y <span style="color:#f92672">=</span> int(<span style="color:#ae81ff">960</span> <span style="color:#f92672">/</span> ratio)
+</span></span><span style="display:flex;"><span>imgS <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>resize(img, (target_x, target_y))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>namedWindow(<span style="color:#e6db74">&#39;windowname&#39;</span>, cv2<span style="color:#f92672">.</span>WINDOW_NORMAL) <span style="color:#75715e"># Create window with freedom of dimensions</span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;windowname&#39;</span>, imgS)
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>) <span style="color:#75715e"># Display the image infinitely until any keypress</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in case you want to kill the window</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>destroyAllWindows()</span></span></code></pre></div>
+<h3 id="opencv---imshow-but-keep-it-until-esc-pressed">OpenCV - imshow but keep it until <!-- raw HTML omitted --> pressed</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">imshow</span>\_(winname: str, img):
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>imshow(winname, img)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv2<span style="color:#f92672">.</span>destroyWindow(winname)()</span></span></code></pre></div>
+<h2 id="hints--tricks">Hints &amp; Tricks</h2>
+<ul>
+<li><code>dlib::faceDetector</code> is trained on 80x80 faces. If the faces in your images
+are less than that then you need to upscale before running the detection.</li>
+<li><code>dlib::landmarkDetector</code>: Paper says it runs in 1ms</li>
+<li>dlib -&gt; RGB, OpenCV -&gt; BGR. Thus for OpenCV -&gt; dlib: <code>cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</code></li>
+</ul>
+<h2 id="useful-links">Useful Links</h2>
+<ul>
+<li><a href="http://dlib.net/">dlib</a></li>
+<li><a href="https://github.com/cmusatyalab/openface">OpenFace</a></li>
+<li><a href="https://melgor.github.io/blcv.github.io/static/2017/12/28/demystifying-face-recognition-iii-face-preprocessing">Demystifying Face Recognition: Face Alignment</a>
+<ul>
+<li>So we were not able to confirm that using aligned images for model learned on cropped faces boost the accuracy.</li>
+</ul>
+</li>
+<li><a href="https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html">OpenCV - Python filtering operations</a></li>
+</ul>
+]]></content:encoded></item><item><title>🛠️ Scratchpad - Machine Learning</title><link>https://bergercookie.dev/post/machine-learning/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/machine-learning/</guid><description>Definition: The science/art of programming computers so that they can learn from data
+Popular ML Algorithms Linear &amp;amp; Polynomial Regression Logistic Regression k-nearest Neighbors Support Vector machines Decision Trees Random Forests Ensemble methods Neural Networks Architectures Feedforward Neural Nets Convolutional Nets Recurrent Nets Long short-term memory (LSTM) nets Autoencoders Multi-Layer Perceptons (MLPs) Famous Papers Machine Learning on handwritten digits - 2006 - &amp;lt;www.cs.toronto.edu/~hinton&amp;gt; The Unreasonable Effectiveness of Data - 2009 Useful links - resources www.</description><content:encoded><![CDATA[<blockquote>
+<p><strong>Definition:</strong> The science/art of <em>programming computers</em> so that they can
+learn from data</p>
+</blockquote>
+<h2 id="popular-ml-algorithms">Popular ML Algorithms</h2>
+<ul>
+<li>Linear &amp; Polynomial Regression</li>
+<li>Logistic Regression</li>
+<li>k-nearest Neighbors</li>
+<li>Support Vector machines</li>
+<li>Decision Trees</li>
+<li>Random Forests</li>
+<li>Ensemble methods</li>
+</ul>
+<h2 id="neural-networks-architectures">Neural Networks Architectures</h2>
+<ul>
+<li>Feedforward Neural Nets</li>
+<li>Convolutional Nets</li>
+<li>Recurrent Nets</li>
+<li>Long short-term memory (LSTM) nets</li>
+<li>Autoencoders</li>
+<li>Multi-Layer Perceptons (MLPs)</li>
+</ul>
+<h2 id="famous-papers">Famous Papers</h2>
+<ul>
+<li>Machine Learning on handwritten digits - 2006 - &lt;www.cs.toronto.edu/~hinton&gt;</li>
+<li>The Unreasonable Effectiveness of Data - 2009</li>
+</ul>
+<h2 id="useful-links---resources">Useful links - resources</h2>
+<ul>
+<li><a href="https://www.kaggle.com/">www.kaggle.com/</a>
+<ul>
+<li>Competitions</li>
+<li>Datasets</li>
+<li>Kernels</li>
+</ul>
+</li>
+<li>OpenAI Gym
+<ul>
+<li>For reinforcement learning</li>
+</ul>
+</li>
+<li>scikit-learn user guide</li>
+<li>Dataquest - <a href="https://www.dataquest.io">www.dataquest.io</a></li>
+<li>deep learning website - <a href="http://deeplearning.net">http://deeplearning.net</a></li>
+<li>Imperial College Course
+<ul>
+<li><a href="https://www.deeplearningmathematics.com/slides-materials/">https://www.deeplearningmathematics.com/slides-materials/</a></li>
+<li><a href="https://github.com/pukkapies/dl-imperial-maths">https://github.com/pukkapies/dl-imperial-maths</a></li>
+</ul>
+</li>
+<li>Machine Learning - The Complete Guide <a href="https://en.wikipedia.org/wiki/Book:Machine_Learning_%E2%80%93_The_Complete_Guide">https://en.wikipedia.org/wiki/Book:Machine_Learning_%E2%80%93_The_Complete_Guide</a></li>
+<li><a href="https://paperswithcode.com/">https://paperswithcode.com/</a></li>
+</ul>
+<h2 id="hands-on-machine-learning-book">Hands-On Machine Learning Book</h2>
+<p>For the DL part see [Deep Learning]</p>
+<h2 id="pandas--sklearn--numpy--scipy-cheatsheet">Pandas / Sklearn / Numpy / Scipy Cheatsheet</h2>
+<p><code>dt.describe()</code> → statistics about each column (count, mean, min, max 25% 50% etc.)
+<code>dt.info()</code> → info about dataframe (dtype index, column dtypes, not-null values, memory usage)
+<code>dt[&quot;a_col&quot;].value_counts()</code> → get all the values encountered in the column
+<code>dt.corr()</code> → Compute standard correlation coefficient for potential <em>linear</em> correlations</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pandas.plotting <span style="color:#f92672">import</span> scatter_matrix
+</span></span><span style="display:flex;"><span>scatter_matrix(dt, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">8</span>))</span></span></code></pre></div>
+<p>Apply a function to a dataframe: either <code>dt.apply</code> or <code>dt.where(... , inplace=True)</code></p>
+<p>Use the <em>viridis</em> color palette: color-blind-friendly and prints better on greyscale!</p>
+<p><a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</a></p>
+<h3 id="sklearn---fill-missing-values-in-a-dataset">SkLearn - fill missing values in a dataset:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> Imputer
+</span></span><span style="display:flex;"><span>imputer <span style="color:#f92672">=</span> Imputer(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;median&#34;</span>)
+</span></span><span style="display:flex;"><span>imputer<span style="color:#f92672">.</span>fit(dt) <span style="color:#75715e"># dt must have numerical values only</span></span></span></code></pre></div>
+<h4 id="strategies">Strategies:</h4>
+<ul>
+<li>Get rid of corresponding districts</li>
+<li>Get rid of the whole attribute</li>
+<li>Set the values to some value (zero, mean, median, etc.)</li>
+</ul>
+<p>Pandas/SkLearn: Convert a string column/category to nums</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dt_encoded, dt_categories <span style="color:#f92672">=</span> dt.factorize<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OR Use One-Hot Encoding - each string in the string category becomes a</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># separate attribute</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sklearn.preprocessing.OneHotEncoder</span></span></code></pre></div>
+<p>Get Numpy dense array from Scipy sparse matrix: <code>sparse_mat.toarray()</code></p>
+<h4 id="feature-scaling">Feature Scaling</h4>
+<p>Machine Learning algorithms don&rsquo;t perform well when the input numerical
+attributes have very different scales.</p>
+<ul>
+<li>min-max scaling / normalization</li>
+<li>standardization</li>
+</ul>
+<h3 id="definitions">Definitions</h3>
+<p>Attribute: A data type (e.g., Mileage)
+Feature: Attribute + its value</p>
+<h4 id="deep-neural-network">Deep Neural Network</h4>
+<p>LTU: Neuron, a Sum using weights -&gt; z = w1x1 + w2x2 + &hellip; + wnxn (w^Tx), gives
+out a step function -&gt; e.g., Heaviside</p>
+<p>Perceptron -&gt; single Layer of LTUs, Each neuron is connected to all input. The
+enuron&rsquo;s are also fed an extra bias feature x0 = 1 (<code>bias neuron</code>)</p>
+<p><code>Passthrough Input Layer</code>: Inputs are represented by <em>neurons</em> that just
+propagate the input to the output</p>
+<p>Activation function (<code>activation_fn</code>): The function that evaluates the neuron
+inputs and dicides on the triggering of the neuron</p>
+<p><code>ReLU or Rectifier or Ramp</code> -&gt; <code>max(0, z)</code></p>
+<p>Hint: The derivative of ReLU is the <code>Heaviside</code> and of the SmoothReLU the
+<code>logistic function</code></p>
+<h4 id="deep-learning-theorems">Deep Learning Theorems</h4>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Universal_approximation_theorem">Universal Approximation Theorem</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/No_free_lunch_theorem%3E">No Free Lunch Theorem</a></p>
+<p>Any two optimization algorithms are equivalent when their performance is
+averaged across all possible problems</p>
+</li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<ul>
+<li>How do I tune the hyperparameters of my model?
+<ul>
+<li>Grid search with cross-validation to find the right hyperparameters</li>
+<li>Randomised search</li>
+<li>Use Oscar - <a href="http://oscar.calldesk.ai/">http://oscar.calldesk.ai/</a>
+<ul>
+<li>It helps to have an idea of what values are reasonable for each
+hyperparameter!</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content:encoded></item></channel></rss>

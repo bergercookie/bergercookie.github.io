@@ -1,3 +1,262 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Scratchpad on Bergercookie's Thoughtstream</title><link>https://bergercookie.dev/categories/scratchpad/</link><description>Recent content in Scratchpad on Bergercookie's Thoughtstream</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://bergercookie.dev/categories/scratchpad/index.xml" rel="self" type="application/rss+xml"/><item><title>🛠️ Scratchpad - CV Applications II Course by OpenCV</title><link>https://bergercookie.dev/post/opencv-applications-ii/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/opencv-applications-ii/</guid><description>Computer Vision Applications using OpenCV Facial Landmark Detection Improve the speed of Facial Landmark Detection: Use face detection that comes with OS - if possible (e.g., Android, iOS) Skip frames - e.g,. run every 3 frames Downscale image, detect faces there &amp;hellip; then propagate bboxes to original image (dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on original image and computed bounding box Improve landmark stabilisation Weighted Moving Average - Average the landmark point location over a small time window Kalman Filtering Optical Flow Code snippets OpenCV - Rescale an image - keep ratio import cv2 # Load image img = cv2.</description></item><item><title>🛠️ Scratchpad - ROS1</title><link>https://bergercookie.dev/post/ros-faq/</link><pubDate>Sun, 13 Oct 2019 15:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/ros-faq/</guid><description>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Scratchpad on Bergercookie's Thoughtstream</title><link>https://bergercookie.dev/categories/scratchpad/</link><description>Recent content in Scratchpad on Bergercookie's Thoughtstream</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 14 Oct 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://bergercookie.dev/categories/scratchpad/index.xml" rel="self" type="application/rss+xml"/><item><title>🛠️ Scratchpad - CV Applications II Course by OpenCV</title><link>https://bergercookie.dev/post/opencv-applications-ii/</link><pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/opencv-applications-ii/</guid><description>Computer Vision Applications using OpenCV Facial Landmark Detection Improve the speed of Facial Landmark Detection: Use face detection that comes with OS - if possible (e.g., Android, iOS) Skip frames - e.g,. run every 3 frames Downscale image, detect faces there &amp;hellip; then propagate bboxes to original image (dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on original image and computed bounding box Improve landmark stabilisation Weighted Moving Average - Average the landmark point location over a small time window Kalman Filtering Optical Flow Code snippets OpenCV - Rescale an image - keep ratio import cv2 # Load image img = cv2.</description><content:encoded><![CDATA[<h1 id="computer-vision-applications-using-opencv">Computer Vision Applications using OpenCV</h1>
+<h2 id="facial-landmark-detection">Facial Landmark Detection</h2>
+<h3 id="improve-the-speed-of-facial-landmark-detection">Improve the speed of Facial Landmark Detection:</h3>
+<ol>
+<li>Use face detection that comes with OS - if possible (e.g., Android, iOS)</li>
+<li>Skip frames - e.g,. run every 3 frames</li>
+<li>Downscale image, detect faces there &hellip; then propagate bboxes to original image
+(dividing the coordinates by the scale used for resizing the original frame.). Then just do landmark detection on
+original image and computed bounding box</li>
+</ol>
+<h3 id="improve-landmark-stabilisation">Improve landmark stabilisation</h3>
+<ol>
+<li><strong>Weighted Moving Average</strong> - Average the landmark point location over a small time window</li>
+<li>Kalman Filtering</li>
+<li>Optical Flow</li>
+</ol>
+<h2 id="code-snippets">Code snippets</h2>
+<h3 id="opencv---rescale-an-image---keep-ratio">OpenCV - Rescale an image - keep ratio</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load image</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(<span style="color:#e6db74">&#34;&lt;path-to-img&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scale down - keep ratio</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dims <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>ratio <span style="color:#f92672">=</span> dims[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> dims[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>target_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">960</span> <span style="color:#75715e"># resolution - x</span>
+</span></span><span style="display:flex;"><span>target_y <span style="color:#f92672">=</span> int(<span style="color:#ae81ff">960</span> <span style="color:#f92672">/</span> ratio)
+</span></span><span style="display:flex;"><span>imgS <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>resize(img, (target_x, target_y))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>namedWindow(<span style="color:#e6db74">&#39;windowname&#39;</span>, cv2<span style="color:#f92672">.</span>WINDOW_NORMAL) <span style="color:#75715e"># Create window with freedom of dimensions</span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>imshow(<span style="color:#e6db74">&#39;windowname&#39;</span>, imgS)
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>waitKey(<span style="color:#ae81ff">0</span>) <span style="color:#75715e"># Display the image infinitely until any keypress</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in case you want to kill the window</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>destroyAllWindows()</span></span></code></pre></div>
+<h3 id="opencv---imshow-but-keep-it-until-esc-pressed">OpenCV - imshow but keep it until <!-- raw HTML omitted --> pressed</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">imshow</span>\_(winname: str, img):
+</span></span><span style="display:flex;"><span>cv2<span style="color:#f92672">.</span>imshow(winname, img)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        k <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>waitKey()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv2<span style="color:#f92672">.</span>destroyWindow(winname)()</span></span></code></pre></div>
+<h2 id="hints--tricks">Hints &amp; Tricks</h2>
+<ul>
+<li><code>dlib::faceDetector</code> is trained on 80x80 faces. If the faces in your images
+are less than that then you need to upscale before running the detection.</li>
+<li><code>dlib::landmarkDetector</code>: Paper says it runs in 1ms</li>
+<li>dlib -&gt; RGB, OpenCV -&gt; BGR. Thus for OpenCV -&gt; dlib: <code>cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</code></li>
+</ul>
+<h2 id="useful-links">Useful Links</h2>
+<ul>
+<li><a href="http://dlib.net/">dlib</a></li>
+<li><a href="https://github.com/cmusatyalab/openface">OpenFace</a></li>
+<li><a href="https://melgor.github.io/blcv.github.io/static/2017/12/28/demystifying-face-recognition-iii-face-preprocessing">Demystifying Face Recognition: Face Alignment</a>
+<ul>
+<li>So we were not able to confirm that using aligned images for model learned on cropped faces boost the accuracy.</li>
+</ul>
+</li>
+<li><a href="https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html">OpenCV - Python filtering operations</a></li>
+</ul>
+]]></content:encoded></item><item><title>🛠️ Scratchpad - ROS1</title><link>https://bergercookie.dev/post/ros-faq/</link><pubDate>Sun, 13 Oct 2019 15:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/ros-faq/</guid><description>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
 Questions/Answers Set an argument based on the exclusive OR of two other arguments This is a really ugly hack, but it gets the job done. Since we don&amp;rsquo;t care much about the name, we set it so that if the user provides both of them at the same time, they get a descriptive message back.
-&amp;lt;!-- arg1 XOR arg2 --&amp;gt; &amp;lt;arg if=&amp;#34;$(eval (arg1 !</description></item></channel></rss>
+&amp;lt;!-- arg1 XOR arg2 --&amp;gt; &amp;lt;arg if=&amp;#34;$(eval (arg1 !</description><content:encoded><![CDATA[<p>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.</p>
+<h2 id="questionsanswers">Questions/Answers</h2>
+<h3 id="set-an-argument-based-on-the-exclusive-or-of-two-other-arguments">Set an argument based on the exclusive OR of two other arguments</h3>
+<p>This is a really ugly hack, but it gets the job done. Since we don&rsquo;t care much
+about the name, we set it so that if the user provides both of them at the same
+time, they get a descriptive message back.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- arg1 XOR arg2 --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval (arg1 != &#39;&#39;) == (arg2 != &#39;&#39;))&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Please_Set_Exclusively_Either_Arg1_Or_Arg2&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval (arg1 != &#39;&#39;) == (arg2 != &#39;&#39;))&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;dummy&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg Please_Set_Exclusively_Either_Arg1_Or_Arg2)&#34;</span><span style="color:#f92672">/&gt;</span></span></span></code></pre></div>
+<h3 id="set-a-parameter-based-on-an-environment-variable-fallback-to-a-default">Set a parameter based on an environment variable, fallback to a default</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;launch&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydefault&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;kalimera&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval optenv(&#39;KALIMERA&#39;) != &#39;&#39;)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(env KALIMERA)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">unless=</span><span style="color:#e6db74">&#34;$(eval optenv(&#39;KALIMERA&#39;) != &#39;&#39;)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg mydefault)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg kalimera)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/launch&gt;</span></span></span></code></pre></div>
+<h3 id="how-to-debug-launchfile-execution">How to debug launchfile execution</h3>
+<p>See the following CLI arguments</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>--wait
+</span></span><span style="display:flex;"><span>Delay the launch <span style="color:#66d9ef">until</span> a roscore is detected.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--local
+</span></span><span style="display:flex;"><span>Launch of the local nodes only. Nodes on remote machines will not be run.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--screen
+</span></span><span style="display:flex;"><span>Force all node output to screen. Useful <span style="color:#66d9ef">for</span> node debugging.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--log
+</span></span><span style="display:flex;"><span>Force all node output to log file. Also useful <span style="color:#66d9ef">for</span> node debugging.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-v
+</span></span><span style="display:flex;"><span>Enable verbose printing. Useful <span style="color:#66d9ef">for</span> tracing roslaunch file parsing.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--dump-params
+</span></span><span style="display:flex;"><span>Print parameters in launch file in YAML format.</span></span></code></pre></div>
+<h3 id="roslaunch-conditional-arg">Roslaunch conditional <!-- raw HTML omitted --></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;include</span> <span style="color:#a6e22e">file=</span><span style="color:#e6db74">&#34;...&#34;</span> <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(arg var1)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;var&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;value&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">unless=</span><span style="color:#e6db74">&#34;$(arg var1)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;var&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;value2&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/include&gt;</span></span></span></code></pre></div>
+<h3 id="visualise-topicsservicesimages-etc-from-the-command-line-without-xopengl">Visualise topics/services/images etc from the command line (without X/OpenGL):</h3>
+<p>Use <a href="https://github.com/dheera/rosshow">rosshow</a></p>
+<h3 id="kill-rosgazebo-related-processes">Kill ros/gazebo related processes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ps -ef | grep -E ros<span style="color:#ae81ff">\|</span>melodic | awk <span style="color:#e6db74">&#39;{print 2}&#39;</span> | xargs kill -9</span></span></code></pre></div>
+<h3 id="how-do-i-debug-a-urdf-file-and-its-transforms">How do I debug a URDF file and its transforms?</h3>
+<p>Use the urdfdom tools (independent package)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt-get install liburdfdom-tools graphviz
+</span></span><span style="display:flex;"><span>urdf_to_graphiz &lt;path-to-your-urdf</span></span></code></pre></div>
+<p>You can also use the <code>xacro</code> package and the <code>check_urdf</code> tool:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun xacro xacro.py <span style="color:#e6db74">`</span>rospack find pr2_description<span style="color:#e6db74">`</span>/robots/pr2.urdf.xacro -o /tmp/pr2.urdf
+</span></span><span style="display:flex;"><span>check_urdf pr2.urdf</span></span></code></pre></div>
+<h3 id="error-creation-of-publisher-failed-unknown-error-handler-name-rosmsg">[ERROR]: Creation of publisher failed: unknown error handler name &lsquo;rosmsg&rsquo;</h3>
+<p>There is a bug in <code>genpy</code> for version &lt;= 0.6.13, try <code>apt-get upgrade</code>-ing it</p>
+<p><a href="https://answers.ros.org/question/360537/unknown-error-handler-name-rosmsg/?answer=360643#post-id-360643">Source</a></p>
+<h3 id="error-rqt-doesnt-list-plugins-on-startup">Error: <code>RQT doesn't list plugins on startup</code>:</h3>
+<p>Remove its cache, then it works: <code>rm ~/.config/ros.org/rqt_gui.ini</code></p>
+<p><a href="https://answers.ros.org/question/91231/rqt-plugin-not-listedfound-in-list-returned-by-rqt-list-plugins/">Source</a></p>
+<h3 id="im-getting-the-following-error-multiple-files-named--in-package">I&rsquo;m getting the following error: <code>multiple files named ... in package</code></h3>
+<p>Disable install space.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin clean
+</span></span><span style="display:flex;"><span>catkin build &lt;package-name&gt; --no-install</span></span></code></pre></div>
+<h3 id="run-catkin-for-the-package-in-the-current-directory">Run catkin for the package in the current directory:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin build --this -DCMAKE...</span></span></code></pre></div>
+<h3 id="publish-to-move_base_simplegoal">Publish to <code>/move_base_simple/goal</code>:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rostpic pub /move_base_simple/goal geometry_msgs/PoseStamped <span style="color:#e6db74">&#39;{header: {stamp: now, frame_id: &#34;map&#34;}, pose: {position: {x: 1.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}&#39;</span></span></span></code></pre></div>
+<p><a href="https://answers.ros.org/question/47973/publishing-to-move_base_simplegoal/">Source</a></p>
+<h3 id="image_transport-plugins---how-to-setup">image_transport plugins - how to setup:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install ros-melodic-<span style="color:#ae81ff">\*</span>-image-transport
+</span></span><span style="display:flex;"><span>rosrun image_transport republish compressed /in/compressed:<span style="color:#f92672">=</span>/&lt;path-to-topic&gt;/compressed_image0 <span style="color:#e6db74">&#34;raw&#34;</span> out:<span style="color:#f92672">=</span>/&lt;path-to-topic&gt;/image0</span></span></code></pre></div>
+<p><a href="http://wiki.ros.org/image_transport/Tutorials/ManagingPlugins">Source</a></p>
+<h3 id="use-ninja-when-building-with-catkin_make">Use <code>ninja</code> when building with <code>catkin_make</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make --use-ninja --cmake-args -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>Release</span></span></code></pre></div>
+<h3 id="adjust-logger-verbosity---inspect-debug-messages">Adjust logger verbosity - inspect &ldquo;debug&rdquo; messages:</h3>
+<p>Run the rqt_logger_level GUI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun rqt_logger_level rqt_logger_level</span></span></code></pre></div>
+<p>Alternatively adjust it using the service call:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosservice list
+</span></span><span style="display:flex;"><span>rosservice call /rviz_123/get_loggers &lt;tab&gt;&lt;tab&gt;
+</span></span><span style="display:flex;"><span>rosservice call /rviz_123/set_logger_level &lt;tab&gt;&lt;tab&gt;</span></span></code></pre></div>
+<h3 id="adjust-the-logger-verbosity-from-the-start-of-the-run">Adjust the logger verbosity from the start of the run</h3>
+<p>Define your own <code>ROSCONSOLE_CONFIG_FILE</code> variable + config file.</p>
+<p><code>rosconsole</code> will load a config file from <code>$ROS_ROOT/config/rosconsole.config</code>
+when it initializes.</p>
+<p><code>rosconsole</code> also lets you define your own configuration file that will be
+used by <code>log4cxx,</code> defined by the <code>ROSCONSOLE_CONFIG_FILE</code> environment variable.
+Anything defined in this config file will override the default config file.</p>
+<p>A simple example:</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf"># Set the default ros output to warning and higher
+
+log4j.logger.ros=WARN
+
+# Override my package to output everything
+
+log4j.logger.ros.my_package_name=DEBUG</code></pre>
+<h3 id="list-all-available-plugins-of-a-particular-package">List all available plugins of a particular package</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rospack plugins --attrib<span style="color:#f92672">=</span>plugin nav_core</span></span></code></pre></div>
+<p>See also: <a href="http://wiki.ros.org/pluginlib">http://wiki.ros.org/pluginlib</a></p>
+<h3 id="have-detailed-output-for-debugging">Have detailed output for debugging</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Try one of the following</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;[${severity}] [${time}]: ${message}&#39;</span> <span style="color:#75715e"># default</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${time} | ${message}&#39;</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${node} | ${time} | ${message} | ${file}:${line}&#39;</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${node} - ${thread} | ${time} | ${message} | +${line} ${file}&#39;</span></span></span></code></pre></div>
+<h3 id="ros-unittesting">ROS Unittesting</h3>
+<p>If you use only <code>gtest</code> then you have to add your target like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">catkin*</span>add_gtest(<span style="color:#e6db74">UT*</span><span style="color:#f92672">${</span>PROJECT_NAME<span style="color:#f92672">}</span> <span style="color:#e6db74">test/test_file.cpp</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">...</span>)</span></span></code></pre></div>
+<p>However, if you also use <code>gmock</code> then you should use <code>catkin_add_gmock</code> instead!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">catkin*</span>add_gmock(<span style="color:#e6db74">UT*{PROJECT_NAME}</span> <span style="color:#e6db74">test/test_file.cpp</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">...</span>)</span></span></code></pre></div>
+<p>To run all the tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make run_tests</span></span></code></pre></div>
+<p>Notice that the previous call will return a 0 (success) error code in any case
+even if the tests fail.</p>
+<p>To get a summary and get the appropriate error code you can either run <code>catkin_test_results</code>
+or the <code>CTest</code> target <code>test</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make test</span></span></code></pre></div>
+<p>Source: <a href="https://github.com/ros/catkin/issues/576">https://github.com/ros/catkin/issues/576</a></p>
+<h3 id="get-all-ros-topics-programmatically">Get all ROS topics programmatically</h3>
+<p>Query the master; from C++ use something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ros/master.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">// see /opt/ros/&lt;ros-version&gt;/include/ros/master.h for more details on this
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// struct
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ros<span style="color:#f92672">::</span>master<span style="color:#f92672">::</span>V_TopicInfo allTopics;
+</span></span><span style="display:flex;"><span>ros<span style="color:#f92672">::</span>master<span style="color:#f92672">::</span>getTopics(allTopics);</span></span></code></pre></div>
+<p><a href="https://answers.ros.org/question/256251/how-to-obtain-list-of-all-available-topics-python/?answer=256260#post-id-256260">Source</a></p>
+<h3 id="remap-a-topic-in-the-same-tf-tree">Remap a topic in the same TF Tree</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;node</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;remapper&#34;</span> <span style="color:#a6e22e">pkg=</span><span style="color:#e6db74">&#34;tf_remapper_cpp&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;tf_remap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;rosparam</span> <span style="color:#a6e22e">param=</span><span style="color:#e6db74">&#34;mappings&#34;</span><span style="color:#f92672">&gt;</span>[{old: /slamcore/map, new: /kalimera}]<span style="color:#f92672">&lt;/rosparam&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;old_tf_topic_name&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;/tf&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;new_tf_topic_name&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;/tf&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/node&gt;</span></span></span></code></pre></div>
+<h2 id="more-useful-links">More Useful links</h2>
+<ul>
+<li><a href="http://wiki.ros.org/ROS/EnvironmentVariables">Environment variables</a></li>
+<li><a href="http://wiki.ros.osuosl.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map">ROS1 Turtlebot navigation tutorial</a></li>
+</ul>
+<h2 id="reps-of-interest">REPs of interest</h2>
+<blockquote>
+<p>REP stands for ROS Enhancement Proposal. A REP is a design document providing
+information to the ROS community, or describing a new feature for ROS or its
+processes or environment.</p>
+</blockquote>
+<ul>
+<li><a href="https://www.ros.org/reps/rep-0117.html">REP-117</a>:
+<ul>
+<li>Readings too close to measure -&gt; <code>-Inf</code></li>
+<li>Invalid measurements -&gt; <code> NaN</code></li>
+<li>Readings of no return -&gt; <code>+Inf</code></li>
+</ul>
+</li>
+<li><a href="https://www.ros.org/reps/rep-0118.html">REP-118</a>
+<ul>
+<li>Representing depth data</li>
+<li>Use 32-bit Float</li>
+</ul>
+</li>
+<li><a href="https://www.ros.org/reps/rep-0105.html">REP-105</a>
+<ul>
+<li>Frames of reference convention</li>
+<li><a href="https://answers.ros.org/question/226916/rep-105-and-robot_localization/">Relevant answer with rationale</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ros-ecosystem---miscellaneous-tools">ROS Ecosystem - Miscellaneous Tools</h2>
+<ul>
+<li><a href="https://github.com/chvmp/champ">champ</a>: ROS packages for Quadruped Robot
+based on MIT Cheetah I</li>
+<li><a href="https://colcon.readthedocs.io/">colcon</a>: CLI Tool to improve the workflow of
+building, testing, and using multiple packages - Default build orchestrator
+for ROS2</li>
+<li><a href="https://github.com/dirk-thomas/vcstool">vcstool</a>: VCS Designed to facilitate
+working with multiple repositories</li>
+<li><a href="https://github.com/dirk-thomas/publish-python">publish-python</a>: Python script
+to publish your python code to Github Release / PyPI, etc. or generate a
+debian package</li>
+</ul>
+<h2 id="a-mental-model-of-the-ros1-navigation-stack">A Mental Model of the ROS1 Navigation Stack</h2>
+
+
+
+<iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>
+
+
+]]></content:encoded></item></channel></rss>

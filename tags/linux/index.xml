@@ -1,8 +1,1041 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linux on Bergercookie's Thoughtstream</title><link>https://bergercookie.dev/tags/linux/</link><description>Recent content in Linux on Bergercookie's Thoughtstream</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 01 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bergercookie.dev/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>5 Albert Plugins to 5 Workflow Issues</title><link>https://bergercookie.dev/post/5-albert-plugins-to-5-common-problems/</link><pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/5-albert-plugins-to-5-common-problems/</guid><description>This is part two of my articles on the Albert launcher. Read the first part here
 This post outlines 5 common issues that I had been facing during my day-to-day development and the solutions that I came up with via 5 Albert plugins respectively.
-TL;DR The purpose of these plugins is a) to avoid context-switching and b) have a single tool with a single interface instead X different tools with their own corresponding interfaces.</description></item><item><title>Scratchpad - Create multi-ISO USBs with Easy2boot</title><link>https://bergercookie.dev/post/easy2boot/</link><pubDate>Tue, 10 Mar 2020 20:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/easy2boot/</guid><description>Easy2boot is a utility that allows you to flash a USB with multiple bootable images. This gives you the option of always carrying a variety of OSes / tools for all sorts of different scenarios (debugging using a Rescue image / gparted live, install Ubuntu / Windows 10 etc. images)
-Here are the contents of a E2B USB stick that I tend to carry with me and use on a regular basis.</description></item><item><title>Scratchpad - LSD - A colorful ls alternative</title><link>https://bergercookie.dev/post/lsd/</link><pubDate>Tue, 10 Mar 2020 20:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/lsd/</guid><description>Intro lsd is an alternative to the classic ls UNIX tool. It shows you a listing of files, directories, links, named pipes etc. The difference to its predecessor is that it makes use of Glyph-rich fonts such as Nerd Fonts as well as an abundance of colors preconfigured and available from start.
-Troubleshooting &amp;amp; How-to &amp;ldquo;Permission denied&amp;rdquo; when root or $LD_PRELOAD error on a gtk3-related library You&amp;rsquo;ve probably installed lsd via snap.</description></item><item><title>Using Albert to boost your productivity</title><link>https://bergercookie.dev/post/albert-plugins/</link><pubDate>Mon, 23 Dec 2019 15:28:00 +0000</pubDate><guid>https://bergercookie.dev/post/albert-plugins/</guid><description>I&amp;rsquo;ve lately been very active developing plugins for the Albert launcher for many parts of my daily routine. For those of you that don&amp;rsquo;t know it, Albert is an application launcher for Linux. It&amp;rsquo;s written in C++ and its GUI is built on top of Qt. The current post is a short summary of the plugins I&amp;rsquo;ve implemented to automate parts of my current routine and maximise my productivity along with advise and, hopefully, useful information on how to do the same for your needs via Albert.</description></item><item><title>🛠️ Scratchpad - ROS1</title><link>https://bergercookie.dev/post/ros-faq/</link><pubDate>Sun, 13 Oct 2019 15:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/ros-faq/</guid><description>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
+TL;DR The purpose of these plugins is a) to avoid context-switching and b) have a single tool with a single interface instead X different tools with their own corresponding interfaces.</description><content:encoded><![CDATA[<p>This is part two of my articles on the Albert launcher. Read the first part
+<a href="/post/albert-plugins">here</a></p>
+<p>This post outlines 5 common issues that I had been facing during my day-to-day
+development and the solutions that I came up with via 5 Albert plugins
+respectively.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>The purpose of these plugins is a) to avoid context-switching and b) have a
+single tool with a single interface instead X different tools with their own
+corresponding interfaces.</p>
+<p>All are hosted under the same github repo:
+<a href="https://github.com/bergercookie/awesome-albert-plugins">awesome-albert-plugins</a>
+on github and here are links to each one of the plugins that I&rsquo;ll be discussing
+below:</p>
+<ul>
+<li><a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/tldr_pages">TLDR pages</a></li>
+<li><a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/scratchpad">Scratchpad</a></li>
+<li><a href="https://github.com/bergercookie/awesome-albert-plugins#plugins">Googler-enabled plugins</a></li>
+<li><a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/google_translate">google_translate</a> | <a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/words">words</a></li>
+<li><a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/saxophone">Saxophone</a></li>
+</ul>
+<h2 id="-looking-up-command--tool-usage-instructions">🔎 Looking up command / tool usage instructions</h2>
+<p>During your daily routine, you&rsquo;ll want to look up how to call a certain tool,
+say recursively compress the contents of a directory using
+<a href="https://en.wikipedia.org/wiki/Bzip2">bzip</a>, or create a new virtual environment
+to work in using <a href="https://python-poetry.org/">Poetry</a>. You may either haven&rsquo;t
+used these tools at all, or are not able to recall the exact flags for the task
+at hand. Two common ways of dealing with this are:</p>
+<ul>
+<li>Google it! You&rsquo;ll then most probably want to move to a stackoverflow answer,
+copy-paste a command that seems to solve your issue, and then adjust it
+accordingly. This involves a few browser redirections (at least <code>google.com</code>
+-&gt; <code>stackoverflow.com</code>), as well as the overhead of selecting the right post
+and finding the right answer to your question.</li>
+<li>Read the manpage / help page of the tool, if it has one. This resource may be
+more rigorous but it will also take more time to find the documentation section
+that you&rsquo;re interested in.</li>
+</ul>
+<p>A more effective approach to this would be to use a software such as
+<a href="https://github.com/tldr-pages/tldr">tldr</a>, <a href="http://bropages.org/">bro pages</a>,
+or <a href="https://github.com/cheat/cheat">cheat</a>. More specifically, <code>tldr</code> allows
+you to look up the most common usecases for a wide variety of tools, all without
+leaving your command line. It&rsquo;s also easily extensible, allowing you to add more
+examples to specific tools, or adding documentation and examples for new tools.</p>
+<p><img loading="lazy" src="/images/albert-demos2/tldr.svg" alt="tldr"  />
+</p>
+<p>However even in this case you have to switch context from what you&rsquo;re currently
+doing; If you&rsquo;re working e.g., on VS Code, you have to start a new terminal,
+look up the tool that you want, copy the usecase that you&rsquo;re interested in,
+paste and modify it accordingly. We can do better than that.</p>
+<p>Enter the <a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/plugins/tldr_pages">tldr_pages albert
+plugin</a></p>
+<p><img loading="lazy" src="/images/albert-demos2/tldr-albert.gif" alt="tldr-pages-albert"  />
+</p>
+<p>It allows you to do fuzzy autocompletion-enabled search on any tldr command and
+copy its content on ENTER. In addition you can also quickly navigate to the
+appropriate webpage if you want to read more about the tool at hand, or fall
+back to a google search if that&rsquo;s not good enough.</p>
+<h2 id="-taking-notes-instantly---refactor-later">📓 Taking notes instantly - Refactor later</h2>
+<p>Whether I&rsquo;m either reading articles on Wikipedia, watching videos on YouTube, or
+doing pretty much anything on the computer that involves a bit of learning, I
+like to take notes. A good approach to this would be to split your screen
+vertically and have the browser on one side and your favorite editor on the
+other. Then you would create a new text file for every new item you &rsquo;re
+studying, add a title, then add your notes or copy paste accordingly.</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad1.png" alt="scratchpad1"  />
+</p>
+<p>This involves a few steps in the process that can be improved:</p>
+<ul>
+<li>
+<p>At that particular moment I don&rsquo;t want to have to:</p>
+<ul>
+<li>create a new file</li>
+<li>think of where to place it in my hierarchy of notes</li>
+<li>add the appropriate title</li>
+<li>add structure to the note that I&rsquo;m taking</li>
+</ul>
+<p>I&rsquo;d rather spend this time just recording my thoughts and reading through the
+actual Wikipedia page.</p>
+</li>
+<li>
+<p>I don&rsquo;t want to switch between reading the resource and recording my notes.</p>
+</li>
+</ul>
+<p>To deal with this, I&rsquo;m using a very simple plugin called <code>scratchpad</code>.</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad2.png" alt="scratchpad2"  />
+</p>
+<p>Its logic is super simple. You write some text to it and it writes it to a file;
+The same file all the time. You specify the path to that file the first time you
+trigger the plugin.</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad3.png" alt="scratchpad3"  />
+</p>
+<p>Each text is saved there and by default it&rsquo;s formatted with a maximum width of
+80 characters to assist in later potential reformatting. A blank line is
+inserted between successive entries to the file and it allows to add a separator
+if you start adding notes about a new subject</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad3.png" alt="scratchpad3"  />
+</p>
+<p>The plugin gets triggered either explicitly using <code>s&lt;space&gt;</code> or automatically
+if your Albert query is longer than 5 words. This process allows you to record
+anything you want and then sort them out later (i.e., place them into separate
+files, structure them better, etc.).</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad4.png" alt="scratchpad4"  />
+</p>
+<p>Here&rsquo;s how your scratchpad looks like after a bunch of additions from two
+different pages:</p>
+<p><img loading="lazy" src="/images/albert-demos2/scratchpad-final-result.png" alt="scratchpad-final-result"  />
+</p>
+<h2 id="-adding-links-during-text-editing">🔗 Adding Links during Text Editing</h2>
+<p>Another common issue is inserting links to other pages or documentation while
+you&rsquo;re creating or editing an existing page. That may be a markdown document for
+your GitHub repo, a Confluence page or Jira issue in your day job or a report
+you&rsquo;re righting in LibreOffice. Most times you&rsquo;d have to stop what you&rsquo;re doing,
+launch your browser, search on google the thing you&rsquo;re interested in and
+navigate to it, and finally, copy the link displayed in your browser prompt</p>
+<p>Again, as with the previous issues discussed this approach takes too much time
+<em>and</em> makes you context switch from the thing you&rsquo;re currently doing.</p>
+<p>Instead use <a href="https://github.com/jarun/googler">googler</a> or even better one of
+the many googler-enabled plugins in the
+<a href="https://github.com/bergercookie/awesome-albert-plugins">awesome-albert-plugins</a>
+repo. You can basically use the
+<a href="https://github.com/bergercookie/awesome-albert-plugins/blob/master/create_googler_plugins.py">create_googler_plugins.py</a>
+script after you&rsquo;ve downloaded the repository to several Albert plugins, each
+one responsible for searching in a single website. So for example, you can use
+the trigger <code>gg</code> to search and get results for Google, or <code>gh</code> to search on
+GitHub or <code>imdb</code> to search on IMDB.</p>
+<p>Here&rsquo;s how it looks:</p>
+<p>| <img loading="lazy" src="/images/albert-demos2/albert-suggestions-demo.gif" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos2/albert-suggestions-demo2.gif" alt=""  />
+ |
+| <img loading="lazy" src="/images/albert-demos2/albert-suggestions-demo3.gif" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos2/search_plugins.png" alt=""  />
+ |</p>
+<p>Using one of these plugins, for example the one that searches on Google, you can
+search for and copy the link to the resource you&rsquo;re interested in without
+leaving the document you&rsquo;re currently editing.</p>
+<p><img loading="lazy" src="/images/albert-demos2/search-results.png" alt=""  />
+</p>
+<h2 id="-translating-text">🈯 Translating Text</h2>
+<p>Again, same premise as in the previous cases. You&rsquo;re reading an article or
+watching a movie and you don&rsquo;t know a word or a phrase written there. It&rsquo;s too
+much of a hassle to open a new browser tab, go to Google Translate to do the
+translation.</p>
+<p>Use the <code>google_translate</code> plugin in conjunction with the <code>word</code> plugin.</p>
+<p>| <img loading="lazy" src="/images/albert-demos2/google_translate.png" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos2/word.png" alt=""  />
+ |</p>
+<p>The <code>google_translate</code> plugin will translate the word from the source language
+to the destination language while you can also use the <code>auto</code> source to enable
+autodetection.</p>
+<p>The <code>word</code> plugin on the other hand will give you the definition of the given
+word along with synonyms and antonyms.</p>
+<h2 id="-playing-radio-streams">🎷 Playing Radio Streams</h2>
+<p>This last plugin allows you to play and alternate between different stations
+easily and without jumping around different webpages to do so.</p>
+<p>It&rsquo;s called <code>saxophone</code>, and this is how its interface looks.</p>
+<p><img loading="lazy" src="/images/albert-demos2/saxophone.png" alt=""  />
+</p>
+<p>There&rsquo;s a bunch of preconfigured radios, specified in the
+<code>config/saxophone.json</code> file. You can easily extend that list to include your
+preferences as well.</p>
+<p>Under the hood it uses the <a href="https://wiki.videolan.org/documentation:modules/rc/">VLC Remote-Control
+Interface</a>.</p>
+]]></content:encoded></item><item><title>Scratchpad - Create multi-ISO USBs with Easy2boot</title><link>https://bergercookie.dev/post/easy2boot/</link><pubDate>Tue, 10 Mar 2020 20:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/easy2boot/</guid><description>Easy2boot is a utility that allows you to flash a USB with multiple bootable images. This gives you the option of always carrying a variety of OSes / tools for all sorts of different scenarios (debugging using a Rescue image / gparted live, install Ubuntu / Windows 10 etc. images)
+Here are the contents of a E2B USB stick that I tend to carry with me and use on a regular basis.</description><content:encoded><![CDATA[<p><a href="https://www.easy2boot.com/">Easy2boot</a> is a utility that allows you to flash a USB with multiple bootable
+images. This gives you the option of always carrying a variety of OSes / tools
+for all sorts of different scenarios (debugging using a Rescue image / gparted
+live, install Ubuntu / Windows 10 etc. images)</p>
+<p>Here are the contents of a E2B USB stick that I tend to carry with me and use on
+a regular basis.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>berger on draken in /me/berger/EASY2BOOT
+</span></span><span style="display:flex;"><span>at [14:00:22] ➜ tree \_ISO/LINUX/
+</span></span><span style="display:flex;"><span>\_ISO/LINUX/
+</span></span><span style="display:flex;"><span>├── android-x86_64-7.1-rc2.isodefault
+</span></span><span style="display:flex;"><span>├── archlinux-2017.12.01-x86_64.isodefault
+</span></span><span style="display:flex;"><span>├── gparted-live-1.1.0-1-amd64.isodefault
+</span></span><span style="display:flex;"><span>├── kali-linux-light-2018.4-amd64.isodefault
+</span></span><span style="display:flex;"><span>├── krd.isodefault
+</span></span><span style="display:flex;"><span>├── lxle_16.04.3_64.isodefault
+</span></span><span style="display:flex;"><span>├── TinyCore-current.isodefault
+</span></span><span style="display:flex;"><span>├── ubuntu-18.04.1.0-live-server-amd64.isodefault
+</span></span><span style="display:flex;"><span>└── ubuntu-18.04.1-desktop-amd64.isodefault
+</span></span></code></pre></div>
+<h2 id="setting-up---adding-a-linux-iso">Setting up - Adding a Linux ISO</h2>
+<ul>
+<li>Download from here: <a href="https://www.fosshub.com/Easy2Boot.html">https://www.fosshub.com/Easy2Boot.html</a></li>
+<li>Extract the Easy2Boot Linux archive - run the docs/linux_utils/fmt.sh script to format the USB device
+<ul>
+<li>Make sure you select the right drive. Bash script doesn&rsquo;t look very well
+written and by default it picked my internal drive!</li>
+</ul>
+</li>
+<li>Copy your .iso files to MAINMENU or LINUX</li>
+<li>Rename the .iso to .isodefault</li>
+<li>Defrag the USB device:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo perl /media/berger/EASY2BOOT/<span style="color:#ae81ff">\_</span>ISO/docs/linux_utils/defragfs /media/berger/EASY2BOOT/ -f</span></span></code></pre></div>
+<h2 id="articlestutorials">Articles/Tutorials</h2>
+<ul>
+<li><a href="http://www.easy2boot.com/make-an-easy2boot-usb-drive/make-using-linux/">Basic tutorial</a></li>
+</ul>
+<h2 id="notes">Notes</h2>
+<p>Try to use the same scripts for formatting / defragging that you used during the
+initial USB flashing. There are compabilitity issues between the different
+versions of the tool. If you don&rsquo;t have the original downloaded zip / contents
+anymore, it might be worth it reflashing the USB and copying over the images to
+the newly created partition instead.</p>
+]]></content:encoded></item><item><title>Scratchpad - LSD - A colorful ls alternative</title><link>https://bergercookie.dev/post/lsd/</link><pubDate>Tue, 10 Mar 2020 20:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/lsd/</guid><description>Intro lsd is an alternative to the classic ls UNIX tool. It shows you a listing of files, directories, links, named pipes etc. The difference to its predecessor is that it makes use of Glyph-rich fonts such as Nerd Fonts as well as an abundance of colors preconfigured and available from start.
+Troubleshooting &amp;amp; How-to &amp;ldquo;Permission denied&amp;rdquo; when root or $LD_PRELOAD error on a gtk3-related library You&amp;rsquo;ve probably installed lsd via snap.</description><content:encoded><![CDATA[<h2 id="intro">Intro</h2>
+<p><a href="https://github.com/Peltoche/lsd">lsd</a> is an alternative to the classic <code>ls</code>
+UNIX tool. It shows you a listing of files, directories, links, named pipes etc.
+The difference to its predecessor is that it makes use of Glyph-rich fonts such
+as <a href="https://github.com/ryanoasis/nerd-fonts">Nerd Fonts</a> as well as an abundance
+of colors preconfigured and available from start.</p>
+<h2 id="troubleshooting--how-to">Troubleshooting &amp; How-to</h2>
+<h3 id="permission-denied-when-root-or-ld_preload-error-on-a-gtk3-related-library">&ldquo;Permission denied&rdquo; when root or <code>$LD_PRELOAD</code> error on a <code>gtk3</code>-related library</h3>
+<p>You&rsquo;ve probably installed lsd via <code>snap</code>. Don&rsquo;t; Either build it from source
+or install it with <code>apt</code>.</p>
+<h3 id="use-lsd-and-redirect-its-output">Use <code>lsd</code> and redirect its output</h3>
+<p>You might notice that when redirecting lsd output to e.g., a file, lsd
+detects that its output is not actually a terminal and turns off coloring
+and glyphs. Most of the time that&rsquo;s the correct behavior, otherwise it would
+pollute the output file with escape characters for the colors. However if
+you still want to keep colors and glyphs on, here&rsquo;s how you would do it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls --tree --icon always --color always | less -r
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or if piping to a file</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ls --tree --icon always --color always | tee -a output-file</span></span></code></pre></div>
+]]></content:encoded></item><item><title>Using Albert to boost your productivity</title><link>https://bergercookie.dev/post/albert-plugins/</link><pubDate>Mon, 23 Dec 2019 15:28:00 +0000</pubDate><guid>https://bergercookie.dev/post/albert-plugins/</guid><description>I&amp;rsquo;ve lately been very active developing plugins for the Albert launcher for many parts of my daily routine. For those of you that don&amp;rsquo;t know it, Albert is an application launcher for Linux. It&amp;rsquo;s written in C++ and its GUI is built on top of Qt. The current post is a short summary of the plugins I&amp;rsquo;ve implemented to automate parts of my current routine and maximise my productivity along with advise and, hopefully, useful information on how to do the same for your needs via Albert.</description><content:encoded><![CDATA[<p>I&rsquo;ve lately been very active developing plugins for the
+<a href="https://albertlauncher.github.io/">Albert</a> launcher for many parts of my daily
+routine.
+For those of you that don&rsquo;t know it, Albert is an application launcher for
+Linux. It&rsquo;s written in C++ and its GUI is built on top of Qt. The current post
+is a short summary of the plugins I&rsquo;ve implemented to automate parts of my
+current routine and maximise my productivity along with advise and, hopefully,
+useful information on how to do the same for your needs via Albert.</p>
+<p>If you want to extend Albert&rsquo;s capabilities you basically have two options:</p>
+<ul>
+<li>Implement a native Albert plugin in C++. For this you have to clone the
+Albert repository, implement and compile your plugin along with the overall
+repo.</li>
+<li>Alternatively you can write a <a href="https://albertlauncher.github.io/docs/extensions/python/">python
+extension</a>. The
+latter can be developed separately from the main Albert repo and can be
+enabled/disabled via an option in the application settings. This goes
+without saying that, if you&rsquo;re comfortable with Python and you&rsquo;re willing to
+sacrifice a tiny bit of performance when the plugin is running, then this
+should be your go-to choice.</li>
+</ul>
+<p>In my case, I followed the latter approach and in the last ~3 months I implemented a
+series of plugins to automate parts of my daily routine. All the plugins as well
+as the overall content of this article can be found in the
+<a href="https://github.com/bergercookie/awesome-albert-plugins">awesome-albert-plugins
+repo</a>. Following is a
+list of the plugins I implemented, along with a short description of what each
+plugin does:</p>
+<ul>
+<li>
+<p><a href="https://www.atlassian.com/software/jira">Jira</a>: Mark tickets as in-progress/under-code-review/done, do fuzzy search on
+their title, navigate to the corresponding ticket page</p>
+</li>
+<li>
+<p><a href="https://taskwarrior.org/">Taskwarrior</a>: Interact with taskwarrior - fuzzy search on title, change status
+of task</p>
+</li>
+<li>
+<p><a href="https://www.zoopla.co.uk/">Zoopla</a> - Search Property to Buy, Rent, House Prices</p>
+</li>
+<li>
+<p><a href="https://xkcd.com/">Xkcd</a> - Fetch xkcd comics  - do fuzzy search on title</p>
+</li>
+<li>
+<p><a href="https://maps.google.com">Google Maps</a> - Fetch instructions from/to a specific place, optionally via
+specific transportation means</p>
+</li>
+<li>
+<p>Suggestions-enabled search for various websites using
+<a href="https://github.com/jarun/googler">googler</a>. For example:</p>
+<p>Google
+Amazon
+Youtube
+Github
+Ebay
+IMDB
+&hellip;</p>
+</li>
+</ul>
+<p>Here are some demo pictures of these plugins:</p>
+<p>| <img loading="lazy" src="/images/albert-demos/albert-suggestions-demo2.gif" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos/albert-suggestions-demo.gif" alt=""  />
+ |
+| <img loading="lazy" src="/images/albert-demos/albert-suggestions-demo3.gif" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos/taskwarrior-demo.gif" alt=""  />
+ |
+| <img loading="lazy" src="/images/albert-demos/xkcd-demo.gif" alt=""  />
+ | <img loading="lazy" src="/images/albert-demos/youtube-demo.gif" alt=""  />
+ |</p>
+
+
+<br/>
+<center>
+<img src="/images/albert-demos/demo-fuzzy-search-title.png">
+<br/>
+Do a fuzzy search of your assigned JIRA tickets
+</center>
+<br/>
+<center>
+<img src="/images/albert-demos/search_plugins.png">
+<br/>
+View of many suggestions-enabled saerch plugins
+</center>
+
+<p>Since I spent a good deal of time writing these plugins, I figured I could share
+some of my conclusions, shortcuts into writing a new plugin for your own
+usecases:</p>
+<ul>
+<li>
+<p>Use <a href="https://cookiecutter.readthedocs.io/en/latest/">cookiecutter</a> to minimise
+the boilerplate code for your new plugin. The former uses the
+<a href="https://www.palletsprojects.com/p/jinja/">Jinja</a> templating language to
+substitute placeholder values in the contents of files and in the names of the
+files and directories.
+Here&rsquo;s the <a href="https://github.com/bergercookie/awesome-albert-plugins/tree/master/cookiecutter">cookiecutter
+package</a>
+layout that I have been using for spawning new Albert plugins:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>    cookiecutter/
+</span></span><span style="display:flex;"><span>    ├── cookiecutter.json
+</span></span><span style="display:flex;"><span>    ├── <span style="color:#f92672">{{</span>cookiecutter.plugin_name<span style="color:#f92672">}}</span>
+</span></span><span style="display:flex;"><span>    │   ├── __init__.py
+</span></span><span style="display:flex;"><span>    │   ├── install-plugin.sh
+</span></span><span style="display:flex;"><span>    │   ├── misc
+</span></span><span style="display:flex;"><span>    │   │   └── demo.gif
+</span></span><span style="display:flex;"><span>    │   └── README.md
+</span></span><span style="display:flex;"><span>    └── README.md
+</span></span><span style="display:flex;"><span>  </span></span></code></pre></div>
+<p>And here are the modifiable variables when creating a new plugin:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;author&#34;</span>: <span style="color:#e6db74">&#34;Nikos Koukis&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;plugin_name&#34;</span>: <span style="color:#e6db74">&#34;albert_plugin&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;parent_repo_url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/bergercookie/awesome-albert-plugins&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;repo_base_url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/bergercookie/awesome-albert-plugins/blob/master/plugins/&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;download_url_base&#34;</span>: <span style="color:#e6db74">&#34;https://raw.githubusercontent.com/bergercookie/awesome-albert-plugins/master/plugins/{{ cookiecutter.plugin_name }}/&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;plugin_short_description&#34;</span>: <span style="color:#e6db74">&#34;Some title for your plugin&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;albert_plugin_interface&#34;</span>: <span style="color:#e6db74">&#34;v0.2&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.1.0&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  </span></span></code></pre></td></tr></table>
+</div>
+</div>
+</li>
+<li>
+<p>Give the user an easy way of raising issues and bugs</p>
+<p>When using an albert plugin (or a general-purpose python script) many things
+can go wrong at runtime (HTTP connection errors, filesystem errors etc.).
+Moreover, the potential plugin user may be running albert on the background,
+without having access to the corresponding pseudoterminal it was launched
+from. This is why, in case of an error, the plugin will silently fail. Here&rsquo;s
+a snippet of code that I&rsquo;ve been using so that errors are not left unnoticed
+as well as an easy way for the user to report the bug:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#f92672">import</span> traceback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> query<span style="color:#f92672">.</span>isTriggered:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># whatever your pugin does goes here</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:  <span style="color:#75715e"># user to report error</span>
+</span></span><span style="display:flex;"><span>          results<span style="color:#f92672">.</span>insert(
+</span></span><span style="display:flex;"><span>              <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>              v0<span style="color:#f92672">.</span>Item(
+</span></span><span style="display:flex;"><span>                  id<span style="color:#f92672">=</span>__prettyname__,
+</span></span><span style="display:flex;"><span>                  icon<span style="color:#f92672">=</span>icon_path,
+</span></span><span style="display:flex;"><span>                  text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Something went wrong! Press [ENTER] to copy error and report it&#34;</span>,
+</span></span><span style="display:flex;"><span>                  actions<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                      v0<span style="color:#f92672">.</span>ClipAction(
+</span></span><span style="display:flex;"><span>                          <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Copy error - report it to </span><span style="color:#e6db74">{</span>__homepage__[<span style="color:#ae81ff">8</span>:]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                          <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>traceback<span style="color:#f92672">.</span>format_exc()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                      )
+</span></span><span style="display:flex;"><span>                  ],
+</span></span><span style="display:flex;"><span>              ),
+</span></span><span style="display:flex;"><span>          )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>  </span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Now, in case an exception is raised during runtime, the user is greeted with
+the following message:</p>
+<p><img loading="lazy" src="/images/albet-plugin-error-msg.png" alt="albert-error-message"  />
+</p>
+<p>And when pressing ENTER, the appropriate ISSUES page URL is copied to the
+clipboard.</p>
+</li>
+<li>
+<p>Have a setup phase for checking that all the requirements for your plugin are
+in place</p>
+<p>In case more setup steps are required (e.g., login credentials)  that can
+happen as part of the first albert plugin run(s). In my case, I&rsquo;ve been using
+a <code>setup</code> function called at the start of the plugin that checks that all the
+requirements are in-place before actually going through the main plugin
+functionality. Here&rsquo;s a sample of how the setup phase works for the JIRA
+plugin:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> query<span style="color:#f92672">.</span>isTriggered:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>          results_setup <span style="color:#f92672">=</span> setup(query)
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> results_setup:
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">return</span> results_setup
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># setup OK.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          user <span style="color:#f92672">=</span> load_data(<span style="color:#e6db74">&#34;user&#34;</span>)
+</span></span><span style="display:flex;"><span>          server <span style="color:#f92672">=</span> load_data(<span style="color:#e6db74">&#34;server&#34;</span>)
+</span></span><span style="display:flex;"><span>          api_key <span style="color:#f92672">=</span> load_api_key()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setup</span>():
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> shutil<span style="color:#f92672">.</span>which(<span style="color:#e6db74">&#34;pass&#34;</span>):
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>            v0<span style="color:#f92672">.</span>Item(
+</span></span><span style="display:flex;"><span>                id<span style="color:#f92672">=</span>__prettyname__,
+</span></span><span style="display:flex;"><span>                icon<span style="color:#f92672">=</span>icon_path,
+</span></span><span style="display:flex;"><span>                text<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;&#34;pass&#34; is not installed.&#39;</span>,
+</span></span><span style="display:flex;"><span>                subtext<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Please install and configure &#34;pass&#34; accordingly.&#39;</span>,
+</span></span><span style="display:flex;"><span>                actions<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                    v0<span style="color:#f92672">.</span>UrlAction(<span style="color:#e6db74">&#39;Open &#34;pass&#34; website&#39;</span>, <span style="color:#e6db74">&#34;https://www.passwordstore.org/&#34;</span>)
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># user</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> user_path<span style="color:#f92672">.</span>is_file():
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>            v0<span style="color:#f92672">.</span>Item(
+</span></span><span style="display:flex;"><span>                id<span style="color:#f92672">=</span>__prettyname__,
+</span></span><span style="display:flex;"><span>                icon<span style="color:#f92672">=</span>icon_path,
+</span></span><span style="display:flex;"><span>                text<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Please specify your email address for JIRA&#34;</span>,
+</span></span><span style="display:flex;"><span>                subtext<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Fill and press [ENTER]&#34;</span>,
+</span></span><span style="display:flex;"><span>                actions<span style="color:#f92672">=</span>[v0<span style="color:#f92672">.</span>FuncAction(<span style="color:#e6db74">&#34;Save user&#34;</span>, <span style="color:#66d9ef">lambda</span>: save_data(query<span style="color:#f92672">.</span>string, <span style="color:#e6db74">&#34;user&#34;</span>))],
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># password (same for API key)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> server_path<span style="color:#f92672">.</span>is_file():
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append(
+</span></span><span style="display:flex;"><span>            v0<span style="color:#f92672">.</span>Item(
+</span></span><span style="display:flex;"><span>                id<span style="color:#f92672">=</span>__prettyname__,
+</span></span><span style="display:flex;"><span>                icon<span style="color:#f92672">=</span>icon_path,
+</span></span><span style="display:flex;"><span>                text<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Please specify the JIRA server to connect to&#34;</span>,
+</span></span><span style="display:flex;"><span>                subtext<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Fill and press [ENTER]&#34;</span>,
+</span></span><span style="display:flex;"><span>                actions<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                    v0<span style="color:#f92672">.</span>FuncAction(
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;Save JIRA server&#34;</span>, <span style="color:#66d9ef">lambda</span>: save_data(query<span style="color:#f92672">.</span>string, <span style="color:#e6db74">&#34;server&#34;</span>)
+</span></span><span style="display:flex;"><span>                    )
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">save_data</span>(data: str, data_name: str):
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Save a piece of data in the configuration directory.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">with</span> open(config_path <span style="color:#f92672">/</span> data_name, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>          f<span style="color:#f92672">.</span>write(data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_data</span>(data_name) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Load a piece of data from the configuration directory.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">with</span> open(config_path <span style="color:#f92672">/</span> data_name, <span style="color:#e6db74">&#34;r&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>          data <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>readline()<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split()[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  </span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Thus, in this case, on the fist run, the user will have to write their
+username and server on the albert prompt, which will be saved in appropriate
+files, and in the following 2 plugin runs, the plugin will check that their
+password and API key can be appropriately found using the Pass
+password manager.</p>
+</li>
+<li>
+<p>Give the user an easy way of installing the plugin.</p>
+<p>Along with each new albert plugin, I&rsquo;ve been adding (again generating it via
+cookiecutter) an <code>install-plugin.sh</code> script that sets up all the plugin
+dependencies via either the system package manager (e.g., <code>apt-get</code>) or the
+language package manager
+(i.e., <code>pip</code>) and also copies the plugin directory to the local albert modules
+installation, i.e.: <code>~/.local/share/albert/org.albert.extension.python/</code>.</p>
+</li>
+</ul>
+<p>That&rsquo;s all for now. Let me know if this has been helpful or has given you any
+inspiration for making your own extensions.</p>
+]]></content:encoded></item><item><title>🛠️ Scratchpad - ROS1</title><link>https://bergercookie.dev/post/ros-faq/</link><pubDate>Sun, 13 Oct 2019 15:00:00 +0000</pubDate><guid>https://bergercookie.dev/post/ros-faq/</guid><description>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.
 Questions/Answers Set an argument based on the exclusive OR of two other arguments This is a really ugly hack, but it gets the job done. Since we don&amp;rsquo;t care much about the name, we set it so that if the user provides both of them at the same time, they get a descriptive message back.
-&amp;lt;!-- arg1 XOR arg2 --&amp;gt; &amp;lt;arg if=&amp;#34;$(eval (arg1 !</description></item><item><title>My daily workflow and tools</title><link>https://bergercookie.dev/post/daily-workflow/</link><pubDate>Sat, 18 May 2019 15:28:00 +0000</pubDate><guid>https://bergercookie.dev/post/daily-workflow/</guid><description>As this is my first actual post I thought I&amp;rsquo;d write about something I&amp;rsquo;m a big fun of, tooling. More specifically I want to describe my workflow when working or in general when using my machine.
-My general goal is to be productive in my day-to-day routine, and automate everything that can actually be automated so that I can focus on the higher-level tasks I&amp;rsquo;m interested in. I admit that sometimes I&amp;rsquo;m overdoing it and automate a task that I don&amp;rsquo;t actually have to but all in all I think this attitude has helped me considerably so far.</description></item></channel></rss>
+&amp;lt;!-- arg1 XOR arg2 --&amp;gt; &amp;lt;arg if=&amp;#34;$(eval (arg1 !</description><content:encoded><![CDATA[<p>A scratchpad for common pitfalls, commands, and shortcuts when using ROS1.</p>
+<h2 id="questionsanswers">Questions/Answers</h2>
+<h3 id="set-an-argument-based-on-the-exclusive-or-of-two-other-arguments">Set an argument based on the exclusive OR of two other arguments</h3>
+<p>This is a really ugly hack, but it gets the job done. Since we don&rsquo;t care much
+about the name, we set it so that if the user provides both of them at the same
+time, they get a descriptive message back.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- arg1 XOR arg2 --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval (arg1 != &#39;&#39;) == (arg2 != &#39;&#39;))&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Please_Set_Exclusively_Either_Arg1_Or_Arg2&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval (arg1 != &#39;&#39;) == (arg2 != &#39;&#39;))&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;dummy&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg Please_Set_Exclusively_Either_Arg1_Or_Arg2)&#34;</span><span style="color:#f92672">/&gt;</span></span></span></code></pre></div>
+<h3 id="set-a-parameter-based-on-an-environment-variable-fallback-to-a-default">Set a parameter based on an environment variable, fallback to a default</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;launch&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydefault&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;kalimera&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(eval optenv(&#39;KALIMERA&#39;) != &#39;&#39;)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(env KALIMERA)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">unless=</span><span style="color:#e6db74">&#34;$(eval optenv(&#39;KALIMERA&#39;) != &#39;&#39;)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg mydefault)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;kalimera&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;$(arg kalimera)&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/launch&gt;</span></span></span></code></pre></div>
+<h3 id="how-to-debug-launchfile-execution">How to debug launchfile execution</h3>
+<p>See the following CLI arguments</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>--wait
+</span></span><span style="display:flex;"><span>Delay the launch <span style="color:#66d9ef">until</span> a roscore is detected.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--local
+</span></span><span style="display:flex;"><span>Launch of the local nodes only. Nodes on remote machines will not be run.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--screen
+</span></span><span style="display:flex;"><span>Force all node output to screen. Useful <span style="color:#66d9ef">for</span> node debugging.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--log
+</span></span><span style="display:flex;"><span>Force all node output to log file. Also useful <span style="color:#66d9ef">for</span> node debugging.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-v
+</span></span><span style="display:flex;"><span>Enable verbose printing. Useful <span style="color:#66d9ef">for</span> tracing roslaunch file parsing.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--dump-params
+</span></span><span style="display:flex;"><span>Print parameters in launch file in YAML format.</span></span></code></pre></div>
+<h3 id="roslaunch-conditional-arg">Roslaunch conditional <!-- raw HTML omitted --></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;include</span> <span style="color:#a6e22e">file=</span><span style="color:#e6db74">&#34;...&#34;</span> <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">if=</span><span style="color:#e6db74">&#34;$(arg var1)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;var&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;value&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;arg</span> <span style="color:#a6e22e">unless=</span><span style="color:#e6db74">&#34;$(arg var1)&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;var&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;value2&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/include&gt;</span></span></span></code></pre></div>
+<h3 id="visualise-topicsservicesimages-etc-from-the-command-line-without-xopengl">Visualise topics/services/images etc from the command line (without X/OpenGL):</h3>
+<p>Use <a href="https://github.com/dheera/rosshow">rosshow</a></p>
+<h3 id="kill-rosgazebo-related-processes">Kill ros/gazebo related processes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ps -ef | grep -E ros<span style="color:#ae81ff">\|</span>melodic | awk <span style="color:#e6db74">&#39;{print 2}&#39;</span> | xargs kill -9</span></span></code></pre></div>
+<h3 id="how-do-i-debug-a-urdf-file-and-its-transforms">How do I debug a URDF file and its transforms?</h3>
+<p>Use the urdfdom tools (independent package)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt-get install liburdfdom-tools graphviz
+</span></span><span style="display:flex;"><span>urdf_to_graphiz &lt;path-to-your-urdf</span></span></code></pre></div>
+<p>You can also use the <code>xacro</code> package and the <code>check_urdf</code> tool:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun xacro xacro.py <span style="color:#e6db74">`</span>rospack find pr2_description<span style="color:#e6db74">`</span>/robots/pr2.urdf.xacro -o /tmp/pr2.urdf
+</span></span><span style="display:flex;"><span>check_urdf pr2.urdf</span></span></code></pre></div>
+<h3 id="error-creation-of-publisher-failed-unknown-error-handler-name-rosmsg">[ERROR]: Creation of publisher failed: unknown error handler name &lsquo;rosmsg&rsquo;</h3>
+<p>There is a bug in <code>genpy</code> for version &lt;= 0.6.13, try <code>apt-get upgrade</code>-ing it</p>
+<p><a href="https://answers.ros.org/question/360537/unknown-error-handler-name-rosmsg/?answer=360643#post-id-360643">Source</a></p>
+<h3 id="error-rqt-doesnt-list-plugins-on-startup">Error: <code>RQT doesn't list plugins on startup</code>:</h3>
+<p>Remove its cache, then it works: <code>rm ~/.config/ros.org/rqt_gui.ini</code></p>
+<p><a href="https://answers.ros.org/question/91231/rqt-plugin-not-listedfound-in-list-returned-by-rqt-list-plugins/">Source</a></p>
+<h3 id="im-getting-the-following-error-multiple-files-named--in-package">I&rsquo;m getting the following error: <code>multiple files named ... in package</code></h3>
+<p>Disable install space.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin clean
+</span></span><span style="display:flex;"><span>catkin build &lt;package-name&gt; --no-install</span></span></code></pre></div>
+<h3 id="run-catkin-for-the-package-in-the-current-directory">Run catkin for the package in the current directory:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin build --this -DCMAKE...</span></span></code></pre></div>
+<h3 id="publish-to-move_base_simplegoal">Publish to <code>/move_base_simple/goal</code>:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rostpic pub /move_base_simple/goal geometry_msgs/PoseStamped <span style="color:#e6db74">&#39;{header: {stamp: now, frame_id: &#34;map&#34;}, pose: {position: {x: 1.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}&#39;</span></span></span></code></pre></div>
+<p><a href="https://answers.ros.org/question/47973/publishing-to-move_base_simplegoal/">Source</a></p>
+<h3 id="image_transport-plugins---how-to-setup">image_transport plugins - how to setup:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install ros-melodic-<span style="color:#ae81ff">\*</span>-image-transport
+</span></span><span style="display:flex;"><span>rosrun image_transport republish compressed /in/compressed:<span style="color:#f92672">=</span>/&lt;path-to-topic&gt;/compressed_image0 <span style="color:#e6db74">&#34;raw&#34;</span> out:<span style="color:#f92672">=</span>/&lt;path-to-topic&gt;/image0</span></span></code></pre></div>
+<p><a href="http://wiki.ros.org/image_transport/Tutorials/ManagingPlugins">Source</a></p>
+<h3 id="use-ninja-when-building-with-catkin_make">Use <code>ninja</code> when building with <code>catkin_make</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make --use-ninja --cmake-args -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>Release</span></span></code></pre></div>
+<h3 id="adjust-logger-verbosity---inspect-debug-messages">Adjust logger verbosity - inspect &ldquo;debug&rdquo; messages:</h3>
+<p>Run the rqt_logger_level GUI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun rqt_logger_level rqt_logger_level</span></span></code></pre></div>
+<p>Alternatively adjust it using the service call:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosservice list
+</span></span><span style="display:flex;"><span>rosservice call /rviz_123/get_loggers &lt;tab&gt;&lt;tab&gt;
+</span></span><span style="display:flex;"><span>rosservice call /rviz_123/set_logger_level &lt;tab&gt;&lt;tab&gt;</span></span></code></pre></div>
+<h3 id="adjust-the-logger-verbosity-from-the-start-of-the-run">Adjust the logger verbosity from the start of the run</h3>
+<p>Define your own <code>ROSCONSOLE_CONFIG_FILE</code> variable + config file.</p>
+<p><code>rosconsole</code> will load a config file from <code>$ROS_ROOT/config/rosconsole.config</code>
+when it initializes.</p>
+<p><code>rosconsole</code> also lets you define your own configuration file that will be
+used by <code>log4cxx,</code> defined by the <code>ROSCONSOLE_CONFIG_FILE</code> environment variable.
+Anything defined in this config file will override the default config file.</p>
+<p>A simple example:</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf"># Set the default ros output to warning and higher
+
+log4j.logger.ros=WARN
+
+# Override my package to output everything
+
+log4j.logger.ros.my_package_name=DEBUG</code></pre>
+<h3 id="list-all-available-plugins-of-a-particular-package">List all available plugins of a particular package</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rospack plugins --attrib<span style="color:#f92672">=</span>plugin nav_core</span></span></code></pre></div>
+<p>See also: <a href="http://wiki.ros.org/pluginlib">http://wiki.ros.org/pluginlib</a></p>
+<h3 id="have-detailed-output-for-debugging">Have detailed output for debugging</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Try one of the following</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;[${severity}] [${time}]: ${message}&#39;</span> <span style="color:#75715e"># default</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${time} | ${message}&#39;</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${node} | ${time} | ${message} | ${file}:${line}&#39;</span>
+</span></span><span style="display:flex;"><span>export ROSCONSOLE_FORMAT<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${severity} | ${node} - ${thread} | ${time} | ${message} | +${line} ${file}&#39;</span></span></span></code></pre></div>
+<h3 id="ros-unittesting">ROS Unittesting</h3>
+<p>If you use only <code>gtest</code> then you have to add your target like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">catkin*</span>add_gtest(<span style="color:#e6db74">UT*</span><span style="color:#f92672">${</span>PROJECT_NAME<span style="color:#f92672">}</span> <span style="color:#e6db74">test/test_file.cpp</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">...</span>)</span></span></code></pre></div>
+<p>However, if you also use <code>gmock</code> then you should use <code>catkin_add_gmock</code> instead!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">catkin*</span>add_gmock(<span style="color:#e6db74">UT*{PROJECT_NAME}</span> <span style="color:#e6db74">test/test_file.cpp</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">...</span>)</span></span></code></pre></div>
+<p>To run all the tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make run_tests</span></span></code></pre></div>
+<p>Notice that the previous call will return a 0 (success) error code in any case
+even if the tests fail.</p>
+<p>To get a summary and get the appropriate error code you can either run <code>catkin_test_results</code>
+or the <code>CTest</code> target <code>test</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>catkin_make test</span></span></code></pre></div>
+<p>Source: <a href="https://github.com/ros/catkin/issues/576">https://github.com/ros/catkin/issues/576</a></p>
+<h3 id="get-all-ros-topics-programmatically">Get all ROS topics programmatically</h3>
+<p>Query the master; from C++ use something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ros/master.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">// see /opt/ros/&lt;ros-version&gt;/include/ros/master.h for more details on this
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// struct
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ros<span style="color:#f92672">::</span>master<span style="color:#f92672">::</span>V_TopicInfo allTopics;
+</span></span><span style="display:flex;"><span>ros<span style="color:#f92672">::</span>master<span style="color:#f92672">::</span>getTopics(allTopics);</span></span></code></pre></div>
+<p><a href="https://answers.ros.org/question/256251/how-to-obtain-list-of-all-available-topics-python/?answer=256260#post-id-256260">Source</a></p>
+<h3 id="remap-a-topic-in-the-same-tf-tree">Remap a topic in the same TF Tree</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;node</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;remapper&#34;</span> <span style="color:#a6e22e">pkg=</span><span style="color:#e6db74">&#34;tf_remapper_cpp&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;tf_remap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;rosparam</span> <span style="color:#a6e22e">param=</span><span style="color:#e6db74">&#34;mappings&#34;</span><span style="color:#f92672">&gt;</span>[{old: /slamcore/map, new: /kalimera}]<span style="color:#f92672">&lt;/rosparam&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;old_tf_topic_name&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;/tf&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;param</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;new_tf_topic_name&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;/tf&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/node&gt;</span></span></span></code></pre></div>
+<h2 id="more-useful-links">More Useful links</h2>
+<ul>
+<li><a href="http://wiki.ros.org/ROS/EnvironmentVariables">Environment variables</a></li>
+<li><a href="http://wiki.ros.osuosl.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map">ROS1 Turtlebot navigation tutorial</a></li>
+</ul>
+<h2 id="reps-of-interest">REPs of interest</h2>
+<blockquote>
+<p>REP stands for ROS Enhancement Proposal. A REP is a design document providing
+information to the ROS community, or describing a new feature for ROS or its
+processes or environment.</p>
+</blockquote>
+<ul>
+<li><a href="https://www.ros.org/reps/rep-0117.html">REP-117</a>:
+<ul>
+<li>Readings too close to measure -&gt; <code>-Inf</code></li>
+<li>Invalid measurements -&gt; <code> NaN</code></li>
+<li>Readings of no return -&gt; <code>+Inf</code></li>
+</ul>
+</li>
+<li><a href="https://www.ros.org/reps/rep-0118.html">REP-118</a>
+<ul>
+<li>Representing depth data</li>
+<li>Use 32-bit Float</li>
+</ul>
+</li>
+<li><a href="https://www.ros.org/reps/rep-0105.html">REP-105</a>
+<ul>
+<li>Frames of reference convention</li>
+<li><a href="https://answers.ros.org/question/226916/rep-105-and-robot_localization/">Relevant answer with rationale</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ros-ecosystem---miscellaneous-tools">ROS Ecosystem - Miscellaneous Tools</h2>
+<ul>
+<li><a href="https://github.com/chvmp/champ">champ</a>: ROS packages for Quadruped Robot
+based on MIT Cheetah I</li>
+<li><a href="https://colcon.readthedocs.io/">colcon</a>: CLI Tool to improve the workflow of
+building, testing, and using multiple packages - Default build orchestrator
+for ROS2</li>
+<li><a href="https://github.com/dirk-thomas/vcstool">vcstool</a>: VCS Designed to facilitate
+working with multiple repositories</li>
+<li><a href="https://github.com/dirk-thomas/publish-python">publish-python</a>: Python script
+to publish your python code to Github Release / PyPI, etc. or generate a
+debian package</li>
+</ul>
+<h2 id="a-mental-model-of-the-ros1-navigation-stack">A Mental Model of the ROS1 Navigation Stack</h2>
+
+
+
+<iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>
+
+
+]]></content:encoded></item><item><title>My daily workflow and tools</title><link>https://bergercookie.dev/post/daily-workflow/</link><pubDate>Sat, 18 May 2019 15:28:00 +0000</pubDate><guid>https://bergercookie.dev/post/daily-workflow/</guid><description>As this is my first actual post I thought I&amp;rsquo;d write about something I&amp;rsquo;m a big fun of, tooling. More specifically I want to describe my workflow when working or in general when using my machine.
+My general goal is to be productive in my day-to-day routine, and automate everything that can actually be automated so that I can focus on the higher-level tasks I&amp;rsquo;m interested in. I admit that sometimes I&amp;rsquo;m overdoing it and automate a task that I don&amp;rsquo;t actually have to but all in all I think this attitude has helped me considerably so far.</description><content:encoded><![CDATA[<p>As this is my first actual post I thought I&rsquo;d write about something I&rsquo;m a big
+fun of, tooling. More specifically I want to describe my workflow when working
+or in general when using my machine.</p>
+<p>My general goal is to be productive in my day-to-day routine, and automate
+everything that can actually be automated so that I can focus on the
+higher-level tasks I&rsquo;m interested in. I admit that sometimes I&rsquo;m overdoing it
+and automate a task that I don&rsquo;t actually have to but all in all I think this
+attitude has helped me considerably so far.</p>
+<p>I&rsquo;m also a big believer in open-source. I&rsquo;m striving to publish all my coding
+projects on Github (see my <a href="https://github.com/bergercookie">pinned repos</a> for
+some of the works I&rsquo;m proud of) and I&rsquo;ve also been mentoring for the past two
+years for the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code Project</a> with the <a href="https://mrpt.org">MRPT robotics
+organisation</a>. Thus, I&rsquo;m trying as much as possible to use
+open-source alternatives for all my tasks. That being said, if there is a
+paid-for tool that does something great I&rsquo;m happy to pay for it (e.g., see the
+excellent <code>C/C++ Code Explorer</code> - <a href="https://www.sourcetrail.com/">Sourcetrail</a>).</p>
+<p>Here&rsquo;s a bullet list of the software I&rsquo;m using:</p>
+<ul>
+<li><strong>OS:</strong> GNU/Linux</li>
+<li><strong>Linux flavour:</strong> Ubuntu/Debian</li>
+<li><strong>Editor:</strong> <a href="https://github.com/neovim/neovim">Vim/Neovim</a></li>
+<li><strong>Browser:</strong> Firefox</li>
+<li><strong>Terminal:</strong> <a href="https://github.com/jwilm/alacritty">Alacritty</a> + <a href="https://github.com/tmux/tmux">Tmux multiplexer</a> + Bash</li>
+<li><strong>Desktop Environment:</strong> <a href="https://i3wm.org/">i3</a></li>
+</ul>
+<p>Let me now elaborate on the bullets above.</p>
+<h2 id="gnulinux---debian-flavours">GNU/Linux - Debian-flavours</h2>
+<p>Linux is free, as in freedom, it&rsquo;s ubiquitous and is simply the bestest
+operating system there is 😏. Regarding flavour, I simply use Debian or
+Ubuntu as the main operating system just because I feel most comfortable in
+these systems It&rsquo;s nice know how to open all sorts of files
+(<code>xdg-open</code>/<code>xdg-mime</code>) search for package names (<code>apt-cache</code>) install packages
+/ download sources (<code>apt-cache</code>, <code>apt-get</code>, <code>dpkg</code>) and in general know how your
+system works. Also being a roboticist by profession, there is a strong
+inclination towards <code>Debian</code> / <code>Ubuntu</code> since <a href="https://ros.org">ROS</a> (<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>)
+ships binaries for specifically for these platforms and it&rsquo;s a total PITA to
+compile it from source. Finally I consider it a big deal to always have a stable
+system even if that means not compiling your project with the latest and
+greatest gcc-8 compiler. Ubuntu and Debian give you that and also provide ways
+of installing more recent versions (<a href="http://linuxbrew.sh/">linuxbrew</a>, <a href="https://launchpad.net/ubuntu/+ppas">Ubuntu
+PPAs</a>) and hey, you can always compile stuff
+from source if the previous don&rsquo;t work for you 😉</p>
+<h2 id="vimneovim">Vim/Neovim</h2>
+<p>There is a gazillion of articles on how to use vim or what to put in your
+<code>vimrc</code> so I&rsquo;m going to keep it short here.</p>
+<p>Here are some of the plugins that I use on a daily basis and I&rsquo;m confident have
+boosted my editing efficiency significantly. Refer to the corresponding
+<code>README</code>s for more details:</p>
+<ul>
+<li>Plugin manager: <a href="https://github.com/junegunn/vim-plug">vim-plug</a></li>
+<li>Asynchronous syntax checking/linting: <a href="https://github.com/w0rp/ale">ale</a></li>
+<li>Semantically-accurate syntax highlighting: <a href="https://github.com/arakashic/chromatica.nvim">chromatica</a></li>
+<li>Indentation level detection: <a href="https://github.com/ciaranm/detectindent">detectindent</a></li>
+<li>Git client: <a href="https://github.com/tpope/vim-fugitive">fugitive</a></li>
+<li><code>Printf</code>-like code debugging (<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>): <a href="https://github.com/bergercookie/vim-debugstring">debugstring</a></li>
+<li>UNIX helper functions: <a href="https://github.com/tpope/vim-fugitive">eunuch</a></li>
+<li>Asynchronous fuzzy searching: <a href="https://github.com/junegunn/fzf.vim">fzf</a></li>
+<li>Personal knowledge base /Task management: <a href="https://github.com/vimwiki/vimwiki">vimwiki</a>, <a href="https://github.com/tbabej/taskwiki">taskwiki</a></li>
+</ul>
+<p>The important thing to note here is that you have to find a combination that
+works for you.</p>
+<ul>
+<li>Don&rsquo;t use more plugins than you actually need or you&rsquo;ll bloat vim and you&rsquo;ll
+have awful startup times,</li>
+<li>Double-check that adding the plugin is worth the maintenance cost / potential
+startup overhead / effort to learn it. Maybe there&rsquo;s already has a way of
+expressing it? Maybe it&rsquo;s just a matter of a single function in your <code>.vimrc</code>?</li>
+</ul>
+<p>Finally, here&rsquo;s a link to my vim configuration in case you want to take a
+better look: <a href="https://github.com/bergercookie/vim-dotfiles">vim-dotfiles</a></p>
+<h2 id="firefox">Firefox</h2>
+<p>Firefox is the de-facto open-source internet browser. It&rsquo;s fast, it&rsquo;s sleek and
+using the new Firefox <a href="https://wiki.mozilla.org/WebExtensions">WebExtensions</a>
+and <a href="https://github.com/tridactyl/tridactyl">tridactyl</a> one can browse the web
+like it&rsquo;s <code>Vim</code> (<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>).</p>
+<h2 id="alacrittytmux">Alacritty/Tmux</h2>
+<p><code>Alacritty</code> represents a newer trend in terminal emulators in that its objective
+is to render the terminal output using the computer GPU. Other than that, its
+developers strive to keep it minimal by <strong>not</strong> implementing additional features
+such as preferences window GUI (everything is managed by a <code>YAML</code> file) multiple
+tabs, split panes etc and instead keep it simple and fast. For most of the
+functionality that&rsquo;s omitted (e.g., split panes), they advice the usage of a
+tool designed for that such as &hellip; 🥁 Tmux!</p>
+<p><code>Tmux</code> is the modern alternative to the good-old <code>screen</code> multiplexer. The big
+difference compared to its predecessor is the good list of plugins and
+customisation options it gives to its user. It comes with its own plugin manager
+<a href="https://github.com/tmux-plugins/tpm">tpm</a> along with plugins such as
+<a href="https://github.com/tmux-plugins/tmux-yank">tmux-yank</a>,
+<a href="https://github.com/tmux-plugins/tmux-continuum">tmux-continuum</a> , and
+<a href="https://github.com/tmux-plugins/tmux-resurrect">tmux-resurrect</a> which
+significantly enhance the Tmux user experience.</p>
+<p>Finally, I&rsquo;m using <code>Bash</code> for general navigation, system-interaction tasks. Bash
+is the default Linux shell, and 99% of Linux machines you encounter will have
+it. Yes, I am aware of <code>zsh</code> and the billion of plugins that it offers. In
+general it is a superior shell compared to Bash but honestly the difference is
+not big enough to counter for the fact that bash is ubiquitous and eventually
+you&rsquo;ll be forced to used it when working on a new machine / someone else&rsquo;s
+laptop.</p>
+<p>Here&rsquo;s my terminal configuration at the time of writing this:</p>
+<p><img loading="lazy" src="/images/tmux-view.png" alt="tmux-view"  />
+</p>
+<h2 id="i3">i3</h2>
+<p>i3 is a tiling window manager, meaning that it&rsquo;s designed for placing windows as
+individual tiles in your screen(s). Since <code>Tmux</code> does most of the heavy-lifting in
+the terminal (splitting to panes, multiple sessions, multiple named windows
+etc.). <code>i3</code> gives you (almost) the configurability of a window manager such as
+<a href="https://awesomewm.org/">awesome</a> but with much less hassle for configuring it
+to reach a version that works.</p>
+<p>I use i3 mainly for the following:</p>
+<ul>
+<li>
+<p>Split apps into workspaces. Be able to navigate between workspaces and between
+apps using only the mouse</p>
+</li>
+<li>
+<p>Stacked views of windows</p>
+</li>
+<li>
+<p>Automatic placement of a windowed app on startup/launch.</p>
+<p>No more shoving windows around when you launch a program. It will
+automatically take its place based on the corresponding workspace. You can
+do it with simple rules in your i3 config file. For example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>  <span style="color:#75715e"># assign apps to workspaces</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Firefox&#34;</span><span style="color:#f92672">]</span> $ws_www
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Terminator&#34;</span><span style="color:#f92672">]</span> $ws_term
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Alacritty&#34;</span><span style="color:#f92672">]</span> $ws_term
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Franz&#34;</span><span style="color:#f92672">]</span> $ws_msg
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Viber&#34;</span><span style="color:#f92672">]</span> $ws_msg
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Slack&#34;</span><span style="color:#f92672">]</span> $ws_msg
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;calibre&#34;</span><span style="color:#f92672">]</span> $ws_calibre
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;spotify&#34;</span><span style="color:#f92672">]</span> $ws_music
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Gnome-terminal&#34;</span><span style="color:#f92672">]</span> $ws_fm
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Transmission-gtk&#34;</span><span style="color:#f92672">]</span> $ws_random
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Filezilla&#34;</span><span style="color:#f92672">]</span> $ws_random
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Nautilus&#34;</span><span style="color:#f92672">]</span> $ws_fm
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Pcmanfm&#34;</span><span style="color:#f92672">]</span> $ws_fm
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Vmplayer&#34;</span><span style="color:#f92672">]</span> $ws_win
+</span></span><span style="display:flex;"><span>  assign <span style="color:#f92672">[</span>class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vlc&#34;</span><span style="color:#f92672">]</span> $ws_www
+</span></span><span style="display:flex;"><span>  </span></span></code></pre></td></tr></table>
+</div>
+</div>
+</li>
+<li>
+<p>Support for beautiful dock with reasonable configuration and time spent, via
+the use of powerline symbols +
+<a href="https://github.com/greshake/i3status-rust">i3status-rust</a>. Here is a
+sample:</p>
+<p><img loading="lazy" src="/images/i3-bar.png" alt="i3-bar"  />
+</p>
+</li>
+</ul>
+<h2 id="miscellaneous-unix-related-tooling">Miscellaneous UNIX-related tooling</h2>
+<p>This is a list of tools that didn&rsquo;t fit any of the previous categories but are
+still worth mentioning:</p>
+<ul>
+<li>
+<p><strong>Password management:</strong> <a href="https://www.passwordstore.org/">UNIX Password Pass</a></p>
+<p>I can&rsquo;t emphasise how easy and intuitive password management has been it
+since I came across <code>Pass</code>. It&rsquo;s a minimal tool built on top of well
+established software such as <code>GPG</code> (for encryption) and <code>Git</code> for version
+control. There is also a fully functional android app
+<a href="https://github.com/zeapo/Android-Password-Store">PasswordStore</a> that syncs
+via git so you can have all your passwords in all your devices and actually
+reason on how the whole pipeline actually works.</p>
+</li>
+<li>
+<p><strong>E-Book/Scientific works management:</strong> <a href="https://calibre-ebook.com/">Calibre</a></p>
+<p>Calibre is an open-source e-book management tool written in Python. Apart
+from its obvious task, it can sync your books with Kindle or android devices
+it can import and manage various formats (e.g., <code>pdf</code>, <code>mobi</code>), and it can
+also has a pretty decent android client.</p>
+</li>
+<li>
+<p><strong>Personal TODO list - task management:</strong> <a href="https://taskwarrior.org/">Taskwarrior</a></p>
+<p>More on this in another post.</p>
+</li>
+<li>
+<p><strong>Linux application Launcher:</strong> <a href="https://albertlauncher.github.io/">Albert</a></p>
+</li>
+<li>
+<p><strong>Fuzzy searching, autocompletion, directory navigation:</strong> <a href="https://github.com/junegunn/fzf">fzf</a></p>
+</li>
+<li>
+<p><strong>Rust-alternatives to classic UNIX tools:</strong>
+<a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, <a href="https://github.com/sharkdp/fd">fd</a></p>
+</li>
+<li>
+<p><strong>Messeging apps bundler:</strong> <a href="https://meetfranz.com">Franz</a></p>
+</li>
+</ul>
+<h2 id="more-on-the-menu---feedback">More on the menu - feedback</h2>
+<p>As this is my first post, feel free to add some feedback in the comments and let
+me know what you think of this.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Don&rsquo;t know what ROS is? Google it or wait for me to write an article on its latest version <code>ROS2</code>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Disclaimer: I am the author of vim-debugstring&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>I know that Chrome also offers vim-like binding plugins but from my experience with them there&rsquo;s just a world of difference between those and Firefox plugins such as Tridactyl and its predecessors <code>Vimperator</code> / <code>Pentadactyl</code>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content:encoded></item></channel></rss>
