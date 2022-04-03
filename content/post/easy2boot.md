@@ -1,9 +1,8 @@
 ---
 author: bergercookie
-categories:
-- scratchpad
-- programming
-- linux
+tags:
+  - Linux
+  - Tooling
 comments: true
 date: "2020-03-10T20:00:00Z"
 draft: false
@@ -21,8 +20,8 @@ a regular basis.
 
 {{< highlight console >}}
 berger on draken in /me/berger/EASY2BOOT
-at [14:00:22] ➜ tree _ISO/LINUX/
-_ISO/LINUX/
+at [14:00:22] ➜ tree \_ISO/LINUX/
+\_ISO/LINUX/
 ├── android-x86_64-7.1-rc2.isodefault
 ├── archlinux-2017.12.01-x86_64.isodefault
 ├── gparted-live-1.1.0-1-amd64.isodefault
@@ -34,25 +33,23 @@ _ISO/LINUX/
 └── ubuntu-18.04.1-desktop-amd64.isodefault
 {{< / highlight >}}
 
-
 ## Setting up - Adding a Linux ISO
 
-* Download from here: https://www.fosshub.com/Easy2Boot.html
-* Extract the Easy2Boot Linux archive - run the docs/linux_utils/fmt.sh script to format the USB device
-  * Make sure you select the right drive. Bash script doesn't look very well
+- Download from here: https://www.fosshub.com/Easy2Boot.html
+- Extract the Easy2Boot Linux archive - run the docs/linux_utils/fmt.sh script to format the USB device
+  - Make sure you select the right drive. Bash script doesn't look very well
     written and by default it picked my internal drive!
-* Copy your .iso files to MAINMENU or LINUX
-* Rename the .iso to .isodefault
-* Defrag the USB device:
-
+- Copy your .iso files to MAINMENU or LINUX
+- Rename the .iso to .isodefault
+- Defrag the USB device:
 
 {{< highlight bash >}}
-sudo perl /media/berger/EASY2BOOT/_ISO/docs/linux_utils/defragfs /media/berger/EASY2BOOT/ -f
+sudo perl /media/berger/EASY2BOOT/\_ISO/docs/linux_utils/defragfs /media/berger/EASY2BOOT/ -f
 {{< / highlight >}}
 
 ## Articles/Tutorials
 
-* [Basic tutorial](http://www.easy2boot.com/make-an-easy2boot-usb-drive/make-using-linux/)
+- [Basic tutorial](http://www.easy2boot.com/make-an-easy2boot-usb-drive/make-using-linux/)
 
 ## Notes
 

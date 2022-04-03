@@ -1,9 +1,9 @@
 ---
 author: bergercookie
-categories:
-- programming
-- linux
-- tooling
+tags:
+- Programming
+- Linux
+- Tooling
 comments: true
 date: "2021-05-01T00:00:00Z"
 draft: false

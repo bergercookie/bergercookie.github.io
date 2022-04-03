@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Bergercookie's Thoughtstream"
 theme = "PaperMod"
 enableEmoji = "true"
+disqusShortname = "bergercookie"
 
 # Options for PaperMod vvvvv
 paginate = 5
@@ -22,7 +23,7 @@ minifyOutput = true
 [params]
 env = "production"
 title = "Bergercookie's Thoughtstream"
-description = "Everything on Robotics, Vim, Producitivy tools"
+description = "Everything on Robotics, Vim and Producitivy tools"
 keywords = ["Robotics", "Vim", "Productivity", "Anki", "Linux", "ROS", "ROS2",
 "Hardware"]
 author = "Nikos Koukis"
@@ -34,7 +35,7 @@ ShowReadingTime = true
 ShowShareButtons = true
 ShowPostNavLinks = true
 ShowBreadCrumbs = true
-ShowCodeCopyButtons = false
+ShowCodeCopyButtons = true
 disableSpecial1stPost = false
 disableScrollToTop = false
 comments = true
@@ -119,7 +120,7 @@ linkFullImages = true
 responsiveImages = true
 
 [params.editPost]
-URL = "https://github.com/bergercookie/bergercookie.github.io/content/post"
+URL = "https://github.com/bergercookie/bergercookie.github.io/edit/src/content/post/"
 Text = "Suggest Changes"
 appendFilePath = true
 

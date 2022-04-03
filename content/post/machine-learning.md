@@ -1,9 +1,8 @@
 ---
 author: bergercookie
-categories:
-  - scratchpad
-  - machine-learning
-  - programming
+tags:
+  - "Machine Learning"
+  - Programming
 comments: true
 date: "2019-10-14T00:00:00Z"
 draft: false

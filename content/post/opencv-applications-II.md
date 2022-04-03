@@ -1,10 +1,10 @@
 ---
 author: bergercookie
+tags:
+  - "Machine Learning"
+  - Programming
 categories:
-  - scratchpad
-  - machine-learning
-  - programming
-  - linux
+  - Scratchpad
 comments: true
 date: "2019-10-14T00:00:00Z"
 draft: false

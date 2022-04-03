@@ -2,6 +2,9 @@
 author: bergercookie
 comments: true
 date: "2020-10-03T00:00:00Z"
+tags:
+  - "Machine Learning"
+  - Programming
 draft: false
 title: Cracking the OpenCV Applications Course - Project 1
 showtoc: true

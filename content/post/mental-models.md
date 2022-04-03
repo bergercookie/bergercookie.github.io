@@ -1,7 +1,7 @@
 ---
 author: bergercookie
-categories:
-  - behavioral_phycology
+tags:
+  - "Behavioral Psycology"
 comments: true
 date: "2020-12-27T17:29:00Z"
 draft: false

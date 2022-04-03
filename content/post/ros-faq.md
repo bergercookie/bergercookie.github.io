@@ -1,14 +1,15 @@
 ---
 author: bergercookie
+tags:
+  - ROS
+  - Programming
+  - Linux
 categories:
-  - ros
-  - programming
-  - linux
-  - scratchpad
+  - Scratchpad
 comments: true
 date: "2019-10-13T15:00:00Z"
 draft: false
-title: 🛠️  Scratchpad -ROS1
+title: 🛠️  Scratchpad - ROS1
 showtoc: true
 cover:
   image: "/images/ros.png"
