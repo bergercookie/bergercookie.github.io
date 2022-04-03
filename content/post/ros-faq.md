@@ -4,6 +4,7 @@ tags:
   - ROS
   - Programming
   - Linux
+  - Robotics
 categories:
   - Scratchpad
 comments: true

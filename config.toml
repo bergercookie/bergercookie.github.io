@@ -35,6 +35,7 @@ ShowReadingTime = true
 ShowShareButtons = true
 ShowPostNavLinks = true
 ShowBreadCrumbs = true
+ShowFullTextinRSS = true
 ShowCodeCopyButtons = true
 disableSpecial1stPost = false
 disableScrollToTop = false
@@ -120,7 +121,7 @@ linkFullImages = true
 responsiveImages = true
 
 [params.editPost]
-URL = "https://github.com/bergercookie/bergercookie.github.io/edit/src/content/post/"
+URL = "https://github.com/bergercookie/bergercookie.github.io/blob/src/content/"
 Text = "Suggest Changes"
 appendFilePath = true
 
