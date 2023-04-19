@@ -311,6 +311,13 @@ ros::master::getTopics(allTopics);
   to publish your python code to Github Release / PyPI, etc. or generate a
   debian package
 
+## TF Tree - Precision
+
+It seems that the transforms published in the TF tree (both in ROS1 and ROS2)
+are accurate up to millimetres. This means that If I publish a transform
+translation like `[0.123456789,0.0,0.0]` it will appear like `[0.123,0.0,0.0]`
+when I read it using `tf tf_echo` or `tf2_ros tf2_echo` from the command line.
+
 ## A Mental Model of the ROS1 Navigation Stack
 
 {{< rawhtml >}}
