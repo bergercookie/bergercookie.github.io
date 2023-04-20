@@ -800,6 +800,11 @@ working with multiple repositories</li>
 to publish your python code to Github Release / PyPI, etc. or generate a
 debian package</li>
 </ul>
+<h2 id="tf-tree---precision">TF Tree - Precision</h2>
+<p>It seems that the transforms published in the TF tree (both in ROS1 and ROS2)
+are accurate up to millimetres. This means that If I publish a transform
+translation like <code>[0.123456789,0.0,0.0]</code> it will appear like <code>[0.123,0.0,0.0]</code>
+when I read it using <code>tf tf_echo</code> or <code>tf2_ros tf2_echo</code> from the command line.</p>
 <h2 id="a-mental-model-of-the-ros1-navigation-stack">A Mental Model of the ROS1 Navigation Stack</h2>
 
 
