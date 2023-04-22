@@ -1933,7 +1933,112 @@ Off we go!</description><content:encoded><![CDATA[<p>Hey people, this is the fir
 interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
 (yes, that broad  😊 )</p>
 <p>Off we go!</p>
-]]></content:encoded></item><item><title>Curriculum Vitae</title><link>https://bergercookie.dev/about/resume-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/about/resume-view/</guid><description>resume.pdf (35 ) resume code{white-space: pre-wrap;} span.smallcaps{font-variant: small-caps;} span.underline{text-decoration: underline;} div.column{display: inline-block; vertical-align: top; width: 50%;} body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; max-width: 800px; margin: auto; background: #FFFFFF; padding: 10px 10px 10px 10px; } h1 { font-size: 55px; color: #757575; text-align:center; margin-bottom:15px; } h2 { color: #397249; } h2:before { content: ""; display: inline-block; margin-right:1%; width: 16%; height: 10px; background-color: #9CB770; } dt { float: left; clear: left; width: 17%; font-weight: bold; } dd { margin-left: 17%; margin-bottom:7px; } p { margin-top:0; margin-bottom:7px; } blockquote { text-align: center } a { text-decoration: none; color: #397249; } a:hover, a:active { background-color: #397249; color: #FFFFFF; text-decoration: none; text-shadow: 1px 1px 1px #333; } hr { color: #A6A6A6; } table { width: 100%; } Nikos Koukis nickkouk@gmail.</description><content:encoded><![CDATA[<section class="attachments ">
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/wedding-el/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/wedding-el/</guid><description>body { background-image: url("/images/maria-nikos-wedding-invitation.jpg"); background-size: cover; background-position: center; background-color: #000; color: #000; text-align: center; font-family: 'Montserrat'; font-size: 2rem; align-items: center; justify-content: center; } h1 { font-size: 48px; margin-top: 30px; margin-bottom: 20px; color: #fa8072; } p { font-size: 24px; margin-bottom: 20px; } a { color: #fa8072; text-decoration: none; } Πρόσκληση Πάρτυ Γάμου Γεια The party will be held at Ergon Agora East, (Leof. Georgikis Scholis 50, Pilea Chortiatis 555 35).</description><content:encoded><![CDATA[<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes"
+  />
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-image: url("/images/maria-nikos-wedding-invitation.jpg");
+        background-size: cover;
+        background-position: center;
+        background-color: #000;
+        color: #000;
+        text-align: center;
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        align-items: center;
+        justify-content: center;
+      }
+	  h1 {
+		font-size: 48px;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		color: #fa8072;
+	  }
+	  p {
+		font-size: 24px;
+		margin-bottom: 20px;
+	  }
+	  a {
+		color: #fa8072;
+		text-decoration: none;
+	  }
+	</style>
+  </head>
+</head>
+  <title>Πρόσκληση Πάρτυ Γάμου</title>
+  <body>
+    <p>
+        Γεια
+    <p>
+      The party will be held at
+      <a href="https://goo.gl/maps/Lr9royw5xj8idyXY9">Ergon Agora East</a>,
+      (Leof. Georgikis Scholis 50, Pilea Chortiatis 555 35). Drop by at 7:30 PM.
+    </p>
+    <p>We hope to see you there!</p>
+    <p style="font-size: 16px;"><em>* Feel free to bring a +1. Just let us know to arrange accordingly</em></p>
+  </body>
+</html>
+
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/wedding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/wedding/</guid><description>body { background-image: url("/images/maria-nikos-wedding-invitation.png"); background-size: cover; background-position: center; background-color: #000; color: #000; text-align: center; font-family: 'Montserrat'; font-size: 2rem; align-items: center; justify-content: center; } h1 { font-size: 48px; margin-top: 30px; margin-bottom: 20px; color: #fa8072; } p { font-size: 24px; margin-bottom: 20px; } a { color: #fa8072; text-decoration: none; } Wedding Party Invite Maria Pantsiou and Nikos Koukis are getting married. To celebrate this, we're inviting you to our post-marriage party on the 5th of August 2023.</description><content:encoded><![CDATA[<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes"
+  />
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-image: url("/images/maria-nikos-wedding-invitation.png");
+        background-size: cover;
+        background-position: center;
+        background-color: #000;
+        color: #000;
+        text-align: center;
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        align-items: center;
+        justify-content: center;
+      }
+	  h1 {
+		font-size: 48px;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		color: #fa8072;
+	  }
+	  p {
+		font-size: 24px;
+		margin-bottom: 20px;
+	  }
+	  a {
+		color: #fa8072;
+		text-decoration: none;
+	  }
+	</style>
+  </head>
+  <h1>Wedding Party Invite</h1>
+  <body>
+    <p>
+      Maria Pantsiou and Nikos Koukis are getting married. To celebrate this,
+      we're inviting you to our post-marriage party on the <em>5th of August
+        2023</em>. at <a href="https://goo.gl/maps/Lr9royw5xj8idyXY9">Ergon
+        Agora East</a> (Leof. Georgikis Scholis 50, Pilea Chortiatis 555 35).
+      Drop by at 7:30 PM. </p>
+    <p>Join us for a night of fun 🥳, food 🌮, drinks 🍹 and dancing 💃! We hope
+      to see you there!</p>
+    <p style="font-size: 16px;"><em>* Feel free to bring a +1. Just let us know to arrange accordingly</em></p>
+  </body>
+</html>
+
+]]></content:encoded></item><item><title>Curriculum Vitae</title><link>https://bergercookie.dev/about/resume-view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/about/resume-view/</guid><description>resume.pdf resume code{white-space: pre-wrap;} span.smallcaps{font-variant: small-caps;} span.underline{text-decoration: underline;} div.column{display: inline-block; vertical-align: top; width: 50%;} body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; max-width: 800px; margin: auto; background: #FFFFFF; padding: 10px 10px 10px 10px; } h1 { font-size: 55px; color: #757575; text-align:center; margin-bottom:15px; } h2 { color: #397249; } h2:before { content: ""; display: inline-block; margin-right:1%; width: 16%; height: 10px; background-color: #9CB770; } dt { float: left; clear: left; width: 17%; font-weight: bold; } dd { margin-left: 17%; margin-bottom:7px; } p { margin-top:0; margin-bottom:7px; } blockquote { text-align: center } a { text-decoration: none; color: #397249; } a:hover, a:active { background-color: #397249; color: #FFFFFF; text-decoration: none; text-shadow: 1px 1px 1px #333; } hr { color: #A6A6A6; } table { width: 100%; } Nikos Koukis nickkouk@gmail.</description><content:encoded><![CDATA[<section class="attachments ">
   <label>
     <i class="fas fa-paperclip" aria-hidden="true"></i>
     
@@ -1941,7 +2046,6 @@ interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
   <div class="attachments-files">
     <li>
       <a href="/about/resume-view.files/resume.pdf">resume.pdf</a>
-      (35 )
     </li>
   </div>
 <!DOCTYPE html>
@@ -2165,36 +2269,5 @@ I have successfully completed more than 10 courses in various MOOC platforms inc
 
 
 </section>
-
-]]></content:encoded></item><item><title>The Wedding</title><link>https://bergercookie.dev/nikos-maria-wedding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/nikos-maria-wedding/</guid><description> body { background-image: url("/images/maria-nikos-wedding-invitation.jpg"); background-size: cover; background-position: center; background-color: #000; color: #000; text-align: center; font-family: Arial, sans-serif; font-size: 2rem; align-items: center; justify-content: center; } Centered Text with Background Image Welcome to Our Wedding We're excited to celebrate with you!</description><content:encoded><![CDATA[<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=yes"
-  />
-  <head>
-    <style>
-      body {
-        background-image: url("/images/maria-nikos-wedding-invitation.jpg");
-        background-size: cover;
-        background-position: center;
-        background-color: #000;
-        color: #000;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        font-size: 2rem;
-        align-items: center;
-        justify-content: center;
-      }
-    </style>
-  </head>
-
-  <body>
-    <title>Centered Text with Background Image</title>
-    <h1>Welcome to Our Wedding</h1>
-    <p>We're excited to celebrate with you!</p>
-  </body>
-</html>
 
 ]]></content:encoded></item></channel></rss>
