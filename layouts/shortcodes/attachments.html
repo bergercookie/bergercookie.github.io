@@ -25,7 +25,6 @@
       {{- end}}
     <li>
       <a href="{{ (printf "%s%s/%s" $fileDir $filesName .Name) | relLangURL }}">{{.Name}}</a>
-      ({{$size}} {{T (print $unit "-symbol")}})
     </li>
     {{- end}}
   {{- end}}

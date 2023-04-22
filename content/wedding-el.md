@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Wedding
+title:
 showtoc: false
 draft: false
 comments: false
@@ -15,9 +15,8 @@ hideFooter: true
 disableThemeToggle: true
 hideHeader: true
 hideSummary: true
-imgbg: "/static/images/maria-nikos-wedding-invitation.jpg"
 robotsNoIndex: true
 searchHidden: true
 ---
 
-{{< wedding >}}
+{{< wedding-el >}}
