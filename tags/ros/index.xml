@@ -188,7 +188,6 @@ when I read it using <code>tf tf_echo</code> or <code>tf2_ros tf2_echo</code> fr
 <h2 id="a-mental-model-of-the-ros1-navigation-stack">A Mental Model of the ROS1 Navigation Stack</h2>
 
 
-
 <iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>
 
 

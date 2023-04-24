@@ -204,7 +204,6 @@ features to it:</p>
 <p>Here&rsquo;s the original image that we&rsquo;ll be working on:</p>
 
 
-
 <center>
 <img src="/images/opencv/girl-no-makeup.jpg" alt="Original picture of girl" width="400" height="400">
 </center>
@@ -975,7 +974,6 @@ IMDB
  | <img loading="lazy" src="/images/albert-demos/youtube-demo.gif" alt=""  />
  |</p>
 
-
 <br/>
 <center>
 <img src="/images/albert-demos/demo-fuzzy-search-title.png">
@@ -1691,7 +1689,6 @@ when I read it using <code>tf tf_echo</code> or <code>tf2_ros tf2_echo</code> fr
 <h2 id="a-mental-model-of-the-ros1-navigation-stack">A Mental Model of the ROS1 Navigation Stack</h2>
 
 
-
 <iframe width='853' height='480' src='https://embed.coggle.it/diagram/X_RHf8i-aSUjoDBC/52e6ca4d6ae2dd1300c5b307f5cab849719310cd4f7942502e35fc9eafc486ef' frameborder='0' allowfullscreen></iframe>
 
 
@@ -2000,10 +1997,8 @@ interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
         >(Λεωφ. Γεωργικής Σχολής 50, Πυλαία Χορτιάτης 555 35)</span
       >. Ελάτε στις 7:30 μ.μ.
     </p>
-    <p>
-      Σας περιμένουμε για να περάσουμε υπέροχα με φαγητό 🌮 και ποτό 🍹!
-    </p>
-    <p style="font-family: cursive; font-size: 1.0em">
+    <p>Σας περιμένουμε για να περάσουμε υπέροχα με φαγητό 🌮 και ποτό 🍹!</p>
+    <p style="font-family: cursive; font-size: 1em">
       <em>Μαρία Πάντσιου και Νίκος Κούκης</em>
     </p>
     <p style="font-size: 16px">
@@ -2011,6 +2006,11 @@ interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
         >* Μπορείτε να φέρετε ένα φίλο/φίλη σας. Απλώς ενημερώστε μας για να
         κανονίσουμε αναλόγως.</em
       >
+      <br />
+      <em>
+        ** Αφού περάσετε τα καταστήματα του Ergon και βγείτε στον κήπο, θα
+        είμαστε στο βάθος και δεξιά, σε ένα χώρο που ονομάζεται "σινεμά"."
+      </em>
     </p>
   </body>
   <div id="top-right" style="font-size: 16px">
@@ -2089,13 +2089,18 @@ interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
       Join us for a night of fun 🥳, food 🌮, drinks 🍹 and more! We hope to see
       you there!
     </p>
-    <p style="font-family: cursive; font-size: 1.0em">
+    <p style="font-family: cursive; font-size: 1em">
       <em>Maria Pantsiou and Nikos Koukis</em>
     </p>
     <p style="font-size: 16px">
       <em
         >* Feel free to bring a +1. Just let us know to arrange accordingly</em
       >
+      <br />
+      <em>
+        ** After passing through Ergon's stores and exiting to the garden, we
+        will be towards the back and to the right, in the area called "cinema".
+      </em>
     </p>
   </body>
 
