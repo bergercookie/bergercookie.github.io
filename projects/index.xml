@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Projects on Bergercookie's Thoughtstream</title><link>https://bergercookie.dev/projects/</link><description>Recent content in Projects on Bergercookie's Thoughtstream</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://bergercookie.dev/projects/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://bergercookie.dev/projects/tw-gtasks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gtasks/</guid><description>Taskwarrior ⬄ Google Tasks The current document describes the Taskwarrior &amp;lt;&amp;gt; GTasks Sync synchronization of syncall. To get the most updated version of this document, head over to the version in the repository
+See also the privacy policy for this app
+Description Given all tasks in your Google Task task list and the task list of a Taskwarrior filter (combination of tags and projects) synchronise all the addition / modification / deletion events between them.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg--google-taskshttpssupportgooglecomtasksanswer7675772"><a href="https://taskwarrior.org/">Taskwarrior</a> ⬄ <a href="https://support.google.com/tasks/answer/7675772">Google Tasks</a></h1>
+<p><img loading="lazy" src="/images/taskwarrior.png" alt=""  />
+</p>
+<blockquote>
+<p>The current document describes the <code>Taskwarrior &lt;&gt; GTasks Sync</code>
+synchronization of <a href="https://github.com/bergercookie/syncall"><code>syncall</code></a>. To
+get the most updated version of this document, head over to the <a href="https://github.com/bergercookie/syncall/blob/master/readme-tw-gtasks.md">version in
+the
+repository</a></p>
+</blockquote>
+<p>See also the <a href="https://bergercookie.dev/tw-gtasks-sync-privacy-policy">privacy policy for this app</a></p>
+<h2 id="description">Description</h2>
+<p>Given all tasks in your Google Task task list and the task list of a Taskwarrior
+<em>filter</em> (combination of tags and projects) synchronise all the addition /
+modification / deletion events between them.</p>
+<h2 id="demo---populating-a-list-in-google-tasks-view-from-google-calendar">Demo - populating a list in Google Tasks (view from Google Calendar)</h2>
+<p><img loading="lazy" src="/images/tw-gtasks-sync/tw_gtasks_sync.gif" alt=""  />
+</p>
+<h2 id="motivation">Motivation</h2>
+<p>While Taskwarrior is an excellent tool when it comes to keeping TODO lists,
+keeping track of project goals etc., lacks the portability, simplicity and
+minimalistic design of Google Tasks. The latter also has the following
+advantages:</p>
+<ul>
+<li>Automatic sync across all your devices</li>
+<li>Comfortable addition/modification of events using voice commands</li>
+<li>Actual reminding of events with a variety of mechanisms</li>
+</ul>
+<h2 id="override-google-tasks-api-key">Override Google Tasks API key</h2>
+<p>At the moment the Google Console app that makes use of the Google Tasks API is
+still in Testing mode and awaiting approval from Google. This means that if it
+raches more than 100 users, the integration may stop working for you. In that
+case in order to use this integration you will have to register for your own
+developer account with the Google Tasks API with the following steps:</p>
+<p>Firstly, removed the <code>~/.gtasks_credentials.pickle</code> file on your system since that
+will be reused if found by the app.</p>
+<p>For creating your own Google Cloud Developer App:</p>
+<ul>
+<li>Go to the <a href="tw-gtasks-integration-test">Google Cloud developer console</a></li>
+<li>Make a new project</li>
+<li>From the sidebar go to <code>API &amp; Services</code> and once there click the <code>ENABLE APIS AND SERVICES</code> button</li>
+<li>Look for and Enable the <code>Tasks API</code></li>
+</ul>
+<p>Your newly created app now has access to the Tasks API. We now have to create
+and download the credentials:</p>
+<ul>
+<li>
+<p>Again, from the sidebar under <code>API And Services</code> click <code>Credentials</code></p>
+</li>
+<li>
+<p>In the Google Tasks API screen, click the <code>CREATE CREDENTIALS</code> button.</p>
+</li>
+<li>
+<p>Select the <code>User data</code> radio button (not the <code>Application data</code>).</p>
+</li>
+<li>
+<p>Fill in the <code>OAuth Consent Screen</code> information (shouldn&rsquo;t affect the process)</p>
+</li>
+<li>
+<p>Allow the said credentials to access the following scopes:</p>
+<ul>
+<li><code>Create, edit, organize, and delete all your tasks</code></li>
+<li><code>View your tasks</code></li>
+</ul>
+</li>
+<li>
+<p>Create a new <code>OAuth Client ID</code>. Set the type to <code>Desktop App</code> (app name is not
+important).</p>
+</li>
+<li>
+<p>Finally download the credentials in JSON form by clicking the download button
+as shown below. This is the file you need to point to when running
+<code>tw_gtasks_sync</code>.</p>
+<p><img loading="lazy" src="misc/gcal-json-btn.png" alt="download-btn"  />
+</p>
+</li>
+</ul>
+<p>To specify your custom credentials JSON file use the <code>--google-secret</code> flag as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>tw_gtasks_sync -l <span style="color:#e6db74">&#34;&lt;list-name&gt;&#34;</span> -t <span style="color:#e6db74">&#34;&lt;taskwarrior-tag&gt;&#34;</span> --google-secret <span style="color:#e6db74">&#34;&lt;path/to/downloaded/json/file&gt;&#34;</span>
+</span></span></code></pre></div><h2 id="usage-examples">Usage Examples</h2>
+<p>Run the <code>tw_gtasks_sync</code> to synchronise the Google Tasks list of your choice with
+the selected Taskwarrior tag(s). Run with <code>--help</code> for the list of options.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Sync the +remindme Taskwarrior tag with the Google Tasks list named &#34;TW Reminders&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tw_gtasks_sync --help
+</span></span><span style="display:flex;"><span>tw_gtasks_sync -t remindme -l <span style="color:#e6db74">&#34;TW Reminders&#34;</span>
+</span></span></code></pre></div><h2 id="installation">Installation</h2>
+<h3 id="package-installation">Package Installation</h3>
+<p>Install the <code>syncall</code> package from PyPI, enabling the <code>google</code> and <code>tw</code>
+extras:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip3 install syncall<span style="color:#f92672">[</span>google,tw<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="notes-re-this-synchronization">Notes re this synchronization</h2>
+<ul>
+<li>Currently subtasks of a Google Tasks item are treated as completely
+independent of the parent task when converted to Taskwarrior</li>
+<li>It&rsquo;s not possible to get the time part of the &ldquo;due&rdquo; field of a task using the
+Google Tasks API. Due to this restriction we currently do currently do sync
+the date part (without the time) from Google Tasks to Taskwarrior, but in
+order not to remove the time part when doing the inverse synchronization, we
+don&rsquo;t sync the date at all from Taskwarrior to Google Tasks. More
+information in <a href="https://issuetracker.google.com/u/1/issues/128979662">this ticket</a></li>
+</ul>
+]]></content:encoded></item></channel></rss>
