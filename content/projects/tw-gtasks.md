@@ -1,6 +1,6 @@
 # [Taskwarrior](https://taskwarrior.org/) ⬄ [Google Tasks](https://support.google.com/tasks/answer/7675772)
 
-![](/images/taskwarrior.png)
+![](/images/meme-tw-gtasks.png)
 
 > The current document describes the `Taskwarrior <> GTasks Sync`
 > synchronization of [`syncall`](https://github.com/bergercookie/syncall). To

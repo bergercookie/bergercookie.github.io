@@ -19,9 +19,9 @@ robotsNoIndex: true
 searchHidden: true
 ---
 
-![](/images/taskwarrior.png)
+# Taskwarrior - GTasks Sync - Privacy Policy
 
-# Privacy Policy
+![](/images/meme-tw-gtasks.png)
 
 I, Nikos Koukis, built the "Taskwarrior - GTasks Sync" as an Open Source app.
 This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
