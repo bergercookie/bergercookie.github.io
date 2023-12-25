@@ -1936,7 +1936,7 @@ interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
 ]]></content:encoded></item><item><title/><link>https://bergercookie.dev/projects/tw-gtasks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gtasks/</guid><description>Taskwarrior ⬄ Google Tasks The current document describes the Taskwarrior &amp;lt;&amp;gt; GTasks Sync synchronization of syncall. To get the most updated version of this document, head over to the version in the repository
 See also the privacy policy for this app
 Description Given all tasks in your Google Task task list and the task list of a Taskwarrior filter (combination of tags and projects) synchronise all the addition / modification / deletion events between them.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg--google-taskshttpssupportgooglecomtasksanswer7675772"><a href="https://taskwarrior.org/">Taskwarrior</a> ⬄ <a href="https://support.google.com/tasks/answer/7675772">Google Tasks</a></h1>
-<p><img loading="lazy" src="/images/taskwarrior.png" alt=""  />
+<p><img loading="lazy" src="/images/meme-tw-gtasks.png" alt=""  />
 </p>
 <blockquote>
 <p>The current document describes the <code>Taskwarrior &lt;&gt; GTasks Sync</code>
@@ -2037,11 +2037,11 @@ order not to remove the time part when doing the inverse synchronization, we
 don&rsquo;t sync the date at all from Taskwarrior to Google Tasks. More
 information in <a href="https://issuetracker.google.com/u/1/issues/128979662">this ticket</a></li>
 </ul>
-]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Taskwarrior - GTasks Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
-Information Collection and Use I do not collect any information when you are using &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo;.</description><content:encoded><![CDATA[<p><img loading="lazy" src="/images/taskwarrior.png" alt=""  />
+Information Collection and Use I do not collect any information when you are using &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo;.</description><content:encoded><![CDATA[<h1 id="taskwarrior---gtasks-sync---privacy-policy">Taskwarrior - GTasks Sync - Privacy Policy</h1>
+<p><img loading="lazy" src="/images/meme-tw-gtasks.png" alt=""  />
 </p>
-<h1 id="privacy-policy">Privacy Policy</h1>
 <p>I, Nikos Koukis, built the &ldquo;Taskwarrior - GTasks Sync&rdquo; as an Open Source app.
 This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
 is.</p>
