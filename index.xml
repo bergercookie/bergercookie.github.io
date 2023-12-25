@@ -2038,7 +2038,7 @@ don&rsquo;t sync the date at all from Taskwarrior to Google Tasks. More
 information in <a href="https://issuetracker.google.com/u/1/issues/128979662">this ticket</a></li>
 </ul>
 ]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Taskwarrior - GTasks Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. The app complies with the Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior---gtasks-sync---privacy-policy">Taskwarrior - GTasks Sync - Privacy Policy</h1>
+This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. Taskwarrior - GTasks Sync use and transfer to any other app of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior---gtasks-sync---privacy-policy">Taskwarrior - GTasks Sync - Privacy Policy</h1>
 <p><img loading="lazy" src="/images/meme-tw-gtasks.png" alt=""  />
 </p>
 <p>I, Nikos Koukis, built the &ldquo;Taskwarrior - GTasks Sync&rdquo; as an Open Source app.
@@ -2046,7 +2046,8 @@ This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
 is.</p>
 <p>This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
-The app complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data
+<code>Taskwarrior - GTasks Sync</code> use and transfer to any other app of information
+received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data
 Policy</a>,
 including the Limited Use requirements.</p>
 <h2 id="information-collection-and-use">Information Collection and Use</h2>
