@@ -29,6 +29,10 @@ is.
 
 This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
+`Taskwarrior - GTasks Sync` use and transfer to any other app of information
+received from Google APIs will adhere to [Google API Services User Data
+Policy](https://developers.google.com/terms/api-services-user-data-policy),
+including the Limited Use requirements.
 
 ## Information Collection and Use
 
