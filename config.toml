@@ -155,6 +155,12 @@ url = "/categories/"
 weight = 10
 
 [[menu.main]]
+identifier = "projects"
+name = "projects"
+url = "/projects/"
+weight = 15
+
+[[menu.main]]
 identifier = "tags"
 name = "tags"
 url = "/tags/"
