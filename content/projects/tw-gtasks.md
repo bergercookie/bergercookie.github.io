@@ -1,4 +1,4 @@
-# [Taskwarrior](https://taskwarrior.org/) ⬄ [Google Tasks](https://support.google.com/tasks/answer/7675772)
+# [Taskwarrior](https://taskwarrior.org/) for [Google Tasks](https://support.google.com/tasks/answer/7675772) Sync
 
 ![](/images/meme-tw-gtasks.png)
 

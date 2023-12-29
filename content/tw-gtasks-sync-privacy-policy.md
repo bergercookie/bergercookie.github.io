@@ -19,24 +19,24 @@ robotsNoIndex: true
 searchHidden: true
 ---
 
-# Taskwarrior - GTasks Sync - Privacy Policy
+# Taskwarrior for GTasks Sync - Privacy Policy
 
 ![](/images/meme-tw-gtasks.png)
 
-I, Nikos Koukis, built the "Taskwarrior - GTasks Sync" as an Open Source app.
+I, Nikos Koukis, built the "Taskwarrior for GTasks Sync" as an Open Source app.
 This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
 is.
 
 This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
-`Taskwarrior - GTasks Sync` use and transfer to any other app of information
+`Taskwarrior for GTasks Sync` use and transfer to any other app of information
 received from Google APIs will adhere to [Google API Services User Data
 Policy](https://developers.google.com/terms/api-services-user-data-policy),
 including the Limited Use requirements.
 
 ## Information Collection and Use
 
-I do not collect any information when you are using "Taskwarrior - GTasks
+I do not collect any information when you are using "Taskwarrior for GTasks
 Sync". The purpose of this app is to synchronise your Taskwarrior tasks
 on your local machine with your Google calendar events and is limited to that
 particular use.
@@ -54,18 +54,18 @@ https://policies.google.com/privacy
 
 This app needs access to your **Google Tasks** so that it can add, remove,
 and update individual tasks to synchronise the corresponding **Google Tasks**
-list with your local Taskwarrior configuration. Be advised that "Taskwarrior -
+list with your local Taskwarrior configuration. Be advised that "Taskwarrior for
 GTasks Sync" is not thoroughly tested and may contain bugs which could
 result in data loss in your Google Tasks lists. You are advised to use a
 dedicated Google Tasks list, different to your personal one. Remember that you
-are using "Taskwarrior - GTasks Sync" at your own risk.
+are using "Taskwarrior for GTasks Sync" at your own risk.
 
 You can read more on how it works, or look at the source code
 [here](https://github.com/bergercookie/syncall)
 
 ## Security
 
-When using "Taskwarrior - GTasks Sync" to sync Taskwarrior tasks with Google
+When using "Taskwarrior for GTasks Sync" to sync Taskwarrior tasks with Google
 Calendar events you are using
 [google-auth-oauthlib](https://pypi.org/project/google-auth-oauthlib/) to handle
 the `OAuth` authentication and
