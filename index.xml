@@ -2037,21 +2037,21 @@ order not to remove the time part when doing the inverse synchronization, we
 don&rsquo;t sync the date at all from Taskwarrior to Google Tasks. More
 information in <a href="https://issuetracker.google.com/u/1/issues/128979662">this ticket</a></li>
 </ul>
-]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Taskwarrior for GTasks Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior - GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. Taskwarrior - GTasks Sync use and transfer to any other app of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior-for-gtasks-sync---privacy-policy">Taskwarrior for GTasks Sync - Privacy Policy</h1>
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Taskwarrior for GTasks Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior for GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
+This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. Taskwarrior for GTasks Sync use and transfer to any other app of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior-for-gtasks-sync---privacy-policy">Taskwarrior for GTasks Sync - Privacy Policy</h1>
 <p><img loading="lazy" src="/images/meme-tw-gtasks.png" alt=""  />
 </p>
-<p>I, Nikos Koukis, built the &ldquo;Taskwarrior - GTasks Sync&rdquo; as an Open Source app.
+<p>I, Nikos Koukis, built the &ldquo;Taskwarrior for GTasks Sync&rdquo; as an Open Source app.
 This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
 is.</p>
 <p>This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
-<code>Taskwarrior - GTasks Sync</code> use and transfer to any other app of information
+<code>Taskwarrior for GTasks Sync</code> use and transfer to any other app of information
 received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data
 Policy</a>,
 including the Limited Use requirements.</p>
 <h2 id="information-collection-and-use">Information Collection and Use</h2>
-<p>I do not collect any information when you are using &ldquo;Taskwarrior - GTasks
+<p>I do not collect any information when you are using &ldquo;Taskwarrior for GTasks
 Sync&rdquo;. The purpose of this app is to synchronise your Taskwarrior tasks
 on your local machine with your Google calendar events and is limited to that
 particular use.</p>
@@ -2065,15 +2065,15 @@ though at this link:</p>
 <h2 id="google-api-scopes">Google API Scopes</h2>
 <p>This app needs access to your <strong>Google Tasks</strong> so that it can add, remove,
 and update individual tasks to synchronise the corresponding <strong>Google Tasks</strong>
-list with your local Taskwarrior configuration. Be advised that &ldquo;Taskwarrior -
+list with your local Taskwarrior configuration. Be advised that &ldquo;Taskwarrior for
 GTasks Sync&rdquo; is not thoroughly tested and may contain bugs which could
 result in data loss in your Google Tasks lists. You are advised to use a
 dedicated Google Tasks list, different to your personal one. Remember that you
-are using &ldquo;Taskwarrior - GTasks Sync&rdquo; at your own risk.</p>
+are using &ldquo;Taskwarrior for GTasks Sync&rdquo; at your own risk.</p>
 <p>You can read more on how it works, or look at the source code
 <a href="https://github.com/bergercookie/syncall">here</a></p>
 <h2 id="security">Security</h2>
-<p>When using &ldquo;Taskwarrior - GTasks Sync&rdquo; to sync Taskwarrior tasks with Google
+<p>When using &ldquo;Taskwarrior for GTasks Sync&rdquo; to sync Taskwarrior tasks with Google
 Calendar events you are using
 <a href="https://pypi.org/project/google-auth-oauthlib/">google-auth-oauthlib</a> to handle
 the <code>OAuth</code> authentication and
