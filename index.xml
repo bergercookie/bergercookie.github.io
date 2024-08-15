@@ -1933,6 +1933,112 @@ Off we go!</description><content:encoded><![CDATA[<p>Hey people, this is the fir
 interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
 (yes, that broad  😊 )</p>
 <p>Off we go!</p>
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/projects/tw-gcal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gcal/</guid><description>Taskwarrior ⬄ Google Calendar UPDATE: This page describes the tw_gcal_sync app, which bi-directionally synchronizes your Taskwarrior items with Google Calendar events. Since then a new synchronization has been created which synchronizes your Taskwarrior items with Google Tasks TODO items which in the majority of cases should be more suitable for you to use. To use the latter, head over to the TW ⬄ Google Tasks README
+Description Given all the entries of a Calendar in Google Calendar with all the tasks of a Taskwarrior filter (combination of tags and projects) synchronise all the addition/modification/deletion events between them.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg--google-calendarhttpscalendargooglecom"><a href="https://taskwarrior.org/">Taskwarrior</a> ⬄ <a href="https://calendar.google.com/">Google Calendar</a></h1>
+<blockquote>
+<p><em>UPDATE:</em> This page describes the <code>tw_gcal_sync</code> app, which bi-directionally
+synchronizes your Taskwarrior items with Google Calendar <em>events</em>. Since then a
+new synchronization has been created which synchronizes your Taskwarrior items
+with Google Tasks TODO items which in the majority of cases should be more
+suitable for you to use. To use the latter, head over to the
+<a href="https://github.com/bergercookie/syncall/blob/master/docs/readme-tw-gtasks.md">TW ⬄ Google Tasks README</a></p>
+</blockquote>
+<p><img loading="lazy" src="../misc/meme-tw-gcal.png" alt="logo"  />
+</p>
+<h2 id="description">Description</h2>
+<p>Given all the entries of a <em>Calendar</em> in Google Calendar with all the tasks of a
+Taskwarrior <em>filter</em> (combination of tags and projects) synchronise all the
+addition/modification/deletion events between them.</p>
+<h2 id="demo---first-run---populating-calendar-in-gcal">Demo - first run - populating calendar in GCal</h2>
+<p><img loading="lazy" src="../misc/demo.gif" alt="demo_gif"  />
+</p>
+<h2 id="motivation">Motivation</h2>
+<p>While Taskwarrior is an excellent tool when it comes to keeping TODO lists,
+keeping track of project goals etc., lacks the portability, simplicity and
+minimalistic design of Google Calendar. The latter also has the following
+advantages:</p>
+<ul>
+<li>Automatic sync across all your devices</li>
+<li>Comfortable addition/modification of events using voice commands</li>
+<li>Actual reminding of events with a variety of mechanisms</li>
+</ul>
+<h2 id="override-calendar-api-key">Override Calendar API key</h2>
+<p>Unfortunately I have not yet verified this app with Google so new users are
+currently blocked from using it. To bypass that you can register for your own
+developer account with the Google Calendar API with the following steps:</p>
+<p>Firstly, remove the <code>~/.gcal_credentials.pickle</code> file on your system since that
+will be reused if found by the app.</p>
+<p>For creating your own Google Developer App:</p>
+<ul>
+<li>Go to the Google developer console</li>
+<li>Make a new project</li>
+<li>From the sidebar go to <code>API &amp; Services</code> and once there click the <code>ENABLE APIS AND SERVICES</code> button</li>
+<li>Look for and Enable the <code>Calendar API</code></li>
+</ul>
+<p>Your newly created app now has access to the Calendar API. We now have to create
+and download the credentials:</p>
+<ul>
+<li>
+<p>Again, from the sidebar under <code>API And Services</code> click <code>Credentials</code></p>
+</li>
+<li>
+<p>Enable the <code>Calendar API</code></p>
+</li>
+<li>
+<p>On the sidebar click <code>Credentials</code>, and once there click <code>CREATE CREDENTIALS</code></p>
+</li>
+<li>
+<p>Create a new <code>OAuth Client ID</code>. Set the type to <code>Desktop App</code> (app name is not
+important).</p>
+</li>
+<li>
+<p>Finally download the credentials in JSON form by clicking the download button
+as shown below. This is the file you need to point to when running
+<code>tw_gcal_sync</code>.</p>
+<p><img loading="lazy" src="../misc/gcal-json-btn.png" alt="download-btn"  />
+</p>
+</li>
+</ul>
+<p>To specify your custom credentials JSON file use the <code>--google-secret</code> flag as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>tw_gcal_sync -c <span style="color:#e6db74">&#34;&lt;calendar-name&gt;&#34;</span> -t <span style="color:#e6db74">&#34;&lt;taskwarrior-tag&gt;&#34;</span> --google-secret <span style="color:#e6db74">&#34;&lt;path/to/downloaded/json/file&gt;&#34;</span>
+</span></span></code></pre></div><h2 id="usage-examples">Usage Examples</h2>
+<p>Run the <code>tw_gcal_sync</code> to synchronise the Google calendar of your choice with
+the selected Taskwarrior tag(s). Run with <code>--help</code> for the list of options.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Sync the +remindme Taskwarrior tag with the calendar named &#34;TW Reminders&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tw_gcal_sync --help
+</span></span><span style="display:flex;"><span>tw_gcal_sync -t remindme -c <span style="color:#e6db74">&#34;TW Reminders&#34;</span>
+</span></span></code></pre></div><h2 id="installation">Installation</h2>
+<h3 id="package-installation">Package Installation</h3>
+<p>Install the <code>syncall</code> package from PyPI, enabling the <code>google</code> and <code>tw</code>
+extras:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip3 install syncall<span style="color:#f92672">[</span>google,tw<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="faq">FAQ</h2>
+<h3 id="how-do-i-mark-an-item-as-done-from-google-calendar">How do I mark an item as done from Google Calendar</h3>
+<p>If the item was created from Taskwarrior then there should be a
+<code>status: pending</code> line in its description. Change it to <code>status: done</code> or
+<code>status: completed</code>.</p>
+<h3 id="how-do-i-modify-the-default-event-duration--how-do-i-change-the-duration-of-a-said-event-from-taskwarrior">How do i modify the default event duration / How do I change the duration of a said event from Taskwarrior</h3>
+<p><code>syncall</code> is aware of the <code>syncallduration</code> Taskwarrior
+<a href="https://taskwarrior.org/docs/udas/"><code>UDA</code></a>. This means you can assign a custom
+duration to a Taskwarrior task using something like the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># create a task ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Make this a 15min task</span>
+</span></span><span style="display:flex;"><span>task &lt;id&gt; mod syncallduration:15M
+</span></span></code></pre></div><p>Then on subsequent runs, it will create an event of the said duration in Google
+Calendar.</p>
+<p>You can also edit the default event duration using the
+<code>--default-event-duration-mins INTEGER</code> flag (specify it in minutes)</p>
+<p><strong>Note:</strong> To make it viewing the duration a bit more user friendly, e.g., for
+Taskwarrior reports, the user can also add the following section to their
+<code>.taskrc</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>uda.syncallduration.type<span style="color:#f92672">=</span>duration
+</span></span><span style="display:flex;"><span>uda.syncallduration.label<span style="color:#f92672">=</span>GCal duration
+</span></span></code></pre></div><h2 id="see-also">See also</h2>
+<ul>
+<li><!-- raw HTML omitted -->Taskwarrior Filtering.md<!-- raw HTML omitted -->.</li>
+</ul>
 ]]></content:encoded></item><item><title/><link>https://bergercookie.dev/projects/tw-gtasks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gtasks/</guid><description>Taskwarrior for Google Tasks Sync The current document describes the Taskwarrior &amp;lt;&amp;gt; GTasks Sync synchronization of syncall. To get the most updated version of this document, head over to the version in the repository
 See also the privacy policy for this app
 Description Given all tasks in your Google Task task list and the task list of a Taskwarrior filter (combination of tags and projects) synchronise all the addition / modification / deletion events between them.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg-for-google-taskshttpssupportgooglecomtasksanswer7675772-sync"><a href="https://taskwarrior.org/">Taskwarrior</a> for <a href="https://support.google.com/tasks/answer/7675772">Google Tasks</a> Sync</h1>
