@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Projects on Bergercookie's Thoughtstream</title><link>https://bergercookie.dev/projects/</link><description>Recent content in Projects on Bergercookie's Thoughtstream</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://bergercookie.dev/projects/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://bergercookie.dev/projects/tw-gcal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gcal/</guid><description>Taskwarrior for Google Calendar Sync See also the privacy policy for this app
 Description Given all the entries of a Calendar in Google Calendar with all the tasks of a Taskwarrior filter (combination of tags and projects) synchronise all the addition/modification/deletion events between them.
 Demo - first run - populating calendar in GCal Motivation While Taskwarrior is an excellent tool when it comes to keeping TODO lists, keeping track of project goals etc.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg-for-google-calendarhttpscalendargooglecom-sync"><a href="https://taskwarrior.org/">Taskwarrior</a> for <a href="https://calendar.google.com/">Google Calendar</a> Sync</h1>
-<p><img loading="lazy" src="../misc/meme-tw-gcal.png" alt="logo"  />
+<p><img loading="lazy" src="/images/meme-tw-gcal.png" alt="logo"  />
 </p>
 <p>See also the <a href="https://bergercookie.dev/tw-gcal-sync-privacy-policy">privacy policy for this app</a></p>
 <h2 id="description">Description</h2>
