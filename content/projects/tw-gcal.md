@@ -1,6 +1,6 @@
 # [Taskwarrior](https://taskwarrior.org/) for [Google Calendar](https://calendar.google.com/) Sync
 
-![logo](../misc/meme-tw-gcal.png)
+![logo](/images/meme-tw-gcal.png)
 
 See also the [privacy policy for this app](https://bergercookie.dev/tw-gcal-sync-privacy-policy)
 
