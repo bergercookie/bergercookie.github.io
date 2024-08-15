@@ -1933,7 +1933,7 @@ Off we go!</description><content:encoded><![CDATA[<p>Hey people, this is the fir
 interesting technical stuff; These would be C++, Python, Vim, robotics, Linux
 (yes, that broad  😊 )</p>
 <p>Off we go!</p>
-]]></content:encoded></item><item><title/><link>https://bergercookie.dev/projects/tw-gcal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gcal/</guid><description>Taskwarrior for Google Calendar Sync See also the privacy policy for this app
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/projects/tw-gcal-sync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/projects/tw-gcal-sync/</guid><description>Taskwarrior for Google Calendar Sync See also the privacy policy for this app
 Description Given all the entries of a Calendar in Google Calendar with all the tasks of a Taskwarrior filter (combination of tags and projects) synchronise all the addition/modification/deletion events between them.
 Demo - first run - populating calendar in GCal Motivation While Taskwarrior is an excellent tool when it comes to keeping TODO lists, keeping track of project goals etc.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg-for-google-calendarhttpscalendargooglecom-sync"><a href="https://taskwarrior.org/">Taskwarrior</a> for <a href="https://calendar.google.com/">Google Calendar</a> Sync</h1>
 <p><img loading="lazy" src="/images/meme-tw-gcal.png" alt="logo"  />
