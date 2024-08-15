@@ -19,60 +19,60 @@ robotsNoIndex: true
 searchHidden: true
 ---
 
-# Taskwarrior for GTasks Sync - Privacy Policy
+# Taskwarrior for Google Calendar Sync - Privacy Policy
 
-![](/images/meme-tw-gtasks.png)
+![](/images/meme-tw-gcal.png)
 
-I, Nikos Koukis, built the "Taskwarrior for GTasks Sync" as an Open Source app.
+I, Nikos Koukis, built the "Taskwarrior for Google Calendar Sync" as an Open Source app.
 This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
 is.
 
 This page is used to inform visitors regarding my policies with the collection,
 use, and disclosure of Personal Information if anyone decided to use my Service.
-`Taskwarrior for GTasks Sync` use and transfer to any other app of information
+`Taskwarrior for Google Calendar Sync` use and transfer to any other app of information
 received from Google APIs will adhere to [Google API Services User Data
 Policy](https://developers.google.com/terms/api-services-user-data-policy),
 including the Limited Use requirements.
 
 ## Information Collection and Use
 
-I do not collect any information when you are using "Taskwarrior for GTasks
-Sync". The purpose of this app is to synchronise your Taskwarrior tasks
-on your local machine with your Google Tasks and is limited to that particular
-use.
+I do not collect any information when you are using "Taskwarrior for Google
+Calendar Sync". The purpose of this app is to synchronise your Taskwarrior tasks
+on your local machine with your Google calendar events and is limited to that
+particular use.
 
 I do use the
 [google-api-python-client](https://github.com/googleapis/google-api-python-client)
-client however in order to sync your Taskwarrior tasks with your Google Tasks
+client however in order to sync your Taskwarrior tasks with your Google Calendar
 account and I do not know what data Google collects via that tool and when using
-its Google Tasks API. You can find out more about Google's Privacy policy
+its Google Calendar API. You can find out more about Google's Privacy policy
 though at this link:
 
 https://policies.google.com/privacy
 
 ## Google API Scopes
 
-This app needs access to your **Google Tasks** so that it can add, remove,
-and update individual tasks to synchronise the corresponding **Google Tasks**
+This app needs access to your **Google Calendar** so that it can add, remove,
+and update individual events to synchronise the corresponding **Google Calendar**
 list with your local Taskwarrior configuration. Be advised that "Taskwarrior for
-GTasks Sync" is not thoroughly tested and may contain bugs which could
-result in data loss in your Google Tasks lists. You are advised to use a
-dedicated Google Tasks list, different to your personal one. Remember that you
-are using "Taskwarrior for GTasks Sync" at your own risk.
+Google Calendar Sync" is not thoroughly tested and may contain bugs which could
+result in data loss in your Google Calendar events. You are advised to use a
+dedicated calendar, different to your personal one. Remember that you are using
+"Taskwarrior for Google Calendar Sync" at your own risk.
 
 You can read more on how it works, or look at the source code
 [here](https://github.com/bergercookie/syncall)
 
 ## Security
 
-When using "Taskwarrior for GTasks Sync" to sync Taskwarrior tasks with Google
-Tasks you are using
+When using "Taskwarrior for Google Calendar Sync" to sync Taskwarrior tasks with
+Google Calendar events you are using
 [google-auth-oauthlib](https://pypi.org/project/google-auth-oauthlib/) to handle
 the `OAuth` authentication and
 [google-api-python-client](https://github.com/googleapis/google-api-python-client),
-and to communicate with the Google Tasks API and make changes to your
-personal Google Tasks lists. The security of using this application is as strong
-as the security of these two packages. Remember though that no method of
+and to communicate with the Google Calendar API and make changes to your
+personal Google Calendar events. The security of using this application is as
+strong as the security of these two packages. Remember though that no method of
 transmission over the internet, or method of electronic storage is 100% secure
 and reliable, and I cannot guarantee its absolute security.
 
@@ -82,7 +82,7 @@ I may update our Privacy Policy from time to time. Thus, you are advised to
 review this page periodically for any changes. I will notify you of any changes
 by posting the new Privacy Policy on this page.
 
-This policy is effective as of 2023-23-12
+This policy is effective as of 2024-08-15
 
 ## Contact Us
 
