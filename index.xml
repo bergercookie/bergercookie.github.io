@@ -2037,6 +2037,64 @@ order not to remove the time part when doing the inverse synchronization, we
 don&rsquo;t sync the date at all from Taskwarrior to Google Tasks. More
 information in <a href="https://issuetracker.google.com/u/1/issues/128979662">this ticket</a></li>
 </ul>
+]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gcal-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gcal-sync-privacy-policy/</guid><description>Taskwarrior for Google Calendar Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior for Google Calendar Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
+This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. Taskwarrior for Google Calendar Sync use and transfer to any other app of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior-for-google-calendar-sync---privacy-policy">Taskwarrior for Google Calendar Sync - Privacy Policy</h1>
+<p><img loading="lazy" src="/images/meme-tw-gcal.png" alt=""  />
+</p>
+<p>I, Nikos Koukis, built the &ldquo;Taskwarrior for Google Calendar Sync&rdquo; as an Open Source app.
+This SERVICE is provided by Nikos Koukis at no cost and is intended for use as
+is.</p>
+<p>This page is used to inform visitors regarding my policies with the collection,
+use, and disclosure of Personal Information if anyone decided to use my Service.
+<code>Taskwarrior for Google Calendar Sync</code> use and transfer to any other app of information
+received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data
+Policy</a>,
+including the Limited Use requirements.</p>
+<h2 id="information-collection-and-use">Information Collection and Use</h2>
+<p>I do not collect any information when you are using &ldquo;Taskwarrior for Google
+Calendar Sync&rdquo;. The purpose of this app is to synchronise your Taskwarrior tasks
+on your local machine with your Google calendar events and is limited to that
+particular use.</p>
+<p>I do use the
+<a href="https://github.com/googleapis/google-api-python-client">google-api-python-client</a>
+client however in order to sync your Taskwarrior tasks with your Google Calendar
+account and I do not know what data Google collects via that tool and when using
+its Google Calendar API. You can find out more about Google&rsquo;s Privacy policy
+though at this link:</p>
+<p><a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+<h2 id="google-api-scopes">Google API Scopes</h2>
+<p>This app needs access to your <strong>Google Calendar</strong> so that it can add, remove,
+and update individual events to synchronise the corresponding <strong>Google Calendar</strong>
+list with your local Taskwarrior configuration. Be advised that &ldquo;Taskwarrior for
+Google Calendar Sync&rdquo; is not thoroughly tested and may contain bugs which could
+result in data loss in your Google Calendar events. You are advised to use a
+dedicated calendar, different to your personal one. Remember that you are using
+&ldquo;Taskwarrior for Google Calendar Sync&rdquo; at your own risk.</p>
+<p>You can read more on how it works, or look at the source code
+<a href="https://github.com/bergercookie/syncall">here</a></p>
+<h2 id="security">Security</h2>
+<p>When using &ldquo;Taskwarrior for Google Calendar Sync&rdquo; to sync Taskwarrior tasks with
+Google Calendar events you are using
+<a href="https://pypi.org/project/google-auth-oauthlib/">google-auth-oauthlib</a> to handle
+the <code>OAuth</code> authentication and
+<a href="https://github.com/googleapis/google-api-python-client">google-api-python-client</a>,
+and to communicate with the Google Calendar API and make changes to your
+personal Google Calendar events. The security of using this application is as
+strong as the security of these two packages. Remember though that no method of
+transmission over the internet, or method of electronic storage is 100% secure
+and reliable, and I cannot guarantee its absolute security.</p>
+<h2 id="changes-to-this-privacy-policy">Changes to This Privacy Policy</h2>
+<p>I may update our Privacy Policy from time to time. Thus, you are advised to
+review this page periodically for any changes. I will notify you of any changes
+by posting the new Privacy Policy on this page.</p>
+<p>This policy is effective as of 2024-08-15</p>
+<h2 id="contact-us">Contact Us</h2>
+<p>If you have any questions or suggestions about my Privacy Policy, do not
+hesitate to contact me at <a href="mailto:nickkouk@gmail.com">nickkouk@gmail.com</a>.</p>
+<p>This privacy policy page was created at
+<a href="https://privacypolicytemplate.net">privacypolicytemplate.net</a> and
+modified/generated by <a href="https://app-privacy-policy-generator.firebaseapp.com/">App Privacy Policy
+Generator</a></p>
 ]]></content:encoded></item><item><title/><link>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://bergercookie.dev/tw-gtasks-sync-privacy-policy/</guid><description>Taskwarrior for GTasks Sync - Privacy Policy I, Nikos Koukis, built the &amp;ldquo;Taskwarrior for GTasks Sync&amp;rdquo; as an Open Source app. This SERVICE is provided by Nikos Koukis at no cost and is intended for use as is.
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. Taskwarrior for GTasks Sync use and transfer to any other app of information received from Google APIs will adhere to Google API Services User Data Policy, including the Limited Use requirements.</description><content:encoded><![CDATA[<h1 id="taskwarrior-for-gtasks-sync---privacy-policy">Taskwarrior for GTasks Sync - Privacy Policy</h1>
 <p><img loading="lazy" src="/images/meme-tw-gtasks.png" alt=""  />
@@ -2053,8 +2111,8 @@ including the Limited Use requirements.</p>
 <h2 id="information-collection-and-use">Information Collection and Use</h2>
 <p>I do not collect any information when you are using &ldquo;Taskwarrior for GTasks
 Sync&rdquo;. The purpose of this app is to synchronise your Taskwarrior tasks
-on your local machine with your Google calendar events and is limited to that
-particular use.</p>
+on your local machine with your Google Tasks and is limited to that particular
+use.</p>
 <p>I do use the
 <a href="https://github.com/googleapis/google-api-python-client">google-api-python-client</a>
 client however in order to sync your Taskwarrior tasks with your Google Tasks
@@ -2074,7 +2132,7 @@ are using &ldquo;Taskwarrior for GTasks Sync&rdquo; at your own risk.</p>
 <a href="https://github.com/bergercookie/syncall">here</a></p>
 <h2 id="security">Security</h2>
 <p>When using &ldquo;Taskwarrior for GTasks Sync&rdquo; to sync Taskwarrior tasks with Google
-Calendar events you are using
+Tasks you are using
 <a href="https://pypi.org/project/google-auth-oauthlib/">google-auth-oauthlib</a> to handle
 the <code>OAuth</code> authentication and
 <a href="https://github.com/googleapis/google-api-python-client">google-api-python-client</a>,
