@@ -3,7 +3,8 @@ Description Given all the entries of a Calendar in Google Calendar with all the 
 Demo - first run - populating calendar in GCal Motivation While Taskwarrior is an excellent tool when it comes to keeping TODO lists, keeping track of project goals etc.</description><content:encoded><![CDATA[<h1 id="taskwarriorhttpstaskwarriororg-for-google-calendarhttpscalendargooglecom-sync"><a href="https://taskwarrior.org/">Taskwarrior</a> for <a href="https://calendar.google.com/">Google Calendar</a> Sync</h1>
 <p><img loading="lazy" src="/images/meme-tw-gcal.png" alt="logo"  />
 </p>
-<p>See also the privacy policy for this app: <a href="https://bergercookie.dev/tw-gcal-sync-privacy-policy">https://bergercookie.dev/tw-gcal-sync-privacy-policy</a></p>
+<p>See also the privacy policy for this app:
+<a href="https://bergercookie.dev/tw-gcal-sync-privacy-policy">https://bergercookie.dev/tw-gcal-sync-privacy-policy</a></p>
 <h2 id="description">Description</h2>
 <p>Given all the entries of a <em>Calendar</em> in Google Calendar with all the tasks of a
 Taskwarrior <em>filter</em> (combination of tags and projects) synchronise all the
