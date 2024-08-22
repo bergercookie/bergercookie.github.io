@@ -2,7 +2,8 @@
 
 ![logo](/images/meme-tw-gcal.png)
 
-See also the [privacy policy for this app](https://bergercookie.dev/tw-gcal-sync-privacy-policy)
+See also the privacy policy for this app:
+https://bergercookie.dev/tw-gcal-sync-privacy-policy
 
 ## Description
 
